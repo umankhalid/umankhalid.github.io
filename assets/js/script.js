@@ -201,6 +201,11 @@ function initializeStaticEventHandlers() {
 function handleDelegatedActionClick(event) {
     if (!(event.target instanceof Element)) return;
 
+    // Any click outside the open visitor popover dismisses it
+    if (!event.target.closest('.flag-counter-wrap')) {
+        toggleFlagCounterPopover(false);
+    }
+
     const newsToggleAll = event.target.closest('[data-news-toggle-all]');
     if (newsToggleAll) {
         event.preventDefault();
@@ -219,6 +224,20 @@ function handleDelegatedActionClick(event) {
     if (tabTrigger) {
         event.preventDefault();
         showTab(tabTrigger.dataset.tab);
+        return;
+    }
+
+    const flagCounterToggle = event.target.closest('[data-flag-counter-toggle]');
+    if (flagCounterToggle) {
+        event.preventDefault();
+        toggleFlagCounterPopover();
+        return;
+    }
+
+    const flagCounterClose = event.target.closest('[data-flag-counter-close]');
+    if (flagCounterClose) {
+        event.preventDefault();
+        toggleFlagCounterPopover(false);
         return;
     }
 
@@ -2696,6 +2715,36 @@ function closeImageZoom() {
 // ==========================================================================
 
 /**
+ * Show or hide the visitor flag counter popover beside its icon.
+ * It does not lock scrolling or cover the page.
+ * @param {boolean} [open] - Force open (true) or closed (false); toggles when omitted
+ */
+function toggleFlagCounterPopover(open) {
+    const popover = document.getElementById('flagCounterPopover');
+    const toggle = document.querySelector('[data-flag-counter-toggle]');
+    if (!popover || !toggle) return;
+
+    const shouldOpen = typeof open === 'boolean' ? open : popover.hidden;
+    if (shouldOpen === !popover.hidden) return;
+
+    popover.hidden = !shouldOpen;
+    toggle.setAttribute('aria-expanded', String(shouldOpen));
+    if (!shouldOpen) return;
+
+    // Nudge the popover sideways if it would run off either edge of the viewport
+    const gutter = 16;
+    popover.style.setProperty('--popover-shift', '0px');
+    const rect = popover.getBoundingClientRect();
+    let shift = 0;
+    if (rect.left < gutter) {
+        shift = gutter - rect.left;
+    } else if (rect.right > window.innerWidth - gutter) {
+        shift = window.innerWidth - gutter - rect.right;
+    }
+    popover.style.setProperty('--popover-shift', `${shift}px`);
+}
+
+/**
  * Close modal
  * @param {string} modalId - ID of the modal to close
  */
@@ -2715,7 +2764,7 @@ function handleModalClick(event) {
     const certificateModal = document.getElementById('certificateModal');
     const awardCertificateModal = document.getElementById('awardCertificateModal');
     const imageZoomOverlay = document.getElementById('imageZoomOverlay');
-    
+
     if (event.target === projectModal) {
         closeModal('projectModal');
     }
@@ -2862,6 +2911,7 @@ function initializeKeyboardNavigation() {
             closeModal('projectModal');
             closeModal('certificateModal');
             closeModal('awardCertificateModal');
+            toggleFlagCounterPopover(false);
             closeImageZoom();
         }
         

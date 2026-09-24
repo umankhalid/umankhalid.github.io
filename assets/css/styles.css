@@ -4422,6 +4422,7 @@ a.contact-value:hover {
   color: var(--text-primary);
 }
 
+
 /* Image Zoom overlays */
 .image-zoom-overlay {
   display: none;
@@ -4540,6 +4541,9 @@ a.contact-value:hover {
 .social-icon.email {
   --brand-color: #2563eb;
 }
+.social-icon.flagcounter {
+  --brand-color: #2f855a;
+}
 
 /* ORCID's green is light enough that white on it would not carry */
 .social-icon.orcid {
@@ -4550,6 +4554,98 @@ a.contact-value:hover {
 .social-icon:focus-visible {
   filter: brightness(0.88);
   box-shadow: var(--elev-2);
+}
+
+/* Visitor flag counter popover - opens beside its icon without covering the page */
+.flag-counter-wrap {
+  position: relative;
+}
+
+.flag-counter-popover {
+  position: absolute;
+  right: calc(100% + 12px);
+  bottom: 0;
+  width: max-content;
+  /* The counter image is 578px wide; room for it at full size plus padding */
+  max-width: min(620px, calc(100vw - 100px));
+  padding: 16px 16px 14px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--elev-3);
+  text-align: center;
+  transform: translateX(var(--popover-shift, 0px));
+  animation: flagPopoverIn 0.18s ease-out;
+}
+
+.flag-counter-popover[hidden] {
+  display: none;
+}
+
+@keyframes flagPopoverIn {
+  from {
+    opacity: 0;
+    translate: 6px 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* Sits on the popover's corner so it never covers the counter image */
+.flag-counter-popover__close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--elev-1);
+  transition: var(--transition-interactive);
+}
+
+.flag-counter-popover__close:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+/* The counter image has a white background, so it sits on white in dark mode too */
+.flag-counter-frame {
+  padding: 8px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+.flag-counter-frame img {
+  display: block;
+  width: 578px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.flag-counter-more {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+@media print {
+  .flag-counter-popover {
+    display: none;
+  }
 }
 
 /* ==========================================================================
@@ -5106,6 +5202,15 @@ a.contact-value:hover {
     gap: 12px;
     margin: 48px auto 0;
     padding: 0 16px;
+  }
+
+  /* Icons sit in a row here, so the visitor popover opens above its icon */
+  .flag-counter-popover {
+    right: auto;
+    left: 50%;
+    bottom: calc(100% + 12px);
+    max-width: calc(100vw - 32px);
+    transform: translateX(calc(-50% + var(--popover-shift, 0px)));
   }
 
   .scroll-to-top {
