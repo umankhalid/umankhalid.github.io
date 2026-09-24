@@ -1,0 +1,172 @@
+{
+  "themes": [
+    {
+      "id": "quantum-sensing",
+      "navLabel": "Quantum Sensing & Metrology",
+      "navIcon": "fas fa-bullseye",
+      "title": "Quantum Resource Characterization, Quantum Sensing, and Metrology",
+      "description": "Theoretical and computational frameworks for identifying, quantifying, and exploiting quantum resources in quantum information processing and precision sensing.",
+      "badges": [
+        { "label": "Quantum Metrology", "variant": "impact-factor" },
+        { "label": "Quantum Correlations", "variant": "impact-factor" },
+        { "label": "Multipartite Entanglement", "variant": "corresponding" },
+        { "label": "Distributed Quantum Sensing", "variant": "corresponding" },
+        { "label": "NISQ", "variant": "editor-choice" }
+      ],
+      "sections": [
+        {
+          "type": "info",
+          "title": "Overview",
+          "paragraphs": [
+            "This line of work develops theory and computational tools for identifying, quantifying, and putting to use the quantum resources that underpin quantum information processing and precision sensing. It spans measurement-based quantum correlations, multipartite entanglement, robust quantum-state reconstruction, machine-learning-assisted detection of quantum properties, variational and secure distributed sensing, and quantum clock synchronization.",
+            "Throughout, the emphasis is on resource-efficient techniques that remain practical on noisy intermediate-scale quantum (NISQ) hardware and scale to distributed quantum sensing networks."
+          ]
+        },
+        {
+          "type": "features",
+          "title": "Key Contributions",
+          "items": [
+            { "icon": "fas fa-chart-line", "html": "<strong>Measurement-based quantum correlation in mixed-state metrology.</strong> Characterized measurement-based quantum correlations (MbQCs) as metrological resources, derived a lower bound on estimation precision in terms of MbQC, and showed that MbQCs carry metrological information beyond entanglement and super-quantum discord for non-product mixed states." },
+            { "icon": "fas fa-microchip", "html": "<strong>MbQCs for quantum information processing.</strong> Established the role of MbQCs in deterministic quantum computation with one qubit and in assisted quantum-state discrimination, and proposed an MbQC-based dimension witness analyzed under ideal and noisy conditions." },
+            { "icon": "fas fa-atom", "html": "<strong>Multipartite entanglement under quantum many-body effects.</strong> Used entanglement dissociation to bound the metrologically useful multipartite entanglement surviving local and global noise, and showed that nonlocal interactions can themselves improve precision scaling in mixed-state metrology." },
+            { "icon": "fas fa-shield-alt", "html": "<strong>Robust quantum state tomography for sensing.</strong> Developed a pure-state reconstruction method based on eigenvalue decomposition that recovers sensing probes from noisy tomographic data and remains robust against depolarizing noise." },
+            { "icon": "fas fa-brain", "html": "<strong>Entanglement detection with artificial neural networks.</strong> Formulated entanglement detection as supervised learning on Bell-type inequalities built from the relative entropy of coherence, covering mixed, noisy, and multipartite states where individual witnesses become unreliable." },
+            { "icon": "fas fa-lock", "html": "<strong>Quantum secure metrology for network sensing.</strong> Proposed a secure distributed metrology protocol using Bell pairs and controlled sequential encoding, and characterized its intrinsic precision–security tradeoff against multiple adversarial attacks." },
+            { "icon": "fas fa-user-secret", "html": "<strong>Variational anonymous quantum sensing.</strong> Designed a variational sensing framework in which a genetic algorithm optimizes parameterized probe circuits under realistic noise, combined with quantum anonymous broadcast for private, untraceable sharing of sensing information." },
+            { "icon": "fas fa-satellite", "html": "<strong>Integrated satellite-ground variational quantum sensing networks.</strong> Combined variational sensing with terrestrial and non-terrestrial quantum networking, with satellite-ground links supplying on-demand entanglement to geographically distributed nodes." },
+            { "icon": "fas fa-magic", "html": "<strong>Universal quantum witness machines.</strong> Introduced a unified framework for learning coherence, discord, and entanglement in NISQ networks, pairing experimentally accessible witnesses with machine-learning classifiers for certification, quantification, and classification." },
+            { "icon": "fas fa-clock", "html": "<strong>Quantum clock synchronization networks.</strong> Surveyed entanglement-assisted, interference-based, time-of-arrival, ticking-qubit, slow-clock-transport, and two-way synchronization protocols, linking them to enabling resources and to the impairments that matter for scalable networks." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quantum-networking",
+      "navLabel": "Quantum Networking",
+      "navIcon": "fas fa-network-wired",
+      "title": "Quantum Networking, Anonymous Communication, and Counterfactual Communication",
+      "description": "Quantum communication and networking protocols built around privacy, anonymity, security, and resource efficiency.",
+      "badges": [
+        { "label": "Quantum Internet", "variant": "impact-factor" },
+        { "label": "Anonymous Communication", "variant": "corresponding" },
+        { "label": "Counterfactual Communication", "variant": "corresponding" },
+        { "label": "NISQ Networks", "variant": "editor-choice" }
+      ],
+      "sections": [
+        {
+          "type": "info",
+          "title": "Overview",
+          "paragraphs": [
+            "This work develops quantum communication and networking protocols that put privacy, anonymity, security, and resource efficiency first. It addresses fundamental network operations, including anonymous collision detection, private information retrieval, simultaneous bidirectional communication, and counterfactual information transfer.",
+            "Together these results provide networking primitives and architectural principles for scalable NISQ networks and the future quantum Internet."
+          ]
+        },
+        {
+          "type": "features",
+          "title": "Key Contributions",
+          "items": [
+            { "icon": "fas fa-random", "html": "<strong>Quantum anonymous collision detection.</strong> A protocol that detects multiple simultaneous senders while preserving their identities, using multipartite quantum resources to guarantee anonymity and tracelessness against external adversaries and malicious users." },
+            { "icon": "fas fa-database", "html": "<strong>Quantum anonymous private information retrieval.</strong> A single-server, multi-user scheme based on anonymous entanglement that protects both the privacy of the requested data and the anonymity of the requesting user." },
+            { "icon": "fas fa-exchange-alt", "html": "<strong>Quantum full-duplex communication.</strong> Two counterfactual protocols for simultaneous bidirectional exchange: quantum duplex coding for classical information and quantum telexchanging for arbitrary unknown quantum states." },
+            { "icon": "fas fa-sitemap", "html": "<strong>Quantum network engineering in the NISQ age.</strong> A network-engineering perspective on task-specific quantum networks organized around communication, computation, and sensing missions, identifying the challenges on the path to globally interconnected quantum systems." },
+            { "icon": "fas fa-ghost", "html": "<strong>Counterfactual quantum communication.</strong> A comprehensive survey of information exchange without physical carriers traversing the channel, from interaction-free measurement and the quantum Zeno effect to applications, implementation constraints, and open directions." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "semantic-communication",
+      "navLabel": "Quantum Semantic Communication",
+      "navIcon": "fas fa-comments",
+      "title": "Quantum Semantic Communication and AI-Native Communication Systems",
+      "description": "Quantum-assisted semantic communication architectures that combine task-oriented information processing, artificial intelligence, and quantum communication.",
+      "badges": [
+        { "label": "Semantic Communication", "variant": "impact-factor" },
+        { "label": "Generative AI", "variant": "corresponding" },
+        { "label": "Cyber-Physical Systems", "variant": "corresponding" },
+        { "label": "6G Testbeds", "variant": "editor-choice" }
+      ],
+      "sections": [
+        {
+          "type": "info",
+          "title": "Overview",
+          "paragraphs": [
+            "This research develops quantum-assisted semantic communication architectures for future wireless and cyber-physical networks. It progresses from foundational quantum semantic communication toward sustainable AI integration, privacy-preserving semantic broadcast, industrial cyber-physical systems, and experimental 6G testbeds, jointly addressing semantic efficiency, computational complexity, quantum security, and goal-oriented communication."
+          ]
+        },
+        {
+          "type": "features",
+          "title": "Key Contributions",
+          "items": [
+            { "icon": "fas fa-vr-cardboard", "html": "<strong>Quantum semantic communications for the Metaverse.</strong> A framework that encodes task-relevant information into semantic quantum states in high-dimensional Hilbert spaces and delivers it by anonymous quantum teleportation." },
+            { "icon": "fas fa-broadcast-tower", "html": "<strong>Quantum anonymous semantic broadcast.</strong> A sustainable big-AI-native framework that uses pruned and fine-tuned foundation models for lightweight semantic extraction and quantum anonymous communication for privacy-preserving distribution." },
+            { "icon": "fas fa-industry", "html": "<strong>Controlled quantum semantic communication for industrial CPS.</strong> Task-oriented anomaly reporting in which compact geometric features of defects are encoded through controlled quantum-state preparation and sent over discrete- and continuous-variable quantum channels." },
+            { "icon": "fas fa-flask", "html": "<strong>GenSC-6G prototype testbed.</strong> A testbed and noise-augmented dataset for studying generative AI, quantum computing, and semantic communication together, with configurable models and decoders for reconstruction, classification, and localization." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quantum-ai",
+      "navLabel": "Quantum-Enhanced AI for 6G",
+      "navIcon": "fas fa-brain",
+      "title": "Quantum-Enhanced Artificial Intelligence for 6G Applications",
+      "description": "Hybrid quantum-classical learning architectures that integrate parameterized quantum circuits with modern deep-learning models.",
+      "badges": [
+        { "label": "Quantum Machine Learning", "variant": "impact-factor" },
+        { "label": "ISAC", "variant": "corresponding" },
+        { "label": "Remote Sensing", "variant": "corresponding" },
+        { "label": "Kolmogorov-Arnold Networks", "variant": "editor-choice" }
+      ],
+      "sections": [
+        {
+          "type": "info",
+          "title": "Overview",
+          "paragraphs": [
+            "This work builds hybrid quantum-classical learning architectures that integrate parameterized quantum circuits with modern deep-learning models for computer vision, integrated sensing and communication (ISAC), remote sensing, and intelligent 6G networks. It studies quantum-enhanced representation learning, multimodal feature fusion, and nonlinear processing while staying compatible with near-term quantum devices, and extends toward unified architectures for heterogeneous wireless and sensing applications."
+          ]
+        },
+        {
+          "type": "features",
+          "title": "Key Contributions",
+          "items": [
+            { "icon": "fas fa-eye", "html": "<strong>Hybrid quantum-classical vision models.</strong> Hybrid convolutional networks and vision transformers in which quantum convolutional and parameterized-circuit layers add nonlinear representations while keeping circuits shallow and NISQ-compatible." },
+            { "icon": "fas fa-wave-square", "html": "<strong>Deep quantum-transformer networks for beam prediction.</strong> Multimodal sensing and user position are combined for mmWave vehicle-to-infrastructure ISAC, reducing beam-training overhead; evaluated on real-world multimodal wireless datasets." },
+            { "icon": "fas fa-globe-asia", "html": "<strong>Quantum fusion intelligence for satellite-ground remote sensing.</strong> Hybrid quantum and large-AI models process satellite imagery, with quantum anonymous communication delivering the extracted information privately; demonstrated on disaster-detection and environmental-monitoring cases." },
+            { "icon": "fas fa-project-diagram", "html": "<strong>Quantum fusion learning with Kolmogorov–Arnold networks.</strong> KAN layers fuse parameterized quantum circuits with ResNet and shifted-window Transformer backbones, applied across satellite remote sensing, ISAC beam prediction, and generative semantic communication." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quantum-optimization",
+      "navLabel": "Quantum Optimization & ITS",
+      "navIcon": "fas fa-route",
+      "title": "Quantum Optimization and Intelligent Transportation Systems",
+      "description": "Hybrid quantum-classical optimization and learning frameworks for intelligent transportation and the Internet of Intelligent Vehicles.",
+      "badges": [
+        { "label": "VQE", "variant": "impact-factor" },
+        { "label": "QAOA", "variant": "impact-factor" },
+        { "label": "Quantum LSTM", "variant": "corresponding" },
+        { "label": "EV Charging", "variant": "editor-choice" }
+      ],
+      "sections": [
+        {
+          "type": "info",
+          "title": "Overview",
+          "paragraphs": [
+            "This research applies hybrid quantum-classical optimization and learning to computationally demanding problems in intelligent transportation and the Internet of Intelligent Vehicles. It combines variational quantum optimization, the quantum approximate optimization algorithm, recurrent neural networks, and quantum sequence models for traffic routing, electric-vehicle scheduling, sensing-infrastructure design, and traffic prediction, offering application-level pathways for NISQ algorithms."
+          ]
+        },
+        {
+          "type": "features",
+          "title": "Key Contributions",
+          "items": [
+            { "icon": "fas fa-charging-station", "html": "<strong>VQE-based traffic routing and EV charging scheduling.</strong> Routing and charging problems are formulated as binary combinatorial optimization, mapped to Ising Hamiltonians, and solved with a hybrid variational quantum eigensolver." },
+            { "icon": "fas fa-car", "html": "<strong>Quantum-classical dual LSTM for the Internet of Intelligent Vehicles.</strong> Traffic-sensor placement is solved as minimum vertex cover with LSTM-tuned QAOA, and a quantum LSTM then predicts traffic flow, uniting quantum optimization and quantum sequence learning in one pipeline." }
+          ]
+        }
+      ]
+    }
+  ]
+}

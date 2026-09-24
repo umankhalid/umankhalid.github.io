@@ -1,0 +1,37 @@
+{
+  "seminars": [
+    {
+      "id": "talk_2025_08",
+      "title": "From NISQ Networks to Global Quantum Internet: Perspectives on Vision, Applications, and Hybrid Integration",
+      "type": "Invited Lecture",
+      "role": "Speaker",
+      "organizer": "Quantum Communications and Computing Center (QC3) Distinguished Lecture Series, Memorial University",
+      "date": "2025/08",
+      "location": "Newfoundland and Labrador, Canada",
+      "description": "Invited lecture in the QC3 Distinguished Lecture Series at Memorial University.",
+      "topics": ["NISQ Networks", "Quantum Internet", "Hybrid Quantum-Classical Integration"]
+    },
+    {
+      "id": "talk_2024_08",
+      "title": "From Quantum-Integrated Computing & Communication: Towards Quantum-Integrated Sensing, Computing & Communication",
+      "type": "Invited Talk",
+      "role": "Speaker",
+      "organizer": "Memorial University",
+      "date": "2024/08",
+      "location": "Newfoundland and Labrador, Canada",
+      "description": "Invited talk at Memorial University.",
+      "topics": ["Quantum Sensing", "Quantum Computing", "Quantum Communication"]
+    },
+    {
+      "id": "talk_2024_02",
+      "title": "Quantum Horizons: Revolutionizing 6G Computing-Intensive Communication and Networking",
+      "type": "Invited Keynote",
+      "role": "Speaker",
+      "organizer": "International Conference on Industrial Networks and Intelligent Systems (INISCOM)",
+      "date": "2024/02",
+      "location": "Da Nang, Vietnam",
+      "description": "Invited keynote at INISCOM 2024.",
+      "topics": ["6G", "Quantum Communication", "Quantum Networking"]
+    }
+  ]
+}

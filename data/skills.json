@@ -1,0 +1,111 @@
+{
+  "quantum_information": {
+    "title": "Quantum Information Science",
+    "icon": "fas fa-atom",
+    "skills": [
+      {
+        "name": "Quantum Sensing & Metrology",
+        "description": "Mixed-state and multipartite quantum metrology, secure and distributed quantum sensing, variational sensing",
+        "icon": "fas fa-bullseye"
+      },
+      {
+        "name": "Quantum Resource Characterization",
+        "description": "Measurement-based quantum correlations, entanglement, discord, coherence, and quantum witnesses",
+        "icon": "fas fa-link"
+      },
+      {
+        "name": "Quantum State Tomography",
+        "description": "Robust pure-state reconstruction from noisy tomographic measurements",
+        "icon": "fas fa-layer-group"
+      },
+      {
+        "name": "Quantum Communication & Networking",
+        "description": "Anonymous, counterfactual, and full-duplex quantum communication; NISQ network engineering",
+        "icon": "fas fa-network-wired"
+      },
+      {
+        "name": "Quantum Clock Synchronization",
+        "description": "Entanglement-assisted and two-way synchronization protocols for quantum networks",
+        "icon": "fas fa-clock"
+      }
+    ]
+  },
+  "quantum_algorithms": {
+    "title": "Quantum Algorithms & Quantum Machine Learning",
+    "icon": "fas fa-microchip",
+    "skills": [
+      {
+        "name": "Variational Quantum Algorithms",
+        "description": "Parameterized quantum circuits, VQE, and QAOA for NISQ devices",
+        "icon": "fas fa-sliders-h"
+      },
+      {
+        "name": "Hybrid Quantum-Classical Learning",
+        "description": "Quantum convolutional networks, quantum-transformer networks, quantum LSTM, and quantum fusion learning",
+        "icon": "fas fa-brain"
+      },
+      {
+        "name": "Combinatorial Optimization",
+        "description": "Ising-Hamiltonian formulations for routing, scheduling, and sensor placement",
+        "icon": "fas fa-route"
+      },
+      {
+        "name": "Genetic-Algorithm Circuit Design",
+        "description": "Evolutionary optimization of parameterized quantum circuits for probe preparation",
+        "icon": "fas fa-dna"
+      }
+    ]
+  },
+  "machine_learning": {
+    "title": "Machine Learning & AI",
+    "icon": "fas fa-robot",
+    "skills": [
+      {
+        "name": "Deep Learning with TensorFlow",
+        "description": "IBM professional certification",
+        "icon": "fas fa-certificate"
+      },
+      {
+        "name": "PyTorch for Machine Learning",
+        "description": "IBM professional certification",
+        "icon": "fas fa-certificate"
+      },
+      {
+        "name": "Computer Vision & Image Processing",
+        "description": "IBM professional certification; hybrid quantum-classical vision models",
+        "icon": "fas fa-eye"
+      },
+      {
+        "name": "Neural Network Architectures",
+        "description": "CNNs, vision transformers, LSTMs, ResNet and shifted-window Transformer backbones, Kolmogorov–Arnold networks",
+        "icon": "fas fa-project-diagram"
+      }
+    ]
+  },
+  "communications": {
+    "title": "Wireless & Communication Systems",
+    "icon": "fas fa-broadcast-tower",
+    "skills": [
+      {
+        "name": "6G Networks",
+        "description": "Quantum-enhanced intelligence and computing-intensive communication for 6G",
+        "icon": "fas fa-signal"
+      },
+      {
+        "name": "Integrated Sensing & Communication (ISAC)",
+        "description": "Multimodal beam prediction for mmWave vehicle-to-infrastructure systems",
+        "icon": "fas fa-wave-square"
+      },
+      {
+        "name": "Semantic Communication",
+        "description": "Task-oriented and quantum semantic communication, prototype testbeds",
+        "icon": "fas fa-comments"
+      },
+      {
+        "name": "Satellite-Ground Networks",
+        "description": "Integrated terrestrial and non-terrestrial quantum sensing and remote sensing",
+        "icon": "fas fa-satellite"
+      }
+    ]
+  }
+}

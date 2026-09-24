@@ -1,0 +1,94 @@
+{
+  "research_projects": [
+    {
+      "id": "project_008",
+      "title": "Foundations for Computing-Intensive Quantum Communications: Toward Meta-Privacy",
+      "duration": "Mar. 2025 – Feb. 2029",
+      "role": "Research Professor",
+      "status": "Ongoing",
+      "funding_source": "National Research Foundation of Korea (NRF), Quantum Science & Technology R&D",
+      "icon": "fas fa-user-shield",
+      "description": "A National Research Foundation of Korea project under the Quantum Science & Technology R&D program, developing the foundations of computing-intensive quantum communications toward meta-privacy. I contribute to the project as a Research Professor.",
+      "featured": false
+    },
+    {
+      "id": "project_007",
+      "title": "Integrated Satellite-Ground Variational Quantum Covert Sensing for 6G-ISAC",
+      "duration": "Sep. 2024 – Aug. 2025",
+      "role": "Co-Principal Investigator",
+      "status": "Completed",
+      "funding_source": "National Research Foundation of Korea (NRF), Step4 BK21 Khreative U+ SDGs",
+      "icon": "fas fa-satellite",
+      "description": "A National Research Foundation of Korea project under the Step4 BK21 Khreative U+ SDGs program on integrated satellite-ground variational quantum covert sensing for 6G integrated sensing and communication (ISAC), for which I served as Co-Principal Investigator.",
+      "featured": false
+    },
+    {
+      "id": "project_006",
+      "title": "BK21 FOUR: Convergence Engineering Institute for Emerging Communication Technology",
+      "duration": "Nov. 2020 – Aug. 2027",
+      "role": "Research Professor",
+      "status": "Ongoing",
+      "funding_source": "National Research Foundation of Korea (NRF), Brain Korea Program",
+      "icon": "fas fa-university",
+      "description": "A Brain Korea (BK21 FOUR) program of the National Research Foundation of Korea supporting the Convergence Engineering Institute for Emerging Communication Technology. I take part as a BK21 Research Professor.",
+      "featured": false
+    },
+    {
+      "id": "project_005",
+      "title": "Wi-Qi BRL: Towards Integrating 6G Wireless and 2G Quantum",
+      "duration": "Jun. 2022 – Feb. 2025",
+      "role": "Researcher",
+      "status": "Completed",
+      "funding_source": "National Research Foundation of Korea (NRF), Basic Research Laboratory (BRL) Grant",
+      "icon": "fas fa-wifi",
+      "description": "A Basic Research Laboratory (BRL) grant from the National Research Foundation of Korea toward the integration of 6G wireless and second-generation quantum technologies.",
+      "featured": false
+    },
+    {
+      "id": "project_004",
+      "title": "ITRC: 6H Next Generation Mobile Communications Technology",
+      "duration": "Sep. 2021 – Dec. 2028",
+      "role": "Researcher",
+      "status": "Ongoing",
+      "funding_source": "Institute for Information & Communication Technology Planning & Evaluation (IITP), University ICT Research Center (ITRC) Support Program",
+      "icon": "fas fa-signal",
+      "description": "A University ICT Research Center (ITRC) program funded by the Institute for Information & Communication Technology Planning & Evaluation (IITP) of Korea on 6H next-generation mobile communications technology.",
+      "featured": false
+    },
+    {
+      "id": "project_003",
+      "title": "Foundations for Quantum Networking with Quantum Enigmata",
+      "duration": "Mar. 2019 – Feb. 2024",
+      "role": "Researcher",
+      "status": "Completed",
+      "funding_source": "National Research Foundation of Korea (NRF), Individual Research Program",
+      "icon": "fas fa-network-wired",
+      "description": "A National Research Foundation of Korea Individual Research Program project on the foundations of quantum networking with quantum enigmata.",
+      "featured": false
+    },
+    {
+      "id": "project_002",
+      "title": "Counterfactual Communications: Towards Quantum Networks",
+      "duration": "Jun. 2018 – May 2021",
+      "role": "Researcher",
+      "status": "Completed",
+      "funding_source": "National Research Foundation of Korea (NRF), Basic Research Program",
+      "icon": "fas fa-project-diagram",
+      "description": "A National Research Foundation of Korea Basic Research Program project on counterfactual communications as a route toward quantum networks.",
+      "featured": false
+    },
+    {
+      "id": "project_001",
+      "title": "Hyperentanglement-Assisted Hybrid Quantum Communication",
+      "duration": "Jun. 2015 – May 2019",
+      "role": "Researcher",
+      "status": "Completed",
+      "funding_source": "National Research Foundation of Korea (NRF), Core Research Program",
+      "icon": "fas fa-atom",
+      "description": "A National Research Foundation of Korea Core Research Program project on hyperentanglement-assisted hybrid quantum communication.",
+      "featured": false
+    }
+  ],
+  "collaboration_projects": [],
+  "student_projects": []
+}

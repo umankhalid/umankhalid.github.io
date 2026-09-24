@@ -1,0 +1,189 @@
+[
+  {
+    "id": 16,
+    "date": "2026/08",
+    "icon": "fas fa-file-alt",
+    "type": "Publication",
+    "title": "Quantum-Classical Dual LSTM Optimization for Internet of Intelligent Vehicles",
+    "summary": "Published in the IEEE Internet of Things Journal (IF: 8.7).",
+    "details": "Our paper proposing a dual hybrid quantum-classical framework for the Internet of Intelligent Vehicles appeared in the IEEE Internet of Things Journal, vol. 13, no. 16. Traffic-sensor placement is solved with QAOA whose variational parameters are tuned by an LSTM, while a quantum LSTM predicts traffic flow from the deployed sensing infrastructure.",
+    "importance": "high",
+    "featured": false
+  },
+  {
+    "id": 15,
+    "date": "2026/06",
+    "icon": "fas fa-users",
+    "type": "Recognition",
+    "title": "Technical Program Committee member, QNC Symposium at IEEE IWCMC 2026",
+    "summary": "Quantum Networks and Computing Symposium, Shanghai, China, June 1–6, 2026.",
+    "details": "Served on the Technical Program Committee of the Quantum Networks and Computing (QNC) Symposium at the IEEE International Wireless Communications & Mobile Computing (IWCMC) Conference, held in Shanghai, China, June 1–6, 2026.",
+    "importance": "medium",
+    "featured": false
+  },
+  {
+    "id": 14,
+    "date": "2026/05",
+    "icon": "fas fa-file-alt",
+    "type": "Publication",
+    "title": "Quantum Clock Synchronization Networks: A Survey",
+    "summary": "Published in IEEE Communications Surveys & Tutorials (IF: 50.6).",
+    "details": "Our survey on quantum clock synchronization networks appeared in IEEE Communications Surveys & Tutorials, vol. 28. It gives a unified treatment of entanglement-assisted, interference-based, time-of-arrival, ticking-qubit, slow-clock-transport, and quantum-enhanced two-way synchronization protocols, and examines loss, decoherence, dispersion, relativistic effects, and security threats relevant to scalable quantum-synchronized networks.",
+    "importance": "high",
+    "featured": false
+  },
+  {
+    "id": 13,
+    "date": "2026/03",
+    "icon": "fas fa-briefcase",
+    "type": "Recognition",
+    "title": "Appointed Research Professor at Kyung Hee University",
+    "summary": "Institute for Communications and Quantum Nexus, Communications and Quantum Information Laboratory.",
+    "details": "Started as a Research Professor at the Institute for Communications and Quantum Nexus and the Communications and Quantum Information Laboratory, Kyung Hee University.",
+    "importance": "high",
+    "featured": false
+  },
+  {
+    "id": 12,
+    "date": "2026",
+    "icon": "fas fa-file-alt",
+    "type": "Publication",
+    "title": "Two journal papers in Early Access",
+    "summary": "IEEE Communications Surveys & Tutorials and IEEE Transactions on Network Science and Engineering.",
+    "details": "“Approximation Algorithms for Vehicle Routing Problems: A Survey” (IEEE Communications Surveys & Tutorials) and “Quantum Fusion Learning for 6G Networks with Kolmogorov-Arnold Networks” (IEEE Transactions on Network Science and Engineering) are available in Early Access.",
+    "importance": "medium",
+    "featured": false
+  },
+  {
+    "id": 11,
+    "date": "2025/12",
+    "icon": "fas fa-file-alt",
+    "type": "Publication",
+    "title": "Noise-Robust Distributed Quantum Sensing: A Variational Quantum Approach",
+    "summary": "Presented at IEEE GLOBECOM 2025, Taipei, Taiwan.",
+    "details": "Our paper on noise-robust distributed quantum sensing with variational quantum methods appeared in the Proceedings of the IEEE Global Communications Conference (GLOBECOM), Taipei, Taiwan, December 2025.",
+    "importance": "medium",
+    "featured": false
+  },
+  {
+    "id": 10,
+    "date": "2025/11",
+    "icon": "fas fa-award",
+    "type": "Award",
+    "title": "Best Paper Award at the KICS Fall Conference 2025",
+    "summary": "For “Analytical Design of an LC Double-Notch Purcell Filter for Superconducting Quantum Circuits”.",
+    "details": "The paper “Analytical Design of an LC Double-Notch Purcell Filter for Superconducting Quantum Circuits” received the Best Paper Award at the Korea Information and Communication Society (KICS) Fall Conference, Gyeongju, Korea, November 2025.",
+    "importance": "high",
+    "featured": false
+  },
+  {
+    "id": 9,
+    "date": "2025/10",
+    "icon": "fas fa-file-alt",
+    "type": "Publication",
+    "title": "Counterfactual quantum communication survey and the GenSC-6G testbed",
+    "summary": "IEEE Communications Surveys & Tutorials and IEEE Communications Magazine.",
+    "details": "“Counterfactual Quantum Communication: Information Exchange in Quantum Shadows” appeared in IEEE Communications Surveys & Tutorials, and “GenSC-6G: A Prototype Testbed for Integrated Generative AI, Quantum, and Semantic Communication” appeared in IEEE Communications Magazine.",
+    "importance": "high",
+    "featured": false
+  },
+  {
+    "id": 8,
+    "date": "2025/08",
+    "icon": "fas fa-chalkboard-user",
+    "type": "Talk",
+    "title": "Visiting Scholar and QC3 Distinguished Lecture at Memorial University, Canada",
+    "summary": "Collaboration with Prof. Trung Q. Duong on quantum fusion intelligence.",
+    "details": "Visited Memorial University, Newfoundland and Labrador, Canada, to collaborate with Prof. Trung Q. Duong on quantum fusion intelligence, and delivered the invited lecture “From NISQ Networks to Global Quantum Internet: Perspectives on Vision, Applications, and Hybrid Integration” in the Quantum Communications and Computing Center (QC3) Distinguished Lecture Series.",
+    "importance": "high",
+    "featured": false
+  },
+  {
+    "id": 7,
+    "date": "2025/06",
+    "icon": "fas fa-edit",
+    "type": "Recognition",
+    "title": "Series Editor, IEEE Journal on Selected Areas in Communications",
+    "summary": "Quantum Series: Quantum Communications and Networking.",
+    "details": "Serving as Series Editor for the IEEE Journal on Selected Areas in Communications Quantum Series: Quantum Communications and Networking, from June 2025.",
+    "importance": "high",
+    "featured": false
+  },
+  {
+    "id": 6,
+    "date": "2025/06",
+    "icon": "fas fa-file-alt",
+    "type": "Publication",
+    "title": "Quantum fusion intelligence for integrated satellite-ground remote sensing",
+    "summary": "Published in IEEE Wireless Communications (IF: 13.4).",
+    "details": "Our article proposing an integrated satellite-ground remote-sensing architecture that combines quantum fusion intelligence with quantum anonymous communication appeared in IEEE Wireless Communications, vol. 32, no. 3.",
+    "importance": "medium",
+    "featured": false
+  },
+  {
+    "id": 5,
+    "date": "2025/04",
+    "icon": "fas fa-file-alt",
+    "type": "Publication",
+    "title": "Quantum property learning for NISQ networks: Universal quantum witness machines",
+    "summary": "Published in IEEE Transactions on Communications (IF: 8.4).",
+    "details": "Our paper introducing universal quantum witness machines for learning coherence, discord, and entanglement appeared in IEEE Transactions on Communications, vol. 73, no. 4.",
+    "importance": "medium",
+    "featured": false
+  },
+  {
+    "id": 4,
+    "date": "2024/09",
+    "icon": "fas fa-file-alt",
+    "type": "Publication",
+    "title": "Variational anonymous quantum sensing",
+    "summary": "Published in the IEEE Journal on Selected Areas in Communications (IF: 16.8).",
+    "details": "Our paper on a variational quantum sensing framework, in which a genetic algorithm optimizes parameterized probe circuits and quantum anonymous broadcast protects sensing information, appeared in IEEE JSAC, vol. 42, no. 9.",
+    "importance": "medium",
+    "featured": false
+  },
+  {
+    "id": 3,
+    "date": "2024/08",
+    "icon": "fas fa-chalkboard-user",
+    "type": "Talk",
+    "title": "Visiting Scholar and invited talk at Memorial University, Canada",
+    "summary": "Collaboration with Prof. Octavia A. Dobre on quantum property learning.",
+    "details": "Visited Memorial University, Newfoundland and Labrador, Canada, to collaborate with Prof. Octavia A. Dobre on quantum property learning, and gave the invited talk “From Quantum-Integrated Computing & Communication: Towards Quantum-Integrated Sensing, Computing & Communication”.",
+    "importance": "medium",
+    "featured": false
+  },
+  {
+    "id": 2,
+    "date": "2024/03",
+    "icon": "fas fa-briefcase",
+    "type": "Recognition",
+    "title": "Appointed Brain Korea (BK21) Research Professor",
+    "summary": "Kyung Hee University.",
+    "details": "Appointed Brain Korea (BK21) Research Professor at Kyung Hee University.",
+    "importance": "medium",
+    "featured": false
+  },
+  {
+    "id": 1,
+    "date": "2024/02",
+    "icon": "fas fa-microphone",
+    "type": "Talk",
+    "title": "Invited keynote at INISCOM 2024, Da Nang, Vietnam",
+    "summary": "“Quantum Horizons: Revolutionizing 6G Computing-Intensive Communication and Networking”.",
+    "details": "Delivered the invited keynote “Quantum Horizons: Revolutionizing 6G Computing-Intensive Communication and Networking” at the International Conference on Industrial Networks and Intelligent Systems (INISCOM), Da Nang, Vietnam.",
+    "importance": "medium",
+    "featured": false
+  },
+  {
+    "id": 0,
+    "date": "2023/02",
+    "icon": "fas fa-graduation-cap",
+    "type": "PhD",
+    "title": "Completed Ph.D. at Kyung Hee University",
+    "summary": "Dissertation: “Quantum Property Learning for Quantum Sensing Networks”.",
+    "details": "Completed the Ph.D. in Electronics and Information Convergence Engineering at Kyung Hee University under the supervision of Professor Hyundong Shin, with the dissertation “Quantum Property Learning for Quantum Sensing Networks”.",
+    "importance": "high",
+    "featured": false
+  }
+]

@@ -1,0 +1,95 @@
+{
+  "organizations": {
+    "khu": {
+      "name": "Kyung Hee University",
+      "logo": "assets/logos/organizations/kyung-hee-university-logo.png",
+      "icon": "fas fa-university",
+      "website": "https://www.khu.ac.kr"
+    },
+    "mun": {
+      "name": "Memorial University",
+      "logo": "assets/logos/organizations/memorial-university-logo.png",
+      "icon": "fas fa-university",
+      "website": "https://www.mun.ca"
+    }
+  },
+  "academic_experience": [
+    {
+      "id": "exp_005",
+      "position": "Research Professor",
+      "organization": "Kyung Hee University",
+      "icon": "fas fa-university",
+      "duration": "March 2026 - Present",
+      "location": "Yongin-si, Korea",
+      "unit": "Institute for Communications and Quantum Nexus · Communications and Quantum Information Laboratory",
+      "responsibilities": "Research on integrated quantum communication, sensing, networking, and computing; Research Professor on the NRF Quantum Science & Technology project “Foundations for Computing-Intensive Quantum Communications: Toward Meta-Privacy”.",
+      "group": "khu"
+    },
+    {
+      "id": "exp_004",
+      "position": "Brain Korea (BK21) Research Professor",
+      "organization": "Kyung Hee University",
+      "icon": "fas fa-university",
+      "duration": "March 2024 - Present",
+      "location": "Yongin-si, Korea",
+      "responsibilities": "Research Professor in the BK21 FOUR program “Convergence Engineering Institute for Emerging Communication Technology”.",
+      "group": "khu"
+    },
+    {
+      "id": "exp_003",
+      "position": "Postdoctoral Fellow",
+      "organization": "Kyung Hee University",
+      "icon": "fas fa-university",
+      "duration": "March 2023 - February 2026",
+      "location": "Yongin-si, Korea",
+      "unit": "Communications and Quantum Information Laboratory",
+      "unit_website": "https://cqilab.khu.ac.kr/people/",
+      "responsibilities": "Co-Principal Investigator of the NRF project “Integrated Satellite-Ground Variational Quantum Covert Sensing for 6G-ISAC” (September 2024 – August 2025).",
+      "group": "khu"
+    },
+    {
+      "id": "exp_002",
+      "position": "Group Study Lead",
+      "organization": "Kyung Hee University",
+      "icon": "fas fa-chalkboard-teacher",
+      "unit": "Communications and Quantum Information Laboratory",
+      "unit_website": "https://cqilab.khu.ac.kr/people/",
+      "course": "Introduction to Quantum Computing (undergraduate); Quantum Communications, Quantum Machine Learning, and Quantum Information Theory (graduate)",
+      "responsibilities": "Planned, taught, and led discussion in research-group study sessions, first as a senior researcher and later as a research professor.",
+      "group": "khu"
+    },
+    {
+      "id": "exp_001",
+      "position": "Graduate Research Assistant",
+      "organization": "Kyung Hee University",
+      "icon": "fas fa-university",
+      "duration": "September 2016 - February 2023",
+      "location": "Yongin-si, Korea",
+      "unit": "Communications and Quantum Information Laboratory",
+      "unit_website": "https://cqilab.khu.ac.kr/people/",
+      "responsibilities": "Doctoral research on quantum property learning for quantum sensing networks, advised by Professor Hyundong Shin.",
+      "group": "khu"
+    },
+    {
+      "id": "exp_visit_2025",
+      "position": "Visiting Scholar",
+      "organization": "Memorial University",
+      "icon": "fas fa-plane-departure",
+      "duration": "August 2025",
+      "location": "Newfoundland and Labrador, Canada",
+      "responsibilities": "Collaborated with Prof. Trung Q. Duong on quantum fusion intelligence.",
+      "group": "mun"
+    },
+    {
+      "id": "exp_visit_2024",
+      "position": "Visiting Scholar",
+      "organization": "Memorial University",
+      "icon": "fas fa-plane-departure",
+      "duration": "August 2024",
+      "location": "Newfoundland and Labrador, Canada",
+      "responsibilities": "Collaborated with Prof. Octavia A. Dobre on quantum property learning.",
+      "group": "mun"
+    }
+  ],
+  "industry_experience": []
+}

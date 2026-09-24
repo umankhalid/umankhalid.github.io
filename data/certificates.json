@@ -1,0 +1,89 @@
+{
+  "awards": [
+    {
+      "id": "award_005",
+      "title": "Best Paper Award",
+      "issuer": "KICS Fall Conference (Paper: Analytical Design of an LC Double-Notch Purcell Filter for Superconducting Quantum Circuits)",
+      "date": "2025",
+      "type": "Recognition",
+      "description": "Best Paper Award at the Korea Information and Communication Society (KICS) Fall Conference 2025.",
+      "icon": "fas fa-medal",
+      "featured": false
+    },
+    {
+      "id": "award_004",
+      "title": "Excellent Paper Award",
+      "issuer": "BrainKorea21 (Paper: Metrologically resourceful multipartite entanglement under quantum many-body effects)",
+      "date": "2021",
+      "type": "Publication Award",
+      "description": "Excellent Paper Award from BrainKorea21 for the paper “Metrologically resourceful multipartite entanglement under quantum many-body effects”.",
+      "icon": "fas fa-star",
+      "featured": false
+    },
+    {
+      "id": "award_003",
+      "title": "Doctoral Research Scholarship",
+      "issuer": "BrainKorea21 Plus",
+      "date": "2016–2022",
+      "type": "Scholarship",
+      "description": "Doctoral research scholarship from the BrainKorea21 Plus program.",
+      "icon": "fas fa-trophy",
+      "featured": false
+    },
+    {
+      "id": "award_002",
+      "title": "Graduate Student Scholarship",
+      "issuer": "Kyung Hee University",
+      "date": "2016–2022",
+      "type": "Scholarship",
+      "description": "Graduate student scholarship from Kyung Hee University.",
+      "icon": "fas fa-graduation-cap",
+      "featured": false
+    },
+    {
+      "id": "award_001",
+      "title": "Gold Medal, Final Year Project (Bachelor)",
+      "issuer": "Ghulam Ishaq Khan Institute of Engineering and Technology",
+      "date": "Spring 2015",
+      "type": "Recognition",
+      "description": "Gold medal for the final year project of the Bachelor of Electronics Engineering, Ghulam Ishaq Khan Institute of Engineering and Technology.",
+      "icon": "fas fa-medal",
+      "featured": false
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert_003",
+      "title": "Computer Vision and Image Processing Fundamentals",
+      "issuer": "IBM",
+      "date": "",
+      "category": "Professional Certification",
+      "description": "IBM professional certification in computer vision and image processing fundamentals.",
+      "skills": ["Computer Vision", "Image Processing"],
+      "verification_url": "",
+      "featured": false
+    },
+    {
+      "id": "cert_002",
+      "title": "Deep Learning with TensorFlow",
+      "issuer": "IBM",
+      "date": "",
+      "category": "Professional Certification",
+      "description": "IBM professional certification in deep learning with TensorFlow.",
+      "skills": ["Deep Learning", "TensorFlow"],
+      "verification_url": "",
+      "featured": false
+    },
+    {
+      "id": "cert_001",
+      "title": "PyTorch Basics for Machine Learning",
+      "issuer": "IBM",
+      "date": "",
+      "category": "Professional Certification",
+      "description": "IBM professional certification in PyTorch basics for machine learning.",
+      "skills": ["Machine Learning", "PyTorch"],
+      "verification_url": "",
+      "featured": false
+    }
+  ]
+}
