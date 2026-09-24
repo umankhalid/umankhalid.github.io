@@ -3664,25 +3664,36 @@ function collabSlotColor(theme, slot) {
 /**
  * Assign palette slots: organisations by joint publications, then any
  * affiliation that only appears on an author; countries likewise.
+ * Hues are never reused: when there are more entries than palette slots,
+ * the tied group that would overflow (and everything after it) gets no slot
+ * and is drawn in the muted "Other" colour.
  */
 function collabAssignSlots(data) {
     const byPapers = (a, b) => (b.papers || 0) - (a.papers || 0) || String(a.name).localeCompare(String(b.name));
 
-    const groups = {};
-    (data.byUniversity || []).slice().sort(byPapers).forEach(org => {
-        if (!(org.name in groups)) groups[org.name] = Object.keys(groups).length;
-    });
+    const slotsFor = (entries) => {
+        const seen = new Set();
+        const unique = entries.filter(e => e.name && !seen.has(e.name) && seen.add(e.name));
+        const index = {};
+        const size = collabNet.paletteSize;
+        unique.forEach((entry, i) => {
+            const atOrAbove = unique.filter(e => (e.papers || 0) >= (entry.papers || 0)).length;
+            if (unique.length <= size || atOrAbove <= size) index[entry.name] = i;
+        });
+        return index;
+    };
+
+    const orgs = (data.byUniversity || []).slice().sort(byPapers);
+    const listed = new Set(orgs.map(org => org.name));
     (data.byAuthor || []).forEach(author => {
         const org = collabAffiliation(author);
-        if (org && !(org in groups)) groups[org] = Object.keys(groups).length;
+        if (org && !listed.has(org)) {
+            listed.add(org);
+            orgs.push({ name: org, papers: 0 });
+        }
     });
-    collabNet.groupIndex = groups;
-
-    const countries = {};
-    (data.byCountry || []).slice().sort(byPapers).forEach(c => {
-        if (!(c.name in countries)) countries[c.name] = Object.keys(countries).length;
-    });
-    collabNet.countryIndex = countries;
+    collabNet.groupIndex = slotsFor(orgs);
+    collabNet.countryIndex = slotsFor((data.byCountry || []).slice().sort(byPapers));
 }
 
 /**
@@ -4058,9 +4069,11 @@ function collabLayoutRadial(animate) {
         labelStart = 0;
     }
 
-    // Order: by organisation slot, then joint publications, then name.
+    // Order: by organisation slot, then organisation (keeps the "Other"
+    // organisations in contiguous arcs), then joint publications, then name.
     const order = nodes.slice().sort((a, b) =>
         (a.slot < 0 ? 999 : a.slot) - (b.slot < 0 ? 999 : b.slot) ||
+        String(a.group).localeCompare(String(b.group)) ||
         b.papers - a.papers ||
         a.label.localeCompare(b.label));
 
@@ -4122,11 +4135,17 @@ function renderCollabLegend() {
         return;
     }
     const seen = new Map();
+    let others = 0;
     (collaborationsData.byAuthor || []).forEach(author => {
         const org = collabAffiliation(author);
-        if (org && !seen.has(org)) seen.set(org, collabNet.groupIndex[org]);
+        if (!org || seen.has(org)) return;
+        seen.set(org, collabNet.groupIndex[org]);
+        if (!(org in collabNet.groupIndex)) others++;
     });
-    const items = Array.from(seen.entries()).sort((a, b) => a[1] - b[1]);
+    const items = Array.from(seen.entries())
+        .filter(([, slot]) => slot != null)
+        .sort((a, b) => a[1] - b[1]);
+    if (others) items.push([others === 1 ? 'Other organization' : `${others} other organizations`, -1]);
     legend.innerHTML = '<div class="legend-title">Affiliation</div>' + items
         .map(([org, slot]) => `<div class="legend-item"><span class="legend-dot" style="background:${collabColorVar(slot)}"></span>${escapeHtml(org)}</div>`)
         .join('');
@@ -4516,7 +4535,7 @@ function drawCollab() {
         const c = collabApplyCamera(layout.cx, layout.cy);
         const pad = 0.012;
         for (const g of collabNet.groups) {
-            const dim = focus && focus.slot !== g.slot;
+            const dim = focus && focus.group !== g.name;
             ctx.beginPath();
             ctx.arc(c.x, c.y, layout.rArc * z, g.a0 + pad, Math.max(g.a0 + pad, g.a1 - pad));
             ctx.strokeStyle = collabSlotColor(theme, g.slot);
