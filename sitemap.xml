@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  The site is a single page; its sections are #fragments, which search engines
-  treat as the same URL, so only the page itself is listed.
+  The main site is a single page whose sections are #fragments, which search
+  engines treat as the same URL; the publication list also has its own static
+  page. scripts/build-seo-pages.mjs maintains this file and moves a lastmod
+  only when that page changes.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
@@ -13,5 +15,11 @@
         <image:image>
             <image:loc>https://umankhalid.github.io/assets/images/profile/umankhalid_profile.jpg</image:loc>
         </image:image>
+    </url>
+    <url>
+        <loc>https://umankhalid.github.io/publications/</loc>
+        <lastmod>2026-11-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
     </url>
 </urlset>

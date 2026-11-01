@@ -34,7 +34,11 @@ almost all content is read from JSON files under `data/`.
 |   |-- skills.json         # Expertise, grouped by category
 |   |-- collaborations.json # Co-author network (Activities tab)
 |   `-- scholar.json        # Google Scholar metrics and per-paper citations (written by the workflow)
+|-- publications/index.html # Static publication list (generated, do not edit)
+|-- llms.txt                # Plain-text site summary for AI assistants (generated)
+|-- sitemap.xml             # Sitemap (lastmod values maintained by the generator)
 |-- scripts/update-scholar.mjs
+|-- scripts/build-seo-pages.mjs
 |-- .github/workflows/update-scholar.yml
 `-- assets/
     |-- css/styles.css
@@ -88,6 +92,20 @@ list get no badge. It needs
 **Settings → Actions → General → Workflow permissions → Read and write** so it
 can push. The profile id is set in `.github/workflows/update-scholar.yml`
 (`--id`).
+
+### Search engines and sharing
+
+The main page draws its sections with JavaScript, which Google runs but many
+other crawlers (Bing, link previews, AI search tools) do not. So
+`scripts/build-seo-pages.mjs` also writes the content out as plain files:
+`publications/index.html` (every paper with authors, venue, DOI, Google Scholar
+citations, and schema.org structured data), `llms.txt`, and `sitemap.xml`. The
+workflow above runs it after each citation refresh and whenever
+`data/publications.json` is pushed, so these never need editing by hand. To
+rebuild locally: `node scripts/build-seo-pages.mjs`.
+
+Link previews (LinkedIn, X, Slack) use `assets/images/meta/og-image.jpg`
+(1200 x 630).
 
 ### Date-stamping hook
 

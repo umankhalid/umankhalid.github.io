@@ -4870,6 +4870,30 @@ a.contact-value:hover {
   opacity: 0.5;
 }
 
+.footer-meta a {
+  color: var(--secondary-color);
+}
+
+/* Link to the static publication list (publications/index.html) */
+.pub-static-link {
+  margin: -14px 0 24px;
+  text-align: right;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.pub-static-link a {
+  color: var(--secondary-color);
+}
+
+.noscript-note {
+  margin: 0;
+  padding: 12px 16px;
+  text-align: center;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
 @media (max-width: 640px) {
   .site-footer {
     margin-top: 56px;

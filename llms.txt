@@ -1,0 +1,84 @@
+# Uman Khalid
+
+> Dr. Uman Khalid is a Research Professor at Kyung Hee University, Korea (Institute for Communications and Quantum Nexus; Communications and Quantum Information Laboratory), and a Series Editor of the IEEE Journal on Selected Areas in Communications Quantum Series on Quantum Communications and Networking. Research areas: quantum information science, including quantum sensing and metrology, quantum communication and networking, quantum machine learning, variational quantum algorithms and quantum optimization, and neutral-atom and Rydberg platforms.
+
+Ph.D., Electronics and Information Convergence Engineering, Kyung Hee University (2023), advised by Prof. Hyundong Shin. B.E., Electronics Engineering, Ghulam Ishaq Khan Institute of Engineering and Technology, Pakistan (2015).
+
+Google Scholar (2026-11-01): 713 citations, h-index 17, i10-index 20.
+
+## Pages
+
+- [Home](https://umankhalid.github.io/): biography, research interests, and recent news
+- [Publications](https://umankhalid.github.io/publications/): complete publication list with DOIs and Google Scholar citations
+- [Research](https://umankhalid.github.io/#research): research themes and key contributions
+- [Contact](https://umankhalid.github.io/#contact): Electronics and Information Building, Global Campus, Kyung Hee University, Yongin-si 17104, Korea; umankhalid@khu.ac.kr
+
+## Profiles
+
+- [Google Scholar](https://scholar.google.com/citations?user=CyVQHYEAAAAJ)
+- [ORCID](https://orcid.org/0000-0002-9089-1139)
+- [ResearchGate](https://www.researchgate.net/profile/Uman-Khalid-3)
+- [LinkedIn](https://www.linkedin.com/in/uman-khalid-552b70b4/)
+- [Communications and Quantum Information Laboratory](https://cqilab.khu.ac.kr/people/)
+
+## Journal papers
+
+- [Approximation Algorithms for Vehicle Routing Problems: A Survey](https://doi.org/10.1109/comst.2026.3731146): J. Zhao, U. Khalid, S. N. Paing, C. Zhang, Z.-H. Zhan, H. Shin. IEEE Communications Surveys & Tutorials, 2026.
+- [Quantum Fusion Learning for 6G Networks with Kolmogorov-Arnold Networks](https://doi.org/10.1109/tnse.2026.3725065): U. I. Paracha, U. Khalid, S. M. A. Rizvi, T. Q. Duong, M. Z. Win, H. Shin. IEEE Transactions on Network Science and Engineering, 2026.
+- [Quantum-Classical Dual LSTM Optimization for Internet of Intelligent Vehicles](https://doi.org/10.1109/jiot.2026.3696701): M. M. U. Gondel, U. Khalid, T. Q. Duong, E.-K. Hong, H. Shin. IEEE Internet of Things Journal, vol. 13, no. 16, pp. 35625–35639, 2026, cited by 1.
+- [Quantum Clock Synchronization Networks: A Survey](https://doi.org/10.1109/comst.2026.3694353): U. Khalid, M. S. Ulum, Mujirin, G. T. F. d. Abreu, E. Björnson, H. Shin. IEEE Communications Surveys & Tutorials, vol. 28, pp. 6552–6591, 2026, cited by 4.
+- [Counterfactual Quantum Communication: Information Exchange in Quantum Shadows](https://doi.org/10.1109/comst.2025.3616390): S. N. Paing, F. Zaman, U. Khalid, T. Q. Duong, M. Z. Win, H. Shin. IEEE Communications Surveys & Tutorials, vol. 28, pp. 2846–2880, 2025, cited by 1.
+- [GenSC-6G: A Prototype Testbed for Integrated Generative AI, Quantum, and Semantic Communication](https://doi.org/10.1109/mcom.001.2400760): B. E. Arfeto, S. Tariq, U. Khalid, T. Q. Duong, H. Shin. IEEE Communications Magazine, vol. 63, no. 10, pp. 28–35, 2025, cited by 12.
+- [Quantum Computing for Intelligent Transportation Systems: VQE-Based Traffic Routing and EV Charging Scheduling](https://doi.org/10.3390/math13172761): U. Khalid, U. I. Paracha, S. M. A. Rizvi, H. Shin. Mathematics, vol. 13, no. 17, p. 2761, 2025, cited by 5.
+- [Quantum Machine Learning: Towards Hybrid Quantum-Classical Vision Models](https://doi.org/10.3390/math13162645): S. M. A. Rizvi, U. I. Paracha, U. Khalid, K. Lee, H. Shin. Mathematics, vol. 13, no. 16, p. 2645, 2025, cited by 29.
+- [Controlled Quantum Semantic Communication for Industrial CPS Networks](https://doi.org/10.1109/tnse.2025.3589296): S. M. A. Rizvi, U. Khalid, S. Chatzinotas, T. Q. Duong, H. Shin. IEEE Transactions on Network Science and Engineering, vol. 13, pp. 996–1009, 2025, cited by 19.
+- [Quantum fusion intelligence for integrated satellite-ground remote sensing](https://doi.org/10.1109/mwc.001.2400425): U. Khalid, U. I. Paracha, Z. Naveed, T. Q. Duong, M. Z. Win, H. Shin. IEEE Wireless Communications, vol. 32, no. 3, pp. 46–55, 2025, cited by 11.
+- [Quantum property learning for NISQ networks: Universal quantum witness machines](https://doi.org/10.1109/tcomm.2024.3469555): U. Khalid, J. ur Rehman, H. Jung, T. Q. Duong, O. A. Dobre, H. Shin. IEEE Transactions on Communications, vol. 73, no. 4, pp. 2207–2221, 2025, cited by 9.
+- [Integrated satellite-ground variational quantum sensing networks](https://doi.org/10.1109/mcom.005.2300844): U. Khalid, M. S. Ulum, M. Z. Win, H. Shin. IEEE Communications Magazine, vol. 62, no. 10, pp. 20–27, 2024, cited by 17.
+- [Deep quantum-transformer networks for multimodal beam prediction in ISAC systems](https://doi.org/10.1109/jiot.2024.3420455): S. Tariq, B. E. Arfeto, U. Khalid, S. Kim, T. Q. Duong, H. Shin. IEEE Internet of Things Journal, vol. 11, no. 18, pp. 29387–29401, 2024, cited by 67.
+- [Variational anonymous quantum sensing](https://doi.org/10.1109/jsac.2024.3414932): M. S. Ulum, U. Khalid, J. W. Setiawan, T. Q. Duong, M. Z. Win, H. Shin. IEEE Journal on Selected Areas in Communications, vol. 42, no. 9, pp. 2275–2291, 2024, cited by 17.
+- [Integrating sustainable big AI: Quantum anonymous semantic broadcast](https://doi.org/10.1109/mwc.007.2300503): S. Tariq, U. Khalid, B. E. Arfeto, T. Q. Duong, H. Shin. IEEE Wireless Communications, vol. 31, no. 3, pp. 86–99, 2024, cited by 35.
+- [Quantum network engineering in the NISQ age: Principles, missions, and challenges](https://doi.org/10.1109/mnet.2023.3328892): U. Khalid, J. ur Rehman, S. N. Paing, H. Jung, T. Q. Duong, H. Shin. IEEE Network, vol. 38, no. 1, pp. 112–123, 2024, cited by 45.
+- [Quantum full-duplex communication](https://doi.org/10.1109/jsac.2023.3287611): F. Zaman, U. Khalid, T. Q. Duong, H. Shin, M. Z. Win. IEEE Journal on Selected Areas in Communications, vol. 41, no. 9, pp. 2966–2980, 2023, cited by 26.
+- [Quantum semantic communications for Metaverse: Principles and challenges](https://doi.org/10.1109/mwc.002.2200613): U. Khalid, M. S. Ulum, A. Farooq, T. Q. Duong, O. A. Dobre, H. Shin. IEEE Wireless Communications, vol. 30, no. 4, pp. 26–36, 2023, cited by 87.
+- [Quantum secure metrology for network sensing-based applications](https://doi.org/10.1038/s41598-023-38802-6): M. T. Rahim, A. Khan, U. Khalid, J. ur Rehman, H. Jung, H. Shin. Scientific Reports, vol. 13, no. 1, Art. no. 11630, 2023, cited by 16.
+- [Entanglement detection with artificial neural networks](https://doi.org/10.1038/s41598-023-28745-3): N. Asif, U. Khalid, A. Khan, T. Q. Duong, H. Shin. Scientific Reports, vol. 13, no. 1, Art. no. 1562, 2023, cited by 61.
+- [Quantum anonymous private information retrieval for distributed networks](https://doi.org/10.1109/tcomm.2022.3168079): A. Khan, U. Khalid, J. ur Rehman, H. Shin. IEEE Transactions on Communications, 2022, cited by 35.
+- [Robust quantum state tomography method for quantum sensing](https://doi.org/10.3390/s22072669): A. Farooq, U. Khalid, J. ur Rehman, H. Shin. Sensors, vol. 22, no. 7, Art. no. 2669, 2022, cited by 20.
+- [Quantum anonymous collision detection for quantum networks](https://doi.org/10.1140/epjqt/s40507-021-00116-9): A. Khan, U. Khalid, J. ur Rehman, K. Lee, H. Shin. EPJ Quantum Technology, vol. 8, no. 1, p. 27, 2021, cited by 26.
+- [Metrologically resourceful multipartite entanglement under quantum many-body effects](https://doi.org/10.1088/2058-9565/abd893): U. Khalid, J. ur Rehman, H. Shin. Quantum Science and Technology, vol. 6, no. 2, Art. no. 025007, 2021, cited by 33.
+- [Measurement-based quantum correlations for quantum information processing](https://doi.org/10.1038/s41598-020-59220-y): U. Khalid, J. ur Rehman, H. Shin. Scientific Reports, vol. 10, Art. no. 2443, 2020, cited by 52.
+- [Measurement-based quantum correlation in mixed-state quantum metrology](https://doi.org/10.1007/s11128-018-2110-8): U. Khalid, Y. Jeong, H. Shin. Quantum Information Processing, vol. 17, no. 12, p. 343, 2018, cited by 47.
+
+## International conference papers
+
+- Noise-Robust Distributed Quantum Sensing: A Variational Quantum Approach: U. Khalid, M. S. Ulum, T. Q. Duong, M. Z. Win, H. Shin. IEEE Global Communications Conference (GLOBECOM), Taipei, Taiwan, Dec. 2025, 2025, cited by 1.
+- Quantum-Based Beamforming Optimization for Transmit Power Minimization in MISO Networks: I. Hameed, U. Khalid, M. H. Rahman, M. Abrar Shakil Sejan, H. Shin, H.-K. Song. IEEE International Symposium on Personal, Indoor and Mobile Radio Communications (PIMRC), Istanbul, Türkiye, Sep. 2025, 2025, cited by 1.
+- Anonymous quantum group communication in quantum linear networks: A. Khan, U. Khalid, Y. H. Kim, T. Q. Duong, H. Shin. International Conference on Industrial Networks and Intelligent Systems (INISCOM), Da Nang, Vietnam, Feb. 2025, 2025, cited by 1.
+- Artificial neural networks for quantum sensing: Metrologically resourceful state detection: U. Khalid, T. Q. Duong, H. Shin. International Conference on Quantum Communications, Networking, and Computing (QCNC), Kanazawa, Japan, Jul. 2024, 2024, cited by 5.
+- Optimal task scheduling in 6G networks: A variational quantum computing approach: U. Khalid, J. ur Rehman, A. Farooq, F. Zaman, H. Shin. International Conference on Industrial Networks and Intelligent Systems (INISCOM), Da Nang, Vietnam, Feb. 2024, 2024, cited by 2.
+- Quantum dimension witness and assisted quantum state discrimination: U. Khalid, Y. Jeong, H. Shin. Bulletin of the American Physical Society (BAPS), Boston, MA, USA, Mar. 2019, 2019.
+
+## Book chapters
+
+- Quantum Computing for Combinatorial Optimization: U. Khalid, S. M. A. Rizvi, M. M. U. Gondel, M. S. Ulum, H. Shin. Handbook of Combinatorial Optimization, 3rd Edition, Springer, 2027.
+
+## Patents
+
+- Quantum reservoir learning for reinforcement-learning-optimized pulse and Hamiltonian control system and method for a Rydberg lattice: H. Shin, J. U. Roh, U. Khalid, S. M. A. Rizvi, M. Talha. Korea Patent Application 10-2026-0044766, Mar. 12, 2026.
+- System and method for preparing a target quantum state in a noisy quantum system: H. Shin, U. Khalid, M. S. Ulum, M. Hamza, S. M. A. Rizvi, M. M. U. Gondel, J. U. Roh. Korea Patent Application 10-2026-0044751, Mar. 12, 2026.
+- Microwave quantum network system and method for distributed superconducting quantum computing: H. Shin, U. Khalid, E. Gholamalishahiharouni, A. M. Nabih, S. M. A. Rizvi, A. W. Shaffar, J. U. Roh. Korea Patent Application 10-2026-0044710, Mar. 12, 2026.
+- Noise adaptive variational quantum portfolio optimization system and method: H. Shin, U. I. Paracha, A. U. Haque, S. N. Paing, M. M. U. Gondel, U. Khalid, P. M. Min, J. U. Roh. Korea Patent Application 10-2026-0040373, Mar. 06, 2026.
+- Image understanding system and method for performing quantum enhancement using a transformer model: H. Shin, J. U. Roh, K. K. Thandar, U. I. Paracha, M. Hamza, A. Mobusher, U. Khalid. Korea Patent Application 10-2026-0040361, Mar. 06, 2026.
+- Quantum property learning method and system thereof: H. Shin, H. J. Jung, M. S. Choi, A. Farooq, U. Khalid, F. Zaman, S. Tariq, M. S. Ulum, N. Asif. Korea Patent 10-2930730, Feb. 20, 2026.
+- Apparatus and method for classifying quantum states in quantum information integrated processing system: H. Shin, S. M. A. Rizvi, N. Asif, U. Khalid, M. A. Ullah, A. Khan. Korea Patent 10-2820473, Jun. 10, 2025.
+- Apparatus and method of measuring quantum correlation in single qubit metrology in quantum information integrated processing system: H. Shin, U. Khalid, J. ur Rehman. Korea Patent 10-2636303, Feb. 07, 2024.
+- Metrologically multipartite entanglement measurement method under quantum many-body effects: H. Shin, M. A. Ullah, U. Khalid. Korea Patent 10-2574230, Aug. 30, 2023.
+- Quantum measurement method using perturbation sensitivity and quantum system using thereof: H. Shin, J. ur Rehman, U. Khalid. Korea Patent 10-2211060, Jan. 27, 2021.
+- Method of measuring quantum correlation in mixed-state quantum metrology: H. Shin, Y. Jeong, U. Khalid. Korea Patent 10-2120663, Jun. 03, 2020.
+
+## Invited talks
+
+- From NISQ Networks to Global Quantum Internet: Perspectives on Vision, Applications, and Hybrid Integration: Invited Lecture, Quantum Communications and Computing Center (QC3) Distinguished Lecture Series, Memorial University, Newfoundland and Labrador, Canada, 2025/08.
+- From Quantum-Integrated Computing & Communication: Towards Quantum-Integrated Sensing, Computing & Communication: Invited Talk, Memorial University, Newfoundland and Labrador, Canada, 2024/08.
+- Quantum Horizons: Revolutionizing 6G Computing-Intensive Communication and Networking: Invited Keynote, International Conference on Industrial Networks and Intelligent Systems (INISCOM), Da Nang, Vietnam, 2024/02.

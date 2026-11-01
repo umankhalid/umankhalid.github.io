@@ -1,9 +1,13 @@
 # Refresh data/scholar.json (citations, h-index, i10-index, and each paper's
-# citation count) from the public Google Scholar profile every 5 hours.
-# scripts/update-scholar.mjs rewrites the file only when a number changes, so a
-# commit is pushed only on a real update;
-# that push redeploys GitHub Pages, and the home-page card and the per-paper
-# badges on the Publications tab pick up the new values.
+# citation count) from the public Google Scholar profile every 5 hours, then
+# rebuild the static, crawlable pages generated from the data (publications/,
+# llms.txt, sitemap.xml). Both scripts rewrite a file only when its content
+# changes, so a commit is pushed only on a real update; that push redeploys
+# GitHub Pages, and the home-page card, the per-paper badges on the
+# Publications tab, and the static publication list pick up the new values.
+#
+# Also runs when data/publications.json (or the page generator) is pushed, so
+# the static publication list follows edits without waiting for the schedule.
 #
 # Requires Settings -> Actions -> General -> Workflow permissions -> "Read and
 # write permissions" so the job can push.
@@ -16,6 +20,12 @@ on:
     # rolling 5-hour interval, so the last gap of each day (20:17 -> 00:17) is 4
     # hours. Off the top of the hour because GitHub delays on-the-hour jobs most.
     - cron: '17 */5 * * *'
+  push:
+    branches: [main]
+    paths:
+      - data/publications.json
+      - data/seminars.json
+      - scripts/build-seo-pages.mjs
   workflow_dispatch:
 
 permissions:
@@ -42,15 +52,19 @@ jobs:
       - name: Fetch Google Scholar metrics
         run: node scripts/update-scholar.mjs --id "${{ vars.SCHOLAR_ID || 'CyVQHYEAAAAJ' }}"
 
+      - name: Build static SEO pages
+        run: node scripts/build-seo-pages.mjs
+
       - name: Commit and push if changed
         run: |
-          if git diff --quiet -- data/scholar.json; then
-            echo "Google Scholar metrics unchanged; nothing to commit."
+          FILES="data/scholar.json publications/index.html llms.txt sitemap.xml"
+          if [ -z "$(git status --porcelain -- $FILES)" ]; then
+            echo "Nothing changed; nothing to commit."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
-          git add data/scholar.json
-          git commit -m "Update Google Scholar metrics"
+          git add -- $FILES
+          git commit -m "Update Google Scholar metrics and publication pages"
           git pull --rebase
           git push
