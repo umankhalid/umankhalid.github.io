@@ -3066,6 +3066,24 @@ a.role-unit:hover {
   color: var(--text-primary);
 }
 
+/* Nested list under an activity, e.g. the invited lectures of a hosted course */
+.activity-sublist {
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+
+.activity-sublist li {
+  margin-bottom: 6px;
+}
+
+.activity-sublist li:last-child {
+  margin-bottom: 0;
+}
+
+.activity-sublist li::marker {
+  color: var(--text-muted);
+}
+
 /* Seminars & Presentations list (Activities tab) */
 
 .seminars-list {
