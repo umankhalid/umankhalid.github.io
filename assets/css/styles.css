@@ -1685,84 +1685,27 @@ a.role-unit:hover {
   margin-bottom: 4px;
 }
 
-/* --------------------------------------------------------------------------
-   Teaching Experience (under the experience timeline)
-   -------------------------------------------------------------------------- */
-
-.teaching-computing {
-  margin-top: var(--space-10);
-}
-
-.teaching-computing[hidden] {
-  display: none;
-}
-
-.teaching-computing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-  gap: var(--space-5);
-}
-
-.tc-card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: var(--space-6);
-  box-shadow: var(--elev-1);
-  transition: var(--transition-interactive);
-}
-
-.tc-card:hover {
-  border-color: var(--border-glow);
-  box-shadow: var(--elev-2);
-}
-
-.tc-card-title {
-  font-size: 1.15rem;
-  color: var(--text-primary);
-  margin-bottom: var(--space-3);
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.tc-card-title i {
-  color: var(--secondary-color);
-}
-
-.tc-org {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-bottom: var(--space-3);
-}
-
-.tc-description {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  margin-bottom: var(--space-4);
-}
-
-.tc-list {
+/* Course list inside a role (the teaching entry) */
+.role-courses {
   list-style: none;
-  margin: 0;
+  margin: 8px 0 0;
   padding: 0;
 }
 
-.tc-list li {
+.role-courses li {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: var(--space-1) var(--space-3);
-  padding: var(--space-3) 0;
+  gap: 2px 12px;
+  padding: 6px 0;
   border-top: 1px solid var(--border-color);
 }
 
-.tc-list li:first-child {
+.role-courses li:first-child {
   border-top: none;
-  padding-top: 0;
 }
 
-.tc-level {
+.role-course-level {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -1771,14 +1714,11 @@ a.role-unit:hover {
   min-width: 112px;
 }
 
-.tc-name {
+.role-course-title {
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-primary);
 }
-
-
-
 
 /* ==========================================================================
    Publications Overview Statistics & Listing

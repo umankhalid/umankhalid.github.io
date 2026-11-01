@@ -60,6 +60,22 @@
       "group": "khu"
     },
     {
+      "id": "exp_teaching",
+      "position": "Teaching Experience",
+      "organization": "Kyung Hee University",
+      "icon": "fas fa-chalkboard-teacher",
+      "unit": "Communications and Quantum Information Laboratory",
+      "unit_website": "https://cqilab.khu.ac.kr/people/",
+      "responsibilities": "Research group-level study sessions involving planning, teaching, and discussion leadership as a senior researcher and later as a research professor.",
+      "courses": [
+        { "level": "Undergraduate", "title": "Introduction to Quantum Computing" },
+        { "level": "Graduate", "title": "Quantum Communications" },
+        { "level": "Graduate", "title": "Quantum Machine Learning" },
+        { "level": "Graduate", "title": "Quantum Information Theory" }
+      ],
+      "group": "khu"
+    },
+    {
       "id": "exp_visit_2025",
       "position": "Visiting Scholar",
       "organization": "Memorial University",
@@ -80,17 +96,5 @@
       "group": "mun"
     }
   ],
-  "industry_experience": [],
-  "teaching": {
-    "unit": "Communications and Quantum Information Laboratory",
-    "organization": "Kyung Hee University",
-    "unit_website": "https://cqilab.khu.ac.kr/people/",
-    "description": "Research group-level study sessions involving planning, teaching, and discussion leadership as a senior researcher and later as a research professor.",
-    "courses": [
-      { "level": "Undergraduate", "title": "Introduction to Quantum Computing" },
-      { "level": "Graduate", "title": "Quantum Communications" },
-      { "level": "Graduate", "title": "Quantum Machine Learning" },
-      { "level": "Graduate", "title": "Quantum Information Theory" }
-    ]
-  }
+  "industry_experience": []
 }

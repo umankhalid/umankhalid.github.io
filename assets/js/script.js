@@ -736,9 +736,6 @@ let experienceData = [];
 // by the "group" id an experience item points at. Roles held at the same
 // organization are rendered as one card with a timeline of roles inside it.
 let experienceOrganizations = {};
-// Teaching (data/experience.json -> "teaching"), shown in its own section
-// under the timeline.
-let teachingData = null;
 let publicationsData = {};
 let projectsData = [];
 let certificatesData = {};
@@ -1076,7 +1073,6 @@ async function loadExperienceData() {
         if (response.ok) {
             const experienceJSON = await response.json();
             experienceOrganizations = experienceJSON.organizations || {};
-            teachingData = experienceJSON.teaching || null;
             experienceData = [
                 ...(experienceJSON.academic_experience || []),
                 ...(experienceJSON.industry_experience || [])
@@ -2160,46 +2156,8 @@ function loadExperienceContent() {
         .map(renderExperienceGroup)
         .join('');
     attachImageFallbacks(experienceContainer);
-    loadTeachingComputingContent();
 }
 
-/**
- * Teaching experience under the experience timeline. The section stays hidden
- * when experience.json has no "teaching" block.
- */
-function loadTeachingComputingContent() {
-    const section = document.getElementById('teaching-computing');
-    const grid = section && section.querySelector('.teaching-computing-grid');
-    if (!grid) return;
-
-    const cards = [];
-
-    if (teachingData && Array.isArray(teachingData.courses) && teachingData.courses.length) {
-        const unit = teachingData.unit_website
-            ? `<a href="${escapeHtml(teachingData.unit_website)}" class="role-unit" target="_blank" rel="noopener">${escapeHtml(teachingData.unit)}</a>`
-            : `<span class="role-unit">${escapeHtml(teachingData.unit || '')}</span>`;
-
-        cards.push(`
-            <article class="tc-card">
-                <h4 class="tc-card-title"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> Teaching Experience</h4>
-                ${unit}
-                ${teachingData.organization ? `<p class="tc-org">${escapeHtml(teachingData.organization)}</p>` : ''}
-                ${teachingData.description ? `<p class="tc-description">${escapeHtml(teachingData.description)}</p>` : ''}
-                <ul class="tc-list">
-                    ${teachingData.courses.map(course => `
-                        <li>
-                            <span class="tc-level">${escapeHtml(course.level || '')}</span>
-                            <span class="tc-name">${escapeHtml(course.title)}</span>
-                        </li>
-                    `).join('')}
-                </ul>
-            </article>
-        `);
-    }
-
-    grid.innerHTML = cards.join('');
-    section.hidden = cards.length === 0;
-}
 
 /**
  * Collapse roles that share a "group" id into a single entry, so one
@@ -2283,13 +2241,22 @@ function renderExperienceRole(exp, sharedDepartment) {
     return `
         <div class="role-entry${isCurrent ? ' role-current' : ''}">
             <h4 class="role-title">${exp.position || exp.title}</h4>
-            <p class="exp-duration">${duration}</p>
+            ${duration ? `<p class="exp-duration">${duration}</p>` : ''}
             ${unit}
             ${!sharedDepartment && exp.department ? `<p><strong>Department:</strong> ${exp.department}</p>` : ''}
             ${exp.course ? `<p><strong>Course:</strong> ${exp.course}</p>` : ''}
             ${exp.task ? `<p><strong>Task:</strong> ${exp.task}</p>` : ''}
             ${exp.primary_responsibilities ? `<p><strong>Responsibilities:</strong> ${Array.isArray(exp.primary_responsibilities) ? exp.primary_responsibilities[0] : exp.primary_responsibilities}</p>` : ''}
             ${exp.responsibilities ? `<p><strong>Responsibilities:</strong> ${exp.responsibilities}</p>` : ''}
+            ${Array.isArray(exp.courses) && exp.courses.length ? `
+                <ul class="role-courses">
+                    ${exp.courses.map(course => `
+                        <li>
+                            <span class="role-course-level">${escapeHtml(course.level || '')}</span>
+                            <span class="role-course-title">${escapeHtml(course.title)}</span>
+                        </li>
+                    `).join('')}
+                </ul>` : ''}
         </div>
     `;
 }
