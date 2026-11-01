@@ -1,0 +1,56 @@
+# Refresh data/scholar.json (citations, h-index, i10-index, and each paper's
+# citation count) from the public Google Scholar profile every 5 hours.
+# scripts/update-scholar.mjs rewrites the file only when a number changes, so a
+# commit is pushed only on a real update;
+# that push redeploys GitHub Pages, and the home-page card and the per-paper
+# badges on the Publications tab pick up the new values.
+#
+# Requires Settings -> Actions -> General -> Workflow permissions -> "Read and
+# write permissions" so the job can push.
+
+name: Update Google Scholar metrics
+
+on:
+  schedule:
+    # Minute 17 of hours 0, 5, 10, 15 and 20 (UTC). Cron cannot express a true
+    # rolling 5-hour interval, so the last gap of each day (20:17 -> 00:17) is 4
+    # hours. Off the top of the hour because GitHub delays on-the-hour jobs most.
+    - cron: '17 */5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-scholar
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch Google Scholar metrics
+        run: node scripts/update-scholar.mjs --id "${{ vars.SCHOLAR_ID || 'CyVQHYEAAAAJ' }}"
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet -- data/scholar.json; then
+            echo "Google Scholar metrics unchanged; nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add data/scholar.json
+          git commit -m "Update Google Scholar metrics"
+          git pull --rebase
+          git push

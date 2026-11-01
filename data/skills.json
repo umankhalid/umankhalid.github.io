@@ -56,6 +56,47 @@
       }
     ]
   },
+  "scientific_computing": {
+    "title": "Scientific Computing",
+    "icon": "fas fa-laptop-code",
+    "skills": [
+      {
+        "name": "Quantum Computing",
+        "description": "Qiskit and PennyLane for circuit design, variational algorithms, and hybrid quantum-classical models",
+        "icon": "fas fa-microchip"
+      },
+      {
+        "name": "Neutral-Atom Quantum Computing",
+        "description": "Bloqade for Rydberg-lattice simulation and neutral-atom quantum computing",
+        "icon": "fas fa-braille"
+      },
+      {
+        "name": "Rydberg Sensing & Receivers",
+        "description": "RydiQule for Rydberg-atom RF sensing and receiver modeling",
+        "icon": "fas fa-satellite-dish"
+      },
+      {
+        "name": "Quantum Dynamics",
+        "description": "QuTiP for simulating open quantum systems",
+        "icon": "fas fa-wave-square"
+      },
+      {
+        "name": "Quantum Metrology",
+        "description": "QuanEstimation for quantum parameter estimation and precision bounds",
+        "icon": "fas fa-ruler-combined"
+      },
+      {
+        "name": "Quantum Networks",
+        "description": "NetSquid and SimQN for discrete-event quantum network simulation",
+        "icon": "fas fa-network-wired"
+      },
+      {
+        "name": "Quantum Information",
+        "description": "QETLAB in MATLAB for entanglement, quantum channels, and resource characterization",
+        "icon": "fas fa-square-root-alt"
+      }
+    ]
+  },
   "machine_learning": {
     "title": "Machine Learning & AI",
     "icon": "fas fa-robot",

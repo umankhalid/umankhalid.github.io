@@ -321,24 +321,37 @@ function newsTypeClass(type) {
     return (type || '').toLowerCase().replace(/\s+/g, '-');
 }
 
+// How many of the latest news entries are shown as home-page highlight cards;
+// everything after them is listed in the home News accordion.
+const HIGHLIGHT_COUNT = 4;
+
 /**
- * Render the full, collapsible News tab from newsData.
+ * News entries, newest first. Dates are "YYYY/MM" or "YYYY"; a bare year sorts
+ * after the dated months of that year, and ties keep their order in news.json.
  */
-function renderNewsTab() {
+function sortedNews() {
+    const key = item => {
+        const [year, month] = String(item.date || '').split('/');
+        return (Number(year) || 0) * 100 + (Number(month) || 0);
+    };
+    return (Array.isArray(newsData) ? newsData : [])
+        .map((item, index) => ({ item, index }))
+        .sort((a, b) => key(b.item) - key(a.item) || a.index - b.index)
+        .map(entry => entry.item);
+}
+
+/**
+ * Render the home News accordion: every news entry after the highlights.
+ */
+function renderNewsList() {
     const accordion = document.getElementById('news-accordion');
     if (!accordion) return;
 
-    if (!Array.isArray(newsData) || newsData.length === 0) {
-        accordion.innerHTML = `
-            <div class="news-loading">
-                <i class="fas fa-exclamation-circle"></i>
-                No news available right now.
-            </div>
-        `;
-        return;
-    }
+    const items = sortedNews().slice(HIGHLIGHT_COUNT);
+    const section = document.getElementById('home-news');
+    if (section) section.hidden = items.length === 0;
 
-    accordion.innerHTML = newsData.map((item, index) => {
+    accordion.innerHTML = items.map((item, index) => {
         const typeClass = newsTypeClass(item.type);
         const panelId = `news-detail-${item.id ?? index}`;
         const summary = item.summary ? `<span class="news-card-summary">${escapeHtml(item.summary)}</span>` : '';
@@ -374,9 +387,11 @@ function renderNewsTab() {
         const detailBody = item.details || software.detail || '';
         const detailsText = detailBody ? `<p class="news-detail-text">${escapeHtml(detailBody)}</p>` : '';
 
-        const link = item.link
-            ? `<a class="news-detail-link" href="${escapeHtml(item.link)}" target="_blank" rel="noopener">
-                <i class="fas fa-external-link-alt"></i> ${escapeHtml(item.linkLabel || 'Learn more')}
+        const { attrs: linkAttrs, cta } = resolveHighlightLink(item);
+        const isExternal = /^https?:/i.test(item.link || '');
+        const link = linkAttrs
+            ? `<a class="news-detail-link" ${linkAttrs}>
+                <i class="fas ${isExternal ? 'fa-external-link-alt' : 'fa-arrow-right'}"></i> ${escapeHtml(cta)}
             </a>`
             : '';
 
@@ -460,117 +475,42 @@ function getSoftwareInfo(id) {
     };
 }
 
+// Where a news entry links when it sets no "link" of its own, by its "type".
+const NEWS_TYPE_LINKS = {
+    Publication: ['#publications', 'View Publications'],
+    Patent: ['#publications', 'View Patents'],
+    Award: ['#certifications', 'View Awards'],
+    Talk: ['#activities', 'View Activities'],
+    Recognition: ['#experience', 'View Experience'],
+    PhD: ['#education', 'View Education']
+};
+
 /**
  * Build the href/target attributes and CTA label for a highlight/news link.
- * Supports external URLs (http...), internal tab links (#research), or none.
+ * Supports external URLs (http...) and internal tab links (#research); an
+ * entry without a link falls back to the tab for its type, or to no link.
  */
 function resolveHighlightLink(item) {
     if (item.link && /^https?:/i.test(item.link)) {
         return { attrs: `href="${escapeHtml(item.link)}" target="_blank" rel="noopener"`, cta: item.linkLabel || 'Learn more' };
     }
-    if (item.link && item.link.startsWith('#')) {
-        const tab = item.link.slice(1);
-        return { attrs: `href="${escapeHtml(item.link)}" data-tab="${escapeHtml(tab)}"`, cta: item.linkLabel || 'View' };
-    }
-    return { attrs: `href="#news" data-tab="news"`, cta: 'See in News' };
+    const [href, label] = item.link && item.link.startsWith('#')
+        ? [item.link, item.linkLabel || 'View']
+        : NEWS_TYPE_LINKS[item.type] || [];
+    if (!href) return { attrs: '', cta: '' };
+    return { attrs: `href="${escapeHtml(href)}" data-tab="${escapeHtml(href.slice(1))}"`, cta: label };
 }
 
 /**
- * Aggregate everything that should appear in the home Highlights:
- *   1. the curated data/highlights.json list, plus
- *   2. any item flagged "featured": true across news, publications,
- *      certificates, projects, and software.
- * Returns a normalized array of card objects, de-duplicated by title.
- */
-function collectHighlights() {
-    const cards = [];
-
-    // 1) Curated highlights.json (already in card shape); featured unless explicitly false
-    (Array.isArray(highlightsData) ? highlightsData : [])
-        .filter(h => h.featured !== false)
-        .forEach(h => cards.push(h));
-
-    // 2) news.json
-    (Array.isArray(newsData) ? newsData : []).filter(i => i.featured).forEach(i => cards.push({
-        type: i.type, date: i.date, icon: i.icon || 'fas fa-newspaper',
-        title: i.title, detail: i.summary || i.details || '',
-        image: i.images && i.images[0] && i.images[0].src,
-        imageAlt: i.images && i.images[0] && i.images[0].alt,
-        fallbackImage: '',
-        link: i.link, linkLabel: i.linkLabel, softwareId: i.softwareId
-    }));
-
-    // 3) publications.json (all categories)
-    ['journals', 'conferences', 'korean_conferences', 'books_patents'].forEach(cat => {
-        (publicationsData[cat] || []).filter(p => p.featured).forEach(p => {
-            const venue = p.journal || p.conference || '';
-            const detailBits = [venue];
-            if (p.impactFactor) detailBits.push('IF: ' + p.impactFactor);
-            cards.push({
-                type: 'Publication', date: String(p.year || ''), icon: 'fas fa-file-alt',
-                title: p.title, detail: p.detail || detailBits.filter(Boolean).join(' · '),
-                image: p.image, fallbackImage: '',
-                link: p.doi || p.link, linkLabel: p.linkLabel || 'View Paper (DOI)'
-            });
-        });
-    });
-
-    // 4) certificates.json (awards + certifications)
-    ((certificatesData && certificatesData.awards) || []).filter(a => a.featured).forEach(a => cards.push({
-        type: 'Award', date: a.date, icon: a.icon || 'fas fa-trophy',
-        title: a.title, detail: a.description || a.issuer || '',
-        fallbackImage: '',
-        link: '#certifications', linkLabel: 'View Awards'
-    }));
-    ((certificatesData && certificatesData.certifications) || []).filter(c => c.featured).forEach(c => cards.push({
-        type: 'Certificate', date: c.date, icon: 'fas fa-certificate',
-        title: c.title, detail: c.description || c.issuer || '',
-        image: c.image, fallbackImage: '',
-        link: c.verification_url || '#certifications', linkLabel: c.verification_url ? 'Verify' : 'View Certificates'
-    }));
-
-    // 5) projects.json
-    (Array.isArray(projectsData) ? projectsData : []).filter(p => p.featured).forEach(p => cards.push({
-        type: 'Project', date: p.duration || p.status || '', icon: p.icon || 'fas fa-project-diagram',
-        title: p.title, detail: p.description || '',
-        image: p.image, fallbackImage: '',
-        link: '#projects', linkLabel: 'View Projects'
-    }));
-
-    // 6) research.json
-    (Array.isArray(softwareData) ? softwareData : []).filter(t => t.featured).forEach(t => {
-        const firstAction = (t.actions || []).find(a => a.variant !== 'sponsor-link');
-        cards.push({
-            type: 'Research', date: t.highlightDate || '', icon: t.navIcon || 'fas fa-atom',
-            title: t.title, detail: t.description || '',
-            image: t.previewImage,
-            link: t.highlightLink || (firstAction && firstAction.href) || '#research',
-            linkLabel: t.highlightLinkLabel || (firstAction && firstAction.label) || 'View Research',
-            softwareId: t.id
-        });
-    });
-
-    // De-duplicate by title (case-insensitive); first occurrence wins.
-    const seen = new Set();
-    return cards.filter(c => {
-        const key = (c.title || '').trim().toLowerCase();
-        if (!key || seen.has(key)) return false;
-        seen.add(key);
-        return true;
-    });
-}
-
-/**
- * Render the home Highlights cards.
- * Sourced from data/highlights.json plus any "featured": true item across the
- * other data files. Software items (with a softwareId) reuse the picture and
- * description from data/research.json.
+ * Render the home Highlights cards: the HIGHLIGHT_COUNT latest news entries.
+ * Software items (with a softwareId) reuse the picture and description from
+ * data/research.json.
  */
 function renderHighlights() {
     const container = document.getElementById('highlights-container');
     if (!container) return;
 
-    const items = collectHighlights();
+    const items = sortedNews().slice(0, HIGHLIGHT_COUNT);
     if (items.length === 0) {
         container.innerHTML = '';
         return;
@@ -580,33 +520,32 @@ function renderHighlights() {
         const typeClass = newsTypeClass(item.type);
         const software = item.softwareId ? getSoftwareInfo(item.softwareId) : { detail: '', image: null, alt: '' };
 
-        const detail = item.detail || software.detail || '';
-        // Image priority: explicit -> software-tab preview -> fallback cover.
-        const imgSrc = item.image || software.image || item.fallbackImage || '';
-        const imgAlt = item.imageAlt || software.alt || item.title || '';
+        const detail = item.summary || item.details || software.detail || '';
+        const firstImage = Array.isArray(item.images) && item.images[0];
+        const imgSrc = (firstImage && firstImage.src) || software.image || '';
+        const imgAlt = (firstImage && firstImage.alt) || software.alt || item.title || '';
 
         const { attrs, cta } = resolveHighlightLink(item);
 
         const image = imgSrc
             ? `<span class="highlight-thumb">
-                <img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(imgAlt)}" loading="lazy"
-                     ${item.fallbackImage ? `onerror="this.onerror=null;this.src='${escapeHtml(item.fallbackImage)}'"` : ''}>
+                <img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(imgAlt)}" loading="lazy">
                </span>`
             : '';
 
         return `
-            <a class="highlight-card news-type-${typeClass}" ${attrs}>
+            <${attrs ? 'a' : 'div'} class="highlight-card news-type-${typeClass}" ${attrs}>
                 ${image}
                 <span class="highlight-body">
                     <span class="highlight-type">
-                        <i class="${escapeHtml(item.icon)} news-icon"></i> ${escapeHtml(item.type)}
+                        <i class="${escapeHtml(item.icon || 'fas fa-newspaper')} news-icon"></i> ${escapeHtml(item.type)}
                         <span class="highlight-date">${escapeHtml(item.date)}</span>
                     </span>
                     <span class="highlight-card-title">${escapeHtml(item.title)}</span>
                     ${detail ? `<span class="highlight-card-detail">${escapeHtml(detail)}</span>` : ''}
-                    <span class="highlight-cta">${escapeHtml(cta)} <i class="fas fa-arrow-right"></i></span>
+                    ${cta ? `<span class="highlight-cta">${escapeHtml(cta)} <i class="fas fa-arrow-right"></i></span>` : ''}
                 </span>
-            </a>
+            </${attrs ? 'a' : 'div'}>
         `;
     }).join('');
 }
@@ -724,7 +663,7 @@ const CONFIG = {
     debounceDelay: 150
 };
 
-const VALID_TABS = ['home', 'news', 'education', 'experience', 'publications', 'projects', 'skills', 'research', 'certifications', 'activities', 'contact'];
+const VALID_TABS = ['home', 'education', 'experience', 'publications', 'projects', 'skills', 'research', 'certifications', 'activities', 'contact'];
 
 // Measure the fixed header and expose it as --header-height so the page content
 // (tab covers) starts exactly where the header ends, with no gap in between.
@@ -797,13 +736,15 @@ let experienceData = [];
 // by the "group" id an experience item points at. Roles held at the same
 // organization are rendered as one card with a timeline of roles inside it.
 let experienceOrganizations = {};
+// Teaching (data/experience.json -> "teaching"), shown in its own section
+// under the timeline.
+let teachingData = null;
 let publicationsData = {};
 let projectsData = [];
 let certificatesData = {};
 let seminarsData = [];
 let skillsData = {};
 let newsData = [];
-let highlightsData = [];
 let softwareData = [];
 let collaborationsData = null;
 let scholarData = null;
@@ -824,7 +765,6 @@ async function loadDataFromJSON() {
         loadCertificatesData(),
         loadSeminarsData(),
         loadNewsData(),
-        loadHighlightsData(),
         loadSoftwareData(),
         loadCollaborationsData(),
         loadScholarData()
@@ -881,7 +821,7 @@ async function loadCollaborationsData() {
 // ==========================================================================
 //
 // The numbers live in data/scholar.json, which .github/workflows/update-scholar.yml
-// rewrites from the live profile every 6 hours (four times a day). Reading them
+// rewrites from the live profile every 5 hours. Reading them
 // from the repo instead of scraping in the browser means every visitor sees the
 // same figures on the first paint - incognito windows and first-time readers
 // included - with no dependency on per-browser storage.
@@ -891,7 +831,7 @@ const SCHOLAR_ID = 'CyVQHYEAAAAJ';
 const SCHOLAR_PROFILE_URL = SCHOLAR_ID
     ? 'https://scholar.google.com/citations?user=' + SCHOLAR_ID + '&hl=en'
     : '#';
-const SCHOLAR_REFRESH_MS = 6 * 60 * 60 * 1000; // matches the workflow schedule
+const SCHOLAR_REFRESH_MS = 5 * 60 * 60 * 1000; // matches the workflow schedule
 const SCHOLAR_MIN_RECHECK_MS = 30 * 60 * 1000; // floor for focus-triggered checks
 const SCHOLAR_FETCH_TIMEOUT_MS = 12000;
 
@@ -969,6 +909,75 @@ function renderScholarMetrics() {
 }
 
 /**
+ * Title as a comparison key: lower case, letters and digits only, so
+ * "Quantum Full-Duplex Communication" and "Quantum full-duplex communication"
+ * are the same paper.
+ */
+function scholarTitleKey(title) {
+    return String(title || '').toLowerCase().replace(/<[^>]+>/g, '').replace(/[^a-z0-9]/g, '');
+}
+
+/**
+ * Google Scholar citations for one paper, from the per-paper list in
+ * data/scholar.json. Scholar sometimes keeps a duplicate entry whose title
+ * runs on past the real one (e.g. "...: U. Khalid et al."), so entries that
+ * extend a long-enough title count too, and their citations are summed.
+ * Returns { citations, url } or null when the paper is not on the profile.
+ */
+function scholarCitationsFor(key) {
+    const papers = scholarData && Array.isArray(scholarData.papers) ? scholarData.papers : [];
+    if (!key || papers.length === 0) return null;
+
+    const matches = papers.filter((paper) => {
+        const paperKey = scholarTitleKey(paper.title);
+        return paperKey === key || (key.length >= 30 && paperKey.startsWith(key));
+    });
+    if (matches.length === 0) return null;
+
+    const best = matches.reduce((a, b) => ((b.citations || 0) > (a.citations || 0) ? b : a));
+    return {
+        citations: matches.reduce((sum, paper) => sum + (Number(paper.citations) || 0), 0),
+        url: best.url || scholarData.profileUrl || SCHOLAR_PROFILE_URL
+    };
+}
+
+/**
+ * The Google Scholar badge for a publication: the Scholar icon and its
+ * citation count, linking to the paper's "Cited by" list. Empty for items
+ * Scholar does not index (patents, unlisted papers).
+ */
+function scholarCitationBadge(pub) {
+    const key = scholarTitleKey(pub.title);
+    const hit = scholarCitationsFor(key);
+    if (!hit) return '';
+    const label = scholarCitationLabel(hit.citations);
+    return `<a href="${escapeHtml(hit.url)}" class="pub-badge scholar-cites" target="_blank" rel="noopener"
+        data-scholar-key="${key}" title="${label}" aria-label="${label}">
+        <i class="ai ai-google-scholar" aria-hidden="true"></i><span class="scholar-cites-count">${hit.citations}</span>
+    </a>`;
+}
+
+function scholarCitationLabel(citations) {
+    return `Cited by ${citations} on Google Scholar`;
+}
+
+/**
+ * Bring already-rendered Scholar badges in line with a refreshed scholarData,
+ * without re-rendering the publication list under the reader.
+ */
+function updateScholarCitationBadges() {
+    document.querySelectorAll('.scholar-cites[data-scholar-key]').forEach((badge) => {
+        const hit = scholarCitationsFor(badge.dataset.scholarKey);
+        if (!hit) return;
+        const count = badge.querySelector('.scholar-cites-count');
+        if (count) count.textContent = hit.citations;
+        badge.setAttribute('href', hit.url);
+        badge.title = scholarCitationLabel(hit.citations);
+        badge.setAttribute('aria-label', badge.title);
+    });
+}
+
+/**
  * Sanity-check a metrics object before it is rendered, so a half-written or
  * malformed file can never overwrite good numbers.
  */
@@ -1012,17 +1021,19 @@ async function refreshScholarMetrics(force) {
     const changed = !scholarData
         || scholarData.citations !== data.citations
         || scholarData.hIndex !== data.hIndex
-        || scholarData.i10Index !== data.i10Index;
+        || scholarData.i10Index !== data.i10Index
+        || JSON.stringify(scholarData.papers || []) !== JSON.stringify(data.papers || []);
 
     scholarData = data;
     renderScholarMetrics();
     if (changed) {
+        updateScholarCitationBadges();
         console.log('✅ Scholar metrics refreshed');
     }
 }
 
 /**
- * Keep a tab that stays open for days in step with the 6-hourly workflow:
+ * Keep a tab that stays open for days in step with the 5-hourly workflow:
  * re-check on the same cadence, and whenever a long-idle tab comes back to the
  * foreground (a laptop that was asleep gets no timer ticks).
  */
@@ -1065,6 +1076,7 @@ async function loadExperienceData() {
         if (response.ok) {
             const experienceJSON = await response.json();
             experienceOrganizations = experienceJSON.organizations || {};
+            teachingData = experienceJSON.teaching || null;
             experienceData = [
                 ...(experienceJSON.academic_experience || []),
                 ...(experienceJSON.industry_experience || [])
@@ -1157,24 +1169,6 @@ async function loadNewsData() {
     }
 }
 
-/**
- * Load home highlights data from JSON
- */
-async function loadHighlightsData() {
-    try {
-        const response = await fetch('data/highlights.json');
-        if (response.ok) {
-            highlightsData = await response.json();
-            console.log('✅ Highlights data loaded successfully');
-        } else {
-            console.error('❌ Could not load highlights.json');
-            highlightsData = [];
-        }
-    } catch (error) {
-        console.error('❌ Error loading highlights.json:', error);
-        highlightsData = [];
-    }
-}
 
 /**
  * Load the Research tab themes from JSON. They render through the same
@@ -1204,11 +1198,7 @@ async function loadSoftwareData() {
 const PAGE_METADATA = {
     home: {
         title: 'Dr. Uman Khalid | Research Professor, Kyung Hee University',
-        description: 'Dr. Uman Khalid, Research Professor at Kyung Hee University, Korea: quantum sensing, quantum communication and networking, and quantum machine learning for 6G. 26 journal papers, 4 patents.'
-    },
-    news: {
-        title: 'News - Uman Khalid',
-        description: 'Recent publications, awards, invited talks, appointments, and professional service of Uman Khalid.'
+        description: 'Dr. Uman Khalid, Research Professor at Kyung Hee University, Korea: quantum sensing, quantum communication and networking, and quantum machine learning for 6G. 26 journal papers, 6 granted patents, and 5 patent applications.'
     },
     education: {
         title: 'Education - Uman Khalid',
@@ -1216,7 +1206,7 @@ const PAGE_METADATA = {
     },
     experience: {
         title: 'Experience - Uman Khalid',
-        description: 'Academic appointments of Uman Khalid at Kyung Hee University, including Research Professor, BK21 Research Professor, and Postdoctoral Fellow, plus visiting positions at Memorial University.'
+        description: 'Academic appointments of Uman Khalid at Kyung Hee University, including Research Professor, BK21 Research Professor, and Postdoctoral Fellow, plus visiting positions at Memorial University and teaching experience.'
     },
     publications: {
         title: 'Publications - Uman Khalid',
@@ -1333,7 +1323,6 @@ function showTab(tabName) {
     // Update document title and URL hash
     const titleMap = {
         home: 'Home',
-        news: 'News',
         education: 'Education',
         experience: 'Experience',
         publications: 'Publications',
@@ -1413,9 +1402,6 @@ function initializeTabFromHash() {
  */
 function loadTabContent(tabName) {
     switch (tabName) {
-        case 'news':
-            renderNewsTab();
-            break;
         case 'experience':
             loadExperienceContent();
             break;
@@ -1579,10 +1565,6 @@ function loadPublicationStats() {
                 <span class="stat-label">Journal Articles</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">${cumulativeIF.toFixed(1)}</span>
-                <span class="stat-label">Cumulative Impact Factor</span>
-            </div>
-            <div class="stat-item">
                 <span class="stat-number">${conferenceCount}</span>
                 <span class="stat-label">International Conferences</span>
             </div>
@@ -1594,6 +1576,10 @@ function loadPublicationStats() {
                 <span class="stat-number">${reportCount}</span>
                 <span class="stat-label">Book Chapters &amp; Patents</span>
             </div>
+        </div>
+        <div class="stat-item stat-item-wide">
+            <span class="stat-number">${cumulativeIF.toFixed(1)}</span>
+            <span class="stat-label">Cumulative Impact Factor</span>
         </div>
     `;
     
@@ -1991,6 +1977,7 @@ function loadJournals() {
             <div class="pub-journal">${[pub.journal, pub.volume, pub.pages].filter(Boolean).join(', ')} (${pub.year})</div>
             <div class="pub-details">
                 ${pub.impactFactor ? `<span class="pub-badge impact-factor">IF: ${pub.impactFactor}</span>` : ''}
+                ${scholarCitationBadge(pub)}
                 ${pub.doi && pub.doi !== '#' ? `<a href="${escapeHtml(pub.doi)}" class="doi-link" target="_blank" rel="noopener">DOI: ${escapeHtml(pub.doi.replace(/^https?:\/\/(dx\.)?doi\.org\//i, ''))}</a>` : ''}
                 ${pub.status ? `<span class="pub-badge ${getBadgeClass(pub.status)}">${escapeHtml(pub.status)}</span>` : ''}
                 ${pub.category ? `<span class="pub-badge">${pub.category}${pub.quartile ? ', ' + pub.quartile : ''}</span>` : ''}
@@ -2030,6 +2017,7 @@ function loadConferences() {
             <div class="pub-authors">${formatAuthors(pub.authors)} (${pub.year})</div>
             <div class="pub-journal">${pub.conference}${pub.location ? `, ${pub.location}` : ''}${pub.date ? `, ${pub.date}` : ''}</div>
             <div class="pub-details">
+                ${scholarCitationBadge(pub)}
                 ${pub.pages ? `<span class="pub-badge">Pages: ${pub.pages}</span>` : ''}
                 ${pub.publisher ? `<span class="pub-badge">Publisher: ${pub.publisher}</span>` : ''}
                 ${pub.doi ? `<a href="${pub.doi}" class="doi-link" target="_blank" rel="noopener">DOI Link</a>` : ''}
@@ -2068,6 +2056,7 @@ function loadKoreanConferences() {
             <div class="pub-authors">${formatAuthors(pub.authors)} (${pub.year})</div>
             <div class="pub-journal">${pub.conference}${pub.location ? `, ${pub.location}` : ''}${pub.date ? `, ${pub.date}` : ''}${pub.volume ? `, ${pub.volume}` : ''}${pub.pages ? `, ${pub.pages}` : ''}</div>
             <div class="pub-details">
+                ${scholarCitationBadge(pub)}
                 ${pub.badges ? pub.badges.map(badge => `<span class="pub-badge ${getBadgeClass(badge)}">${badge}</span>`).join('') : ''}
             </div>
         </div>
@@ -2105,6 +2094,7 @@ function loadTechnicalReports() {
             <div class="pub-journal">${pub.journal}${pub.volume ? `, ${pub.volume}` : ''}${pub.pages ? `, pages ${pub.pages}` : ''}</div>
             <div class="pub-details">
                 ${pub.type ? `<span class="pub-badge">${escapeHtml(pub.type)}</span>` : ''}
+                ${scholarCitationBadge(pub)}
                 ${pub.link ? `<a href="${pub.link}" class="doi-link" target="_blank" rel="noopener">${escapeHtml(pub.linkLabel || 'View Report')}</a>` : ''}
             </div>
         </div>
@@ -2170,6 +2160,45 @@ function loadExperienceContent() {
         .map(renderExperienceGroup)
         .join('');
     attachImageFallbacks(experienceContainer);
+    loadTeachingComputingContent();
+}
+
+/**
+ * Teaching experience under the experience timeline. The section stays hidden
+ * when experience.json has no "teaching" block.
+ */
+function loadTeachingComputingContent() {
+    const section = document.getElementById('teaching-computing');
+    const grid = section && section.querySelector('.teaching-computing-grid');
+    if (!grid) return;
+
+    const cards = [];
+
+    if (teachingData && Array.isArray(teachingData.courses) && teachingData.courses.length) {
+        const unit = teachingData.unit_website
+            ? `<a href="${escapeHtml(teachingData.unit_website)}" class="role-unit" target="_blank" rel="noopener">${escapeHtml(teachingData.unit)}</a>`
+            : `<span class="role-unit">${escapeHtml(teachingData.unit || '')}</span>`;
+
+        cards.push(`
+            <article class="tc-card">
+                <h4 class="tc-card-title"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> Teaching Experience</h4>
+                ${unit}
+                ${teachingData.organization ? `<p class="tc-org">${escapeHtml(teachingData.organization)}</p>` : ''}
+                ${teachingData.description ? `<p class="tc-description">${escapeHtml(teachingData.description)}</p>` : ''}
+                <ul class="tc-list">
+                    ${teachingData.courses.map(course => `
+                        <li>
+                            <span class="tc-level">${escapeHtml(course.level || '')}</span>
+                            <span class="tc-name">${escapeHtml(course.title)}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            </article>
+        `);
+    }
+
+    grid.innerHTML = cards.join('');
+    section.hidden = cards.length === 0;
 }
 
 /**
@@ -3053,11 +3082,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Initialize tab from URL hash on page load
     initializeTabFromUrl();
     
-    // Render home highlights (featured items; data already loaded)
+    // Render the home Highlights (latest news) and the News list below them
     renderHighlights();
+    renderNewsList();
 
     // Populate the Google Scholar metrics card, then keep a long-lived tab in
-    // step with the 6-hourly server-side refresh
+    // step with the 5-hourly server-side refresh
     renderScholarMetrics();
     initializeScholarAutoRefresh();
 

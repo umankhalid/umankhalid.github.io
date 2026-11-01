@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 /**
- * Refresh data/scholar.json from the public Google Scholar profile.
+ * Refresh data/scholar.json from the public Google Scholar profile: the
+ * profile-wide citations, h-index and i10-index, plus the citation count of
+ * every paper listed on the profile.
  *
- * Run by .github/workflows/update-scholar.yml every 6 hours. Doing the scrape
+ * Run by .github/workflows/update-scholar.yml every 5 hours. Doing the scrape
  * here rather than in the browser means every visitor - incognito, a phone, a
  * first-time reader - is served the same numbers straight out of the repo,
  * instead of whatever happened to land in their own localStorage.
  *
- * The file is rewritten only when the metrics actually change, so the workflow
+ * The file is rewritten only when a number actually changes, so the workflow
  * pushes a commit at most once per real citation update.
  *
  * Usage: node scripts/update-scholar.mjs [--id <scholarId>]
@@ -25,7 +27,14 @@ const OUTPUT_FILE = join(ROOT, 'data', 'scholar.json');
 const idFlag = process.argv.indexOf('--id');
 const SCHOLAR_ID =
     (idFlag !== -1 && process.argv[idFlag + 1]) || process.env.SCHOLAR_ID || 'CyVQHYEAAAAJ';
-const PROFILE_URL = `https://scholar.google.com/citations?user=${SCHOLAR_ID}&hl=en`;
+const SCHOLAR_ORIGIN = 'https://scholar.google.com';
+const PROFILE_URL = `${SCHOLAR_ORIGIN}/citations?user=${SCHOLAR_ID}&hl=en`;
+
+// Scholar lists at most 100 papers per page; later pages start at cstart.
+const PAGE_SIZE = 100;
+const MAX_PAGES = 10;
+const pageUrl = (cstart) =>
+    `${PROFILE_URL}&cstart=${cstart}&pagesize=${PAGE_SIZE}&sortby=pubdate`;
 
 const FETCH_TIMEOUT_MS = 20000;
 const ROUNDS = 3; // full passes over the source list before giving up
@@ -38,20 +47,20 @@ const ROUND_DELAY_MS = 15000;
  * their own addresses.
  */
 const SOURCES = [
-    { name: 'scholar.google.com', url: () => PROFILE_URL },
+    { name: 'scholar.google.com', url: (target) => target },
     {
         name: 'codetabs',
-        url: () => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(PROFILE_URL)
+        url: (target) => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(target)
     },
     {
         name: 'allorigins',
-        url: () => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(PROFILE_URL)
+        url: (target) => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(target)
     },
     {
         name: 'corsproxy.io',
-        url: () => 'https://corsproxy.io/?url=' + encodeURIComponent(PROFILE_URL)
+        url: (target) => 'https://corsproxy.io/?url=' + encodeURIComponent(target)
     },
-    { name: 'cors.lol', url: () => 'https://api.cors.lol/?url=' + encodeURIComponent(PROFILE_URL) }
+    { name: 'cors.lol', url: (target) => 'https://api.cors.lol/?url=' + encodeURIComponent(target) }
 ];
 
 const BROWSER_HEADERS = {
@@ -62,6 +71,21 @@ const BROWSER_HEADERS = {
 };
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+/** Decode the HTML entities Scholar uses in titles and links. */
+function decodeEntities(text) {
+    return text
+        .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+        .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(parseInt(dec, 10)))
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;|&apos;/g, "'")
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&nbsp;/g, ' ')
+        .replace(/&amp;/g, '&');
+}
+
+const absoluteUrl = (href) => (href.startsWith('/') ? SCHOLAR_ORIGIN + href : href);
 
 /**
  * Pull the three "All" figures out of the profile markup.
@@ -79,6 +103,38 @@ function parseMetrics(html) {
 
     const metrics = { citations: cells[0], hIndex: cells[2], i10Index: cells[4] };
     return isValidMetrics(metrics) ? metrics : null;
+}
+
+/**
+ * Pull every paper row out of one profile page: title, citation count, year,
+ * and a link to its "Cited by" list (or to the paper's Scholar page when
+ * nothing cites it yet). Returns null when the page has no paper table.
+ */
+function parsePapers(html) {
+    if (!html || !html.includes('gsc_a_tr')) return null;
+
+    const papers = [];
+    for (const [, row] of html.matchAll(/<tr[^>]*class="[^"]*gsc_a_tr[^"]*"[^>]*>([\s\S]*?)<\/tr>/gi)) {
+        const titleMatch = row.match(/<a[^>]*href="([^"]*)"[^>]*class="[^"]*gsc_a_at[^"]*"[^>]*>([\s\S]*?)<\/a>/i);
+        if (!titleMatch) continue;
+
+        const citedMatch = row.match(/<a[^>]*href="([^"]*)"[^>]*class="[^"]*gsc_a_ac[^"]*"[^>]*>([^<]*)<\/a>/i);
+        const yearMatch = row.match(/class="[^"]*gsc_a_h[^"]*"[^>]*>(\d{4})</i);
+
+        const citations = citedMatch ? parseInt(citedMatch[2].replace(/[^\d]/g, ''), 10) || 0 : 0;
+        const citedBy = citedMatch && citedMatch[1] ? decodeEntities(citedMatch[1]) : '';
+        const viewUrl = decodeEntities(titleMatch[1])
+            // Drop the listing's paging parameters from the paper's own link.
+            .replace(/&(pagesize|sortby|cstart)=[^&]*/g, '');
+
+        papers.push({
+            title: decodeEntities(titleMatch[2].replace(/<[^>]+>/g, '')).trim(),
+            citations,
+            year: yearMatch ? parseInt(yearMatch[1], 10) : null,
+            url: absoluteUrl(citations > 0 && citedBy ? citedBy : viewUrl)
+        });
+    }
+    return papers;
 }
 
 /**
@@ -100,11 +156,15 @@ function isValidMetrics(metrics) {
     );
 }
 
-async function fetchMetrics() {
+/**
+ * Fetch one profile page through the source list, retrying in rounds, and
+ * return the first response `accept` turns into a value (or null).
+ */
+async function fetchPage(target, accept) {
     for (let round = 1; round <= ROUNDS; round++) {
         for (const source of SOURCES) {
             try {
-                const response = await fetch(source.url(), {
+                const response = await fetch(source.url(target), {
                     headers: BROWSER_HEADERS,
                     redirect: 'follow',
                     signal: AbortSignal.timeout(FETCH_TIMEOUT_MS)
@@ -114,12 +174,12 @@ async function fetchMetrics() {
                     continue;
                 }
 
-                const metrics = parseMetrics(await response.text());
-                if (metrics) {
+                const value = accept(await response.text());
+                if (value) {
                     console.log(`  ${source.name}: ok`);
-                    return metrics;
+                    return value;
                 }
-                console.log(`  ${source.name}: no metrics table (captcha or layout change)`);
+                console.log(`  ${source.name}: no profile table (captcha or layout change)`);
             } catch (error) {
                 console.log(`  ${source.name}: ${error.message}`);
             }
@@ -131,6 +191,33 @@ async function fetchMetrics() {
         }
     }
     return null;
+}
+
+/**
+ * Read the metrics and the full paper list. The metrics come with the first
+ * page; further pages are read only while a page comes back full. `papers` is
+ * null if any page could not be read, so a partial list is never written.
+ */
+async function fetchProfile() {
+    console.log('Page 1');
+    const first = await fetchPage(pageUrl(0), (html) => {
+        const metrics = parseMetrics(html);
+        return metrics ? { metrics, papers: parsePapers(html) } : null;
+    });
+    if (!first) return null;
+
+    let papers = first.papers;
+    for (let page = 1; papers && papers.length === page * PAGE_SIZE && page < MAX_PAGES; page++) {
+        console.log(`Page ${page + 1}`);
+        const more = await fetchPage(pageUrl(page * PAGE_SIZE), parsePapers);
+        papers = more ? papers.concat(more) : null;
+    }
+
+    // A profile with citations always lists papers; an empty list means the
+    // table was missing, so keep the previous list instead.
+    if (papers && papers.length === 0) papers = null;
+
+    return { metrics: first.metrics, papers };
 }
 
 async function readCurrent() {
@@ -151,6 +238,16 @@ async function summarize(line) {
     }
 }
 
+/** Stable order, so the file only changes when a number or title does. */
+function sortPapers(papers) {
+    return [...papers].sort(
+        (a, b) =>
+            (b.year || 0) - (a.year || 0) ||
+            a.title.localeCompare(b.title) ||
+            b.citations - a.citations
+    );
+}
+
 async function main() {
     if (!SCHOLAR_ID) {
         console.log('No Google Scholar id configured (set the SCHOLAR_ID repository variable); skipping.');
@@ -159,30 +256,35 @@ async function main() {
     }
 
     console.log(`Reading Google Scholar profile ${SCHOLAR_ID}`);
-    const metrics = await fetchMetrics();
+    const profile = await fetchProfile();
 
-    if (!metrics) {
+    if (!profile) {
         // Every source was blocked. Leave the committed numbers alone and warn
         // rather than fail: transient captchas are normal, and the next run in
-        // 6 hours usually gets through.
+        // 5 hours usually gets through.
         console.log('::warning::Could not read Google Scholar; keeping the existing metrics.');
         await summarize('Google Scholar unreachable this run - metrics left unchanged.');
         return;
     }
 
+    const { metrics } = profile;
     const current = await readCurrent();
+    if (!profile.papers) {
+        console.log('::warning::Could not read the full paper list; keeping the existing per-paper counts.');
+    }
+    const papers = profile.papers ? sortPapers(profile.papers) : current.papers || [];
+
     const unchanged =
         current.citations === metrics.citations &&
         current.hIndex === metrics.hIndex &&
-        current.i10Index === metrics.i10Index;
+        current.i10Index === metrics.i10Index &&
+        JSON.stringify(current.papers || []) === JSON.stringify(papers);
+
+    const totals = `${metrics.citations} citations, h-index ${metrics.hIndex}, i10-index ${metrics.i10Index}, ${papers.length} papers`;
 
     if (unchanged) {
-        console.log(
-            `No change: ${metrics.citations} citations, h-index ${metrics.hIndex}, i10 ${metrics.i10Index}`
-        );
-        await summarize(
-            `No change - ${metrics.citations} citations, h-index ${metrics.hIndex}, i10-index ${metrics.i10Index}.`
-        );
+        console.log(`No change: ${totals}`);
+        await summarize(`No change - ${totals}.`);
         return;
     }
 
@@ -192,18 +294,13 @@ async function main() {
         i10Index: metrics.i10Index,
         scholarId: SCHOLAR_ID,
         profileUrl: PROFILE_URL,
-        updated: new Date().toISOString().slice(0, 10)
+        updated: new Date().toISOString().slice(0, 10),
+        papers
     };
 
     await writeFile(OUTPUT_FILE, `${JSON.stringify(updated, null, 2)}\n`, 'utf8');
-    console.log(
-        `Updated: ${current.citations ?? '-'} -> ${updated.citations} citations, ` +
-            `h-index ${updated.hIndex}, i10 ${updated.i10Index}`
-    );
-    await summarize(
-        `Updated - ${current.citations ?? '-'} -> ${updated.citations} citations, ` +
-            `h-index ${updated.hIndex}, i10-index ${updated.i10Index}.`
-    );
+    console.log(`Updated: ${current.citations ?? '-'} -> ${totals}`);
+    await summarize(`Updated - ${current.citations ?? '-'} -> ${totals}.`);
 }
 
 main().catch((error) => {

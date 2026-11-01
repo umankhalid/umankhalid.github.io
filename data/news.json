@@ -18,6 +18,8 @@
     "title": "Technical Program Committee member, QNC Symposium at IEEE IWCMC 2026",
     "summary": "Quantum Networks and Computing Symposium, Shanghai, China, June 1–6, 2026.",
     "details": "Served on the Technical Program Committee of the Quantum Networks and Computing (QNC) Symposium at the IEEE International Wireless Communications & Mobile Computing (IWCMC) Conference, held in Shanghai, China, June 1–6, 2026.",
+    "link": "#activities",
+    "linkLabel": "View Activities",
     "importance": "medium",
     "featured": false
   },
@@ -41,6 +43,28 @@
     "summary": "Institute for Communications and Quantum Nexus, Communications and Quantum Information Laboratory.",
     "details": "Started as a Research Professor at the Institute for Communications and Quantum Nexus and the Communications and Quantum Information Laboratory, Kyung Hee University.",
     "importance": "high",
+    "featured": false
+  },
+  {
+    "id": 18,
+    "date": "2026/03",
+    "icon": "fas fa-lightbulb",
+    "type": "Patent",
+    "title": "Five Korean patent applications filed",
+    "summary": "Rydberg-lattice quantum reservoir learning, noisy state preparation, microwave quantum networks, variational portfolio optimization, and quantum-enhanced image understanding.",
+    "details": "Five Korea patent applications were filed in March 2026: quantum reservoir learning for reinforcement-learning-optimized pulse and Hamiltonian control of a Rydberg lattice (10-2026-0044766); target quantum state preparation in a noisy quantum system (10-2026-0044751); a microwave quantum network for distributed superconducting quantum computing (10-2026-0044710); noise-adaptive variational quantum portfolio optimization (10-2026-0040373); and quantum-enhanced image understanding with a transformer model (10-2026-0040361).",
+    "importance": "medium",
+    "featured": false
+  },
+  {
+    "id": 17,
+    "date": "2026/02",
+    "icon": "fas fa-lightbulb",
+    "type": "Patent",
+    "title": "Korea patent granted: Quantum property learning method and system",
+    "summary": "Korea Patent No. 10-2930730, granted Feb. 20, 2026.",
+    "details": "The patent “Quantum property learning method and system thereof” (Korea Patent No. 10-2930730) was granted on February 20, 2026, building on our work on universal quantum witness machines for learning coherence, discord, and entanglement.",
+    "importance": "medium",
     "featured": false
   },
   {
@@ -106,6 +130,8 @@
     "title": "Series Editor, IEEE Journal on Selected Areas in Communications",
     "summary": "Quantum Series: Quantum Communications and Networking.",
     "details": "Serving as Series Editor for the IEEE Journal on Selected Areas in Communications Quantum Series: Quantum Communications and Networking, from June 2025.",
+    "link": "#activities",
+    "linkLabel": "View Activities",
     "importance": "high",
     "featured": false
   },

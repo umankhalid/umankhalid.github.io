@@ -30,11 +30,10 @@ almost all content is read from JSON files under `data/`.
 |   |-- experience.json     # Academic appointments and visiting positions
 |   |-- certificates.json   # Awards, scholarships, and professional certifications
 |   |-- seminars.json       # Invited talks
-|   |-- news.json           # News timeline
-|   |-- highlights.json     # Cards shown under "Highlights" on the home page
+|   |-- news.json           # News; the 4 latest are the home-page Highlights
 |   |-- skills.json         # Expertise, grouped by category
 |   |-- collaborations.json # Co-author network (Activities tab)
-|   `-- scholar.json        # Google Scholar metrics (written by the workflow)
+|   `-- scholar.json        # Google Scholar metrics and per-paper citations (written by the workflow)
 |-- scripts/update-scholar.mjs
 |-- .github/workflows/update-scholar.yml
 `-- assets/
@@ -53,9 +52,11 @@ almost all content is read from JSON files under `data/`.
   `topics` (drives the topic filter).
 - **Research tab** (`data/research.json`): each theme has a nav label, icon,
   overview paragraphs, and a list of key contributions.
-- **News and highlights**: add entries to `data/news.json`; anything that
-  should also appear on the home page goes in `data/highlights.json` (or set
-  `"featured": true` on an item in another data file).
+- **News and highlights**: add entries to `data/news.json`. The four latest
+  (by `date`, `"YYYY/MM"`) appear as Highlights cards on the home page and the
+  rest are listed under News below them. A card links to the tab for its
+  `type` (Publication, Patent, Award, Talk, Recognition, PhD); set `link`
+  (`"#activities"` or a URL) and `linkLabel` to override.
 - **Co-author network** (`data/collaborations.json`): `papers` counts are
   derived from `publications.json`. Affiliations are only filled in where the
   CV states them; add `university` and `country` to other co-authors to enrich
@@ -78,7 +79,12 @@ the already-styled `social-icon github` / `social-icon scopus` classes.
 
 The citation card under the name on the home page reads `data/scholar.json`.
 The `Update Google Scholar metrics` workflow refreshes it from profile
-`CyVQHYEAAAAJ` every six hours and commits only when a number changes. It needs
+`CyVQHYEAAAAJ` every five hours and commits only when a number changes.
+Besides the profile totals, the file lists every paper on the profile with its
+citation count; each publication on the Publications tab whose title matches
+one (ignoring case and punctuation) shows a Google Scholar badge with that
+count, linking to its "Cited by" list. Patents and anything Scholar does not
+list get no badge. It needs
 **Settings → Actions → General → Workflow permissions → Read and write** so it
 can push. The profile id is set in `.github/workflows/update-scholar.yml`
 (`--id`).

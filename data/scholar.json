@@ -1,8 +1,346 @@
 {
-  "citations": 690,
-  "hIndex": 16,
+  "citations": 713,
+  "hIndex": 17,
   "i10Index": 20,
   "scholarId": "CyVQHYEAAAAJ",
   "profileUrl": "https://scholar.google.com/citations?user=CyVQHYEAAAAJ&hl=en",
-  "updated": "2026-09-24"
+  "updated": "2026-11-01",
+  "papers": [
+    {
+      "title": "Approximation Algorithms for Vehicle Routing Problems: A Survey",
+      "citations": 0,
+      "year": 2026,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:ns9cj8rnVeAC"
+    },
+    {
+      "title": "Quantum Clock Synchronization Networks: A Survey",
+      "citations": 4,
+      "year": 2026,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=15436933082687577748"
+    },
+    {
+      "title": "Quantum Fusion Learning for 6G Networks with Kolmogorov-Arnold Networks",
+      "citations": 0,
+      "year": 2026,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:O3NaXMp0MMsC"
+    },
+    {
+      "title": "Quantum-Classical Dual LSTM Optimization for Internet of Intelligent Vehicles",
+      "citations": 1,
+      "year": 2026,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=4622521486295862456"
+    },
+    {
+      "title": "Analytical Design of an LC Double-Notch Purcell Filter for Superconducting Quantum Circuits",
+      "citations": 0,
+      "year": 2025,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:hMod-77fHWUC"
+    },
+    {
+      "title": "Anonymous quantum group communication in quantum linear networks",
+      "citations": 1,
+      "year": 2025,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2362320293166119211"
+    },
+    {
+      "title": "Beyond-Diagonal Reconfigurable Intelligent Surfaces for 6G Networks: Principles, Challenges, and Quantum Horizons",
+      "citations": 0,
+      "year": 2025,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:GnPB-g6toBAC"
+    },
+    {
+      "title": "Beyond-Diagonal Reconfigurable Intelligent Surfaces for 6G Networks: Principles, Challenges, and Quantum Horizons",
+      "citations": 0,
+      "year": 2025,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:k_IJM867U9cC"
+    },
+    {
+      "title": "Controlled quantum semantic communication for industrial CPS networks",
+      "citations": 19,
+      "year": 2025,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=17304432721047223311"
+    },
+    {
+      "title": "Counterfactual quantum communication: Information exchange in quantum shadows",
+      "citations": 1,
+      "year": 2025,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=9031382483896500896"
+    },
+    {
+      "title": "GenSC-6G: a prototype testbed for integrated generative AI, quantum, and semantic communication",
+      "citations": 12,
+      "year": 2025,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=17954166618698853175"
+    },
+    {
+      "title": "Gradient Variance Measurements in Parameterized Quantum Circuits",
+      "citations": 0,
+      "year": 2025,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:JV2RwH3_ST0C"
+    },
+    {
+      "title": "NISQ State Preparation with Reinforcement Learning",
+      "citations": 0,
+      "year": 2025,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:iH-uZ7U-co4C"
+    },
+    {
+      "title": "Noise-Robust Distributed Quantum Sensing: A Variational Quantum Approach",
+      "citations": 1,
+      "year": 2025,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=8630023377410778823"
+    },
+    {
+      "title": "Quantum computing for intelligent transportation systems: VQE-based traffic routing and EV charging scheduling",
+      "citations": 5,
+      "year": 2025,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=6624657522613986046"
+    },
+    {
+      "title": "Quantum fusion intelligence for integrated satellite-ground remote sensing",
+      "citations": 11,
+      "year": 2025,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2819258606403007717"
+    },
+    {
+      "title": "Quantum Intelligence Meets BD-RIS-Enabled AmBC: Challenges, Opportunities, and Practical Insights",
+      "citations": 0,
+      "year": 2025,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:isC4tDSrTZIC"
+    },
+    {
+      "title": "Quantum machine learning: Towards hybrid quantum-classical vision models",
+      "citations": 29,
+      "year": 2025,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=4296691730343744966"
+    },
+    {
+      "title": "Quantum Reservoir Learning with Rydberg Lattice",
+      "citations": 0,
+      "year": 2025,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:r0BpntZqJG4C"
+    },
+    {
+      "title": "Quantum-based beamforming optimization for transmit power minimization in miso networks",
+      "citations": 1,
+      "year": 2025,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=5356876488532857582"
+    },
+    {
+      "title": "Quantum-Enhanced Transformer Networks for Mammography Classification",
+      "citations": 0,
+      "year": 2025,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:blknAaTinKkC"
+    },
+    {
+      "title": "Vision Language Model for Interpreting Wigner Distributions in Quantum Optics",
+      "citations": 0,
+      "year": 2025,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:bEWYMUwI8FkC"
+    },
+    {
+      "title": "Artificial neural networks for quantum sensing: Metrologically resourceful state detection",
+      "citations": 5,
+      "year": 2024,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=13843571313833685068"
+    },
+    {
+      "title": "Deep quantum-transformer networks for multimodal beam prediction in ISAC systems",
+      "citations": 67,
+      "year": 2024,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=382919852487303932"
+    },
+    {
+      "title": "Integrated satellite-ground variational quantum sensing networks",
+      "citations": 17,
+      "year": 2024,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=320613285369309683"
+    },
+    {
+      "title": "Integrating sustainable big AI: Quantum anonymous semantic broadcast",
+      "citations": 35,
+      "year": 2024,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16137405951841495887"
+    },
+    {
+      "title": "Optimal task scheduling in 6G networks: A variational quantum computing approach",
+      "citations": 2,
+      "year": 2024,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=15226969276751133652"
+    },
+    {
+      "title": "Quantum property learning for nisq networks: Universal quantum witness machines",
+      "citations": 9,
+      "year": 2024,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=12040423098041532596"
+    },
+    {
+      "title": "Variational anonymous quantum sensing",
+      "citations": 17,
+      "year": 2024,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=7638402869441597943"
+    },
+    {
+      "title": "Entanglement detection with artificial neural networks",
+      "citations": 61,
+      "year": 2023,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=3326951486057277945"
+    },
+    {
+      "title": "Quantum full-duplex communication",
+      "citations": 26,
+      "year": 2023,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2467546732922866062"
+    },
+    {
+      "title": "Quantum network engineering in the NISQ age: Principles, missions, and challenges",
+      "citations": 45,
+      "year": 2023,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=14094563009143954507"
+    },
+    {
+      "title": "Quantum secure metrology for network sensing-based applications",
+      "citations": 16,
+      "year": 2023,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=767264323909757436"
+    },
+    {
+      "title": "Quantum semantic communications for metaverse: Principles and challenges",
+      "citations": 87,
+      "year": 2023,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=3045837014817825038"
+    },
+    {
+      "title": "Interpreting an Artificial Neural Network as a Quantum State Classifier",
+      "citations": 0,
+      "year": 2022,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:-f6ydRqryjwC"
+    },
+    {
+      "title": "Metrological Detection of Bound Entanglement",
+      "citations": 0,
+      "year": 2022,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:mB3voiENLucC"
+    },
+    {
+      "title": "Multi-class Classification of Non-classical Correlations with Machine Learning",
+      "citations": 0,
+      "year": 2022,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:hC7cP41nSMkC"
+    },
+    {
+      "title": "Precision-Security Tradeoffs in Quantum Secure Estimation",
+      "citations": 0,
+      "year": 2022,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:L8Ckcad2t8MC"
+    },
+    {
+      "title": "Quantum anonymous private information retrieval for distributed networks",
+      "citations": 35,
+      "year": 2022,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2950549674563273482"
+    },
+    {
+      "title": "Quantum Metrology with Deterministic Quantum Computation",
+      "citations": 0,
+      "year": 2022,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:QIV2ME_5wuYC"
+    },
+    {
+      "title": "Quantum Secure Parameter Estimation for Practical Implementations",
+      "citations": 0,
+      "year": 2022,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:IWHjjKOFINEC"
+    },
+    {
+      "title": "Quantum-Secured Telemedicine Systems",
+      "citations": 0,
+      "year": 2022,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:HDshCWvjkbEC"
+    },
+    {
+      "title": "Robust quantum state tomography method for quantum sensing",
+      "citations": 20,
+      "year": 2022,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=15004029453357681400"
+    },
+    {
+      "title": "Metrologically resourceful multipartite entanglement under quantum many-body effects",
+      "citations": 33,
+      "year": 2021,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=8162672384352488082"
+    },
+    {
+      "title": "Quantum anonymous collision detection for quantum networks",
+      "citations": 26,
+      "year": 2021,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=4997279561083250131"
+    },
+    {
+      "title": "Quantum Correlations in Single Qubit Metrology",
+      "citations": 0,
+      "year": 2021,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:hFOr9nPyWt4C"
+    },
+    {
+      "title": "Measurement-Based Quantum correlations for Quantum information processing",
+      "citations": 47,
+      "year": 2020,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=17843967766369528954"
+    },
+    {
+      "title": "Dimensional Analysis of Bipartite Qudits for Mixed-State Metrology",
+      "citations": 0,
+      "year": 2019,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:qUcmZB5y_30C"
+    },
+    {
+      "title": "Quantum Dimension Witness and Assisted Quantum State Discrimination",
+      "citations": 0,
+      "year": 2019,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:WF5omc3nYNoC"
+    },
+    {
+      "title": "Measurement-based quantum correlation in mixed-state quantum metrology: U. Khalid et al.",
+      "citations": 47,
+      "year": 2018,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=13470487400210509525"
+    },
+    {
+      "title": "Mixed-State Metrology in Noisy Environments with Interacting Quantum Probes",
+      "citations": 0,
+      "year": 2018,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:dhFuZR0502QC"
+    },
+    {
+      "title": "Multipartite Entanglement in Mixed State Metrology",
+      "citations": 0,
+      "year": 2018,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:ZeXyd9-uunAC"
+    },
+    {
+      "title": "Dosimetric Uncertainty of Tc-99m On Gamma Camera Scanning: A Single Institute Review: TU-C3-GePD-IT-02",
+      "citations": 0,
+      "year": 2017,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:e5wmG9Sq2KIC"
+    },
+    {
+      "title": "Smart Floor Cleaning Robot (CLEAR)",
+      "citations": 28,
+      "year": 2015,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16827528551692397639,2505977182683032134,16184295951565342155"
+    },
+    {
+      "title": "Entanglement in Mixed State Quantum Metrology",
+      "citations": 0,
+      "year": null,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:7PzlFSSx8tAC"
+    },
+    {
+      "title": "Measurement-Based Quantum Correlations for Quantum Information Processing. Sci Rep 10, 2443 (2020)",
+      "citations": 5,
+      "year": null,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=4987518453329627267"
+    }
+  ]
 }

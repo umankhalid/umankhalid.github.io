@@ -551,10 +551,6 @@ button:focus-visible,
   background-image: url("../images/covers/home-cover.jpg");
 }
 
-.news-cover {
-  background-image: url("../images/covers/news-cover.jpg");
-}
-
 .education-cover {
   background-image: url("../images/covers/education-cover.jpg");
 }
@@ -1022,7 +1018,8 @@ button:focus-visible,
 }
 
 .news-type-software-release .news-icon,
-.news-type-software .news-icon {
+.news-type-software .news-icon,
+.news-type-patent .news-icon {
   color: #10b981; /* Green */
 }
 
@@ -1047,30 +1044,6 @@ button:focus-visible,
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
-}
-
-.news-viewall-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: transparent;
-  border: 1px solid var(--border-color);
-  color: var(--secondary-color);
-  font-family: inherit;
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: var(--radius-xs);
-  cursor: pointer;
-  transition:
-    border-color var(--transition-normal),
-    color var(--transition-normal),
-    transform var(--transition-normal);
-}
-
-.news-viewall-link:hover {
-  border-color: var(--border-glow);
-  transform: translateX(2px);
 }
 
 /* ==========================================================================
@@ -1195,13 +1168,13 @@ button:focus-visible,
 }
 
 /* ==========================================================================
-   News Tab - Accordion
+   Home News - Accordion (news entries after the four highlights)
    ========================================================================== */
 
-.news-tab-controls {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 18px;
+/* The News header carries the expand-all button; keep it level with the
+   title rather than the title's underline. */
+#home-news .news-section-header {
+  align-items: flex-start;
 }
 
 .news-toggle-all {
@@ -1231,6 +1204,12 @@ button:focus-visible,
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+/* Cards sit on the section panel, so they take the inset tone used by the
+   highlight cards instead of the panel's own background. */
+.news-section .news-card {
+  background: var(--bg-tertiary);
 }
 
 .news-card {
@@ -1706,6 +1685,101 @@ a.role-unit:hover {
   margin-bottom: 4px;
 }
 
+/* --------------------------------------------------------------------------
+   Teaching Experience (under the experience timeline)
+   -------------------------------------------------------------------------- */
+
+.teaching-computing {
+  margin-top: var(--space-10);
+}
+
+.teaching-computing[hidden] {
+  display: none;
+}
+
+.teaching-computing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: var(--space-5);
+}
+
+.tc-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  box-shadow: var(--elev-1);
+  transition: var(--transition-interactive);
+}
+
+.tc-card:hover {
+  border-color: var(--border-glow);
+  box-shadow: var(--elev-2);
+}
+
+.tc-card-title {
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.tc-card-title i {
+  color: var(--secondary-color);
+}
+
+.tc-org {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.tc-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.tc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tc-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-3);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.tc-list li:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.tc-level {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  min-width: 112px;
+}
+
+.tc-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+
+
+
 /* ==========================================================================
    Publications Overview Statistics & Listing
    ========================================================================== */
@@ -1741,6 +1815,21 @@ a.role-unit:hover {
 
 .stat-item:hover {
   border-color: var(--border-glow);
+}
+
+/* Cumulative impact factor: a full-width band under the count tiles, with the
+   number and label on one line, so it reads apart from the article counts. */
+.stat-item-wide {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-top: 16px;
+}
+
+.stat-item-wide .stat-number {
+  margin-bottom: 0;
 }
 
 .stat-number {
@@ -2328,6 +2417,42 @@ a.role-unit:hover {
   border-color: rgba(var(--secondary-color-rgb), 0.28);
 }
 
+/* Google Scholar citation count: the Scholar icon and the number, linking to
+   the paper's "Cited by" list. Sized like the other badges in the row. */
+.pub-badge.scholar-cites {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  background: rgba(66, 133, 244, 0.1);
+  color: #1a73e8;
+  border-color: rgba(66, 133, 244, 0.32);
+  transition: var(--transition-interactive-fast);
+}
+
+.pub-badge.scholar-cites .ai {
+  font-size: 0.9rem;
+}
+
+.pub-badge.scholar-cites:hover,
+.pub-badge.scholar-cites:focus-visible {
+  background: #1a73e8;
+  color: #ffffff;
+  border-color: #1a73e8;
+}
+
+[data-theme="dark"] .pub-badge.scholar-cites {
+  color: #8ab4f8;
+  border-color: rgba(138, 180, 248, 0.35);
+}
+
+[data-theme="dark"] .pub-badge.scholar-cites:hover,
+[data-theme="dark"] .pub-badge.scholar-cites:focus-visible {
+  background: #8ab4f8;
+  color: var(--bg-primary);
+  border-color: #8ab4f8;
+}
+
 /* Author role, not a status: a filled badge separates it from the outlined
    ones without needing a second hue. */
 .pub-badge.corresponding {
@@ -2424,6 +2549,26 @@ a.role-unit:hover {
   color: #ffffff;
   border-color: #36a2eb;
   box-shadow: 0 4px 12px rgba(54, 162, 235, 0.2);
+}
+
+/* In a publication's badge row the DOI link is sized like the IF and status
+   badges beside it, so the row reads as one line of equal-height chips. The
+   colour still comes from the doi.org rule above. */
+.pub-details .doi-link {
+  display: inline-flex;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: inherit;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+  box-shadow: none;
+}
+
+.pub-details .doi-link:hover,
+.pub-details .doi-link:focus-visible {
+  box-shadow: none;
 }
 
 /* Neutralized Tool Keywords / Badges */
