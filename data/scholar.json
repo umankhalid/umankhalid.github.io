@@ -1,10 +1,10 @@
 {
-  "citations": 713,
+  "citations": 714,
   "hIndex": 17,
   "i10Index": 20,
   "scholarId": "CyVQHYEAAAAJ",
   "profileUrl": "https://scholar.google.com/citations?user=CyVQHYEAAAAJ&hl=en",
-  "updated": "2026-11-01",
+  "updated": "2026-11-03",
   "papers": [
     {
       "title": "Approximation Algorithms for Vehicle Routing Problems: A Survey",
@@ -146,7 +146,7 @@
     },
     {
       "title": "Deep quantum-transformer networks for multimodal beam prediction in ISAC systems",
-      "citations": 67,
+      "citations": 68,
       "year": 2024,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=382919852487303932"
     },
