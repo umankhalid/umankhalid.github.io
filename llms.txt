@@ -4,7 +4,7 @@
 
 Ph.D., Electronics and Information Convergence Engineering, Kyung Hee University (2023), advised by Prof. Hyundong Shin. B.E., Electronics Engineering, Ghulam Ishaq Khan Institute of Engineering and Technology, Pakistan (2015).
 
-Google Scholar (2026-11-03): 714 citations, h-index 17, i10-index 20.
+Google Scholar (2026-11-07): 715 citations, h-index 17, i10-index 20.
 
 ## Pages
 
@@ -36,7 +36,7 @@ Google Scholar (2026-11-03): 714 citations, h-index 17, i10-index 20.
 - [Quantum property learning for NISQ networks: Universal quantum witness machines](https://doi.org/10.1109/tcomm.2024.3469555): U. Khalid, J. ur Rehman, H. Jung, T. Q. Duong, O. A. Dobre, H. Shin. IEEE Transactions on Communications, vol. 73, no. 4, pp. 2207–2221, 2025, cited by 9.
 - [Integrated satellite-ground variational quantum sensing networks](https://doi.org/10.1109/mcom.005.2300844): U. Khalid, M. S. Ulum, M. Z. Win, H. Shin. IEEE Communications Magazine, vol. 62, no. 10, pp. 20–27, 2024, cited by 17.
 - [Deep quantum-transformer networks for multimodal beam prediction in ISAC systems](https://doi.org/10.1109/jiot.2024.3420455): S. Tariq, B. E. Arfeto, U. Khalid, S. Kim, T. Q. Duong, H. Shin. IEEE Internet of Things Journal, vol. 11, no. 18, pp. 29387–29401, 2024, cited by 68.
-- [Variational anonymous quantum sensing](https://doi.org/10.1109/jsac.2024.3414932): M. S. Ulum, U. Khalid, J. W. Setiawan, T. Q. Duong, M. Z. Win, H. Shin. IEEE Journal on Selected Areas in Communications, vol. 42, no. 9, pp. 2275–2291, 2024, cited by 17.
+- [Variational anonymous quantum sensing](https://doi.org/10.1109/jsac.2024.3414932): M. S. Ulum, U. Khalid, J. W. Setiawan, T. Q. Duong, M. Z. Win, H. Shin. IEEE Journal on Selected Areas in Communications, vol. 42, no. 9, pp. 2275–2291, 2024, cited by 18.
 - [Integrating sustainable big AI: Quantum anonymous semantic broadcast](https://doi.org/10.1109/mwc.007.2300503): S. Tariq, U. Khalid, B. E. Arfeto, T. Q. Duong, H. Shin. IEEE Wireless Communications, vol. 31, no. 3, pp. 86–99, 2024, cited by 35.
 - [Quantum network engineering in the NISQ age: Principles, missions, and challenges](https://doi.org/10.1109/mnet.2023.3328892): U. Khalid, J. ur Rehman, S. N. Paing, H. Jung, T. Q. Duong, H. Shin. IEEE Network, vol. 38, no. 1, pp. 112–123, 2024, cited by 45.
 - [Quantum full-duplex communication](https://doi.org/10.1109/jsac.2023.3287611): F. Zaman, U. Khalid, T. Q. Duong, H. Shin, M. Z. Win. IEEE Journal on Selected Areas in Communications, vol. 41, no. 9, pp. 2966–2980, 2023, cited by 26.
