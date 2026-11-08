@@ -1,16 +1,16 @@
 {
-  "citations": 715,
+  "citations": 721,
   "hIndex": 17,
   "i10Index": 20,
   "scholarId": "CyVQHYEAAAAJ",
   "profileUrl": "https://scholar.google.com/citations?user=CyVQHYEAAAAJ&hl=en",
-  "updated": "2026-11-07",
+  "updated": "2026-11-08",
   "papers": [
     {
       "title": "Approximation Algorithms for Vehicle Routing Problems: A Survey",
-      "citations": 0,
+      "citations": 1,
       "year": 2026,
-      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:ns9cj8rnVeAC"
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=6719628023694411252"
     },
     {
       "title": "Quantum Clock Synchronization Networks: A Survey",
@@ -98,7 +98,7 @@
     },
     {
       "title": "Quantum fusion intelligence for integrated satellite-ground remote sensing",
-      "citations": 11,
+      "citations": 12,
       "year": 2025,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2819258606403007717"
     },
@@ -152,13 +152,13 @@
     },
     {
       "title": "Integrated satellite-ground variational quantum sensing networks",
-      "citations": 17,
+      "citations": 18,
       "year": 2024,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=320613285369309683"
     },
     {
       "title": "Integrating sustainable big AI: Quantum anonymous semantic broadcast",
-      "citations": 35,
+      "citations": 36,
       "year": 2024,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16137405951841495887"
     },
@@ -182,7 +182,7 @@
     },
     {
       "title": "Entanglement detection with artificial neural networks",
-      "citations": 61,
+      "citations": 62,
       "year": 2023,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=3326951486057277945"
     },
@@ -206,7 +206,7 @@
     },
     {
       "title": "Quantum semantic communications for metaverse: Principles and challenges",
-      "citations": 87,
+      "citations": 88,
       "year": 2023,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=3045837014817825038"
     },
