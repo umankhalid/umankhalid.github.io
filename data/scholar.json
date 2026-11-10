@@ -1,16 +1,28 @@
 {
-  "citations": 721,
+  "citations": 725,
   "hIndex": 17,
   "i10Index": 20,
   "scholarId": "CyVQHYEAAAAJ",
   "profileUrl": "https://scholar.google.com/citations?user=CyVQHYEAAAAJ&hl=en",
-  "updated": "2026-11-08",
+  "updated": "2026-11-10",
   "papers": [
     {
-      "title": "Approximation Algorithms for Vehicle Routing Problems: A Survey",
-      "citations": 1,
+      "title": "Approximation algorithms for vehicle routing problems: A survey",
+      "citations": 3,
       "year": 2026,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=6719628023694411252"
+    },
+    {
+      "title": "Constant-Factor Approximation Algorithms for Weighted Budgeted Multisensor Sweep Coverage",
+      "citations": 0,
+      "year": 2026,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:NaGl4SEjCO4C"
+    },
+    {
+      "title": "Constant-Factor Approximations for the Biased Traveling Salesman Problem and Its Path Variant",
+      "citations": 0,
+      "year": 2026,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:RGFaLdJalmkC"
     },
     {
       "title": "Quantum Clock Synchronization Networks: A Survey",
@@ -56,7 +68,7 @@
     },
     {
       "title": "Controlled quantum semantic communication for industrial CPS networks",
-      "citations": 19,
+      "citations": 20,
       "year": 2025,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=17304432721047223311"
     },
@@ -92,7 +104,7 @@
     },
     {
       "title": "Quantum computing for intelligent transportation systems: VQE-based traffic routing and EV charging scheduling",
-      "citations": 5,
+      "citations": 6,
       "year": 2025,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=6624657522613986046"
     },
