@@ -1,10 +1,10 @@
 {
-  "citations": 726,
+  "citations": 727,
   "hIndex": 17,
   "i10Index": 20,
   "scholarId": "CyVQHYEAAAAJ",
   "profileUrl": "https://scholar.google.com/citations?user=CyVQHYEAAAAJ&hl=en",
-  "updated": "2026-11-13",
+  "updated": "2026-11-15",
   "papers": [
     {
       "title": "Approximation algorithms for vehicle routing problems: A survey",
@@ -188,7 +188,7 @@
     },
     {
       "title": "Variational anonymous quantum sensing",
-      "citations": 18,
+      "citations": 19,
       "year": 2024,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=7638402869441597943"
     },
