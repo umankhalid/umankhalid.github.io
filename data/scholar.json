@@ -1,10 +1,10 @@
 {
-  "citations": 727,
+  "citations": 729,
   "hIndex": 17,
   "i10Index": 20,
   "scholarId": "CyVQHYEAAAAJ",
   "profileUrl": "https://scholar.google.com/citations?user=CyVQHYEAAAAJ&hl=en",
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "papers": [
     {
       "title": "Approximation algorithms for vehicle routing problems: A survey",
@@ -35,6 +35,12 @@
       "citations": 0,
       "year": 2026,
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:O3NaXMp0MMsC"
+    },
+    {
+      "title": "Quantum-Accelerated Electric Vehicle Charging Scheduling with Graph Coloring",
+      "citations": 0,
+      "year": 2026,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:J_g5lzvAfSwC"
     },
     {
       "title": "Quantum-Classical Dual LSTM Optimization for Internet of Intelligent Vehicles",
@@ -80,7 +86,7 @@
     },
     {
       "title": "GenSC-6G: a prototype testbed for integrated generative AI, quantum, and semantic communication",
-      "citations": 12,
+      "citations": 13,
       "year": 2025,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=17954166618698853175"
     },
@@ -206,7 +212,7 @@
     },
     {
       "title": "Quantum network engineering in the NISQ age: Principles, missions, and challenges",
-      "citations": 45,
+      "citations": 46,
       "year": 2023,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=14094563009143954507"
     },

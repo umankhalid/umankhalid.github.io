@@ -4,7 +4,7 @@
 
 Ph.D., Electronics and Information Convergence Engineering, Kyung Hee University (2023), advised by Prof. Hyundong Shin. B.E., Electronics Engineering, Ghulam Ishaq Khan Institute of Engineering and Technology, Pakistan (2015).
 
-Google Scholar (2026-11-15): 727 citations, h-index 17, i10-index 20.
+Google Scholar (2026-11-16): 729 citations, h-index 17, i10-index 20.
 
 ## Pages
 
@@ -28,7 +28,7 @@ Google Scholar (2026-11-15): 727 citations, h-index 17, i10-index 20.
 - [Quantum-Classical Dual LSTM Optimization for Internet of Intelligent Vehicles](https://doi.org/10.1109/jiot.2026.3696701): M. M. U. Gondel, U. Khalid, T. Q. Duong, E.-K. Hong, H. Shin. IEEE Internet of Things Journal, vol. 13, no. 16, pp. 35625–35639, 2026, cited by 1.
 - [Quantum Clock Synchronization Networks: A Survey](https://doi.org/10.1109/comst.2026.3694353): U. Khalid, M. S. Ulum, Mujirin, G. T. F. d. Abreu, E. Björnson, H. Shin. IEEE Communications Surveys & Tutorials, vol. 28, pp. 6552–6591, 2026, cited by 4.
 - [Counterfactual Quantum Communication: Information Exchange in Quantum Shadows](https://doi.org/10.1109/comst.2025.3616390): S. N. Paing, F. Zaman, U. Khalid, T. Q. Duong, M. Z. Win, H. Shin. IEEE Communications Surveys & Tutorials, vol. 28, pp. 2846–2880, 2025, cited by 1.
-- [GenSC-6G: A Prototype Testbed for Integrated Generative AI, Quantum, and Semantic Communication](https://doi.org/10.1109/mcom.001.2400760): B. E. Arfeto, S. Tariq, U. Khalid, T. Q. Duong, H. Shin. IEEE Communications Magazine, vol. 63, no. 10, pp. 28–35, 2025, cited by 12.
+- [GenSC-6G: A Prototype Testbed for Integrated Generative AI, Quantum, and Semantic Communication](https://doi.org/10.1109/mcom.001.2400760): B. E. Arfeto, S. Tariq, U. Khalid, T. Q. Duong, H. Shin. IEEE Communications Magazine, vol. 63, no. 10, pp. 28–35, 2025, cited by 13.
 - [Quantum Computing for Intelligent Transportation Systems: VQE-Based Traffic Routing and EV Charging Scheduling](https://doi.org/10.3390/math13172761): U. Khalid, U. I. Paracha, S. M. A. Rizvi, H. Shin. Mathematics, vol. 13, no. 17, p. 2761, 2025, cited by 6.
 - [Quantum Machine Learning: Towards Hybrid Quantum-Classical Vision Models](https://doi.org/10.3390/math13162645): S. M. A. Rizvi, U. I. Paracha, U. Khalid, K. Lee, H. Shin. Mathematics, vol. 13, no. 16, p. 2645, 2025, cited by 29.
 - [Controlled Quantum Semantic Communication for Industrial CPS Networks](https://doi.org/10.1109/tnse.2025.3589296): S. M. A. Rizvi, U. Khalid, S. Chatzinotas, T. Q. Duong, H. Shin. IEEE Transactions on Network Science and Engineering, vol. 13, pp. 996–1009, 2025, cited by 20.
@@ -38,7 +38,7 @@ Google Scholar (2026-11-15): 727 citations, h-index 17, i10-index 20.
 - [Deep quantum-transformer networks for multimodal beam prediction in ISAC systems](https://doi.org/10.1109/jiot.2024.3420455): S. Tariq, B. E. Arfeto, U. Khalid, S. Kim, T. Q. Duong, H. Shin. IEEE Internet of Things Journal, vol. 11, no. 18, pp. 29387–29401, 2024, cited by 69.
 - [Variational anonymous quantum sensing](https://doi.org/10.1109/jsac.2024.3414932): M. S. Ulum, U. Khalid, J. W. Setiawan, T. Q. Duong, M. Z. Win, H. Shin. IEEE Journal on Selected Areas in Communications, vol. 42, no. 9, pp. 2275–2291, 2024, cited by 19.
 - [Integrating sustainable big AI: Quantum anonymous semantic broadcast](https://doi.org/10.1109/mwc.007.2300503): S. Tariq, U. Khalid, B. E. Arfeto, T. Q. Duong, H. Shin. IEEE Wireless Communications, vol. 31, no. 3, pp. 86–99, 2024, cited by 36.
-- [Quantum network engineering in the NISQ age: Principles, missions, and challenges](https://doi.org/10.1109/mnet.2023.3328892): U. Khalid, J. ur Rehman, S. N. Paing, H. Jung, T. Q. Duong, H. Shin. IEEE Network, vol. 38, no. 1, pp. 112–123, 2024, cited by 45.
+- [Quantum network engineering in the NISQ age: Principles, missions, and challenges](https://doi.org/10.1109/mnet.2023.3328892): U. Khalid, J. ur Rehman, S. N. Paing, H. Jung, T. Q. Duong, H. Shin. IEEE Network, vol. 38, no. 1, pp. 112–123, 2024, cited by 46.
 - [Quantum full-duplex communication](https://doi.org/10.1109/jsac.2023.3287611): F. Zaman, U. Khalid, T. Q. Duong, H. Shin, M. Z. Win. IEEE Journal on Selected Areas in Communications, vol. 41, no. 9, pp. 2966–2980, 2023, cited by 26.
 - [Quantum semantic communications for Metaverse: Principles and challenges](https://doi.org/10.1109/mwc.002.2200613): U. Khalid, M. S. Ulum, A. Farooq, T. Q. Duong, O. A. Dobre, H. Shin. IEEE Wireless Communications, vol. 30, no. 4, pp. 26–36, 2023, cited by 88.
 - [Quantum secure metrology for network sensing-based applications](https://doi.org/10.1038/s41598-023-38802-6): M. T. Rahim, A. Khan, U. Khalid, J. ur Rehman, H. Jung, H. Shin. Scientific Reports, vol. 13, no. 1, Art. no. 11630, 2023, cited by 16.
