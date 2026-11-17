@@ -2968,12 +2968,12 @@ function initializeGridBackground() {
     /* Visibility of the ruling, and the only knobs worth touching: raise them
        for a more present grid, lower them to push it back toward bare texture.
        Every fourth line is a major one, at twice the weight of the rest. */
-    const MAJOR_ALPHA = 0.22;
-    const MINOR_ALPHA = 0.11;
+    const MAJOR_ALPHA = 0.12;
+    const MINOR_ALPHA = 0.055;
 
     function updateInk() {
         const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-        ink = dark ? '105, 190, 235' : '36, 112, 164';
+        ink = dark ? '157, 180, 255' : '44, 79, 168';
         // Light ink on a dark ground reads stronger at equal alpha; ease off.
         inkScale = dark ? 0.72 : 1;
     }

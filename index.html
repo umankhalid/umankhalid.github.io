@@ -21,7 +21,7 @@
       name="application-name"
       content="Uman Khalid Academic Website"
     />
-    <meta name="theme-color" content="#245f87" />
+    <meta name="theme-color" content="#14213d" />
     <meta name="format-detection" content="telephone=no" />
 
     <!-- Favicons / bookmark icons -->
@@ -62,7 +62,7 @@
     <!-- Preload critical fonts -->
     <link
       rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=JetBrains+Mono:wght@400;500&display=swap"
       as="style"
     />
 
@@ -75,7 +75,7 @@
       referrerpolicy="no-referrer"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link
@@ -304,14 +304,9 @@
       <div class="content">
         <!-- Home Tab -->
         <div id="home" class="tab-content active">
-          <div class="tab-cover home-cover">
-            <div class="cover-overlay">
-              <h2 class="cover-title">Home</h2>
-            </div>
-          </div>
-
-          <div class="home-content">
-            <div class="profile-section">
+          <!-- Row 1: portrait and Scholar metrics left, name and About Me right -->
+          <section class="hero" aria-labelledby="hero-name">
+            <div class="hero-aside">
               <div class="profile-image-container">
                 <img
                   src="assets/images/profile/umankhalid_profile.jpg"
@@ -343,14 +338,6 @@
                 />
               </div>
 
-              <!-- Identity sits directly under the portrait -->
-              <div class="profile-identity">
-                <h1>Uman Khalid</h1>
-                <p class="title">
-                  Research Professor, Kyung Hee University, Korea
-                </p>
-              </div>
-
               <!--
                 Google Scholar metrics. Values are filled in by script.js from
                 data/scholar.json, which the "Update Google Scholar metrics"
@@ -367,8 +354,12 @@
                 hidden
               >
                 <div class="scholar-metrics-header">
-                  <i class="fas fa-graduation-cap"></i>
+                  <i class="fas fa-graduation-cap" aria-hidden="true"></i>
                   <span>Google Scholar</span>
+                  <i
+                    class="fas fa-arrow-up-right-from-square scholar-metrics-arrow"
+                    aria-hidden="true"
+                  ></i>
                 </div>
                 <div class="scholar-metrics-grid">
                   <div class="scholar-stat">
@@ -392,9 +383,15 @@
                 </div>
               </a>
             </div>
-            <div class="about-section">
+
+            <div class="hero-main">
+              <h1 class="hero-name" id="hero-name">Uman Khalid</h1>
+              <p class="hero-role">
+                Research Professor, Kyung Hee University, Korea
+              </p>
+
               <div class="about-intro">
-                <h3>About Me</h3>
+                <h2 class="section-title">About Me</h2>
                 <p class="bio-text">
                   I am a Research Professor at Kyung Hee University, Korea,
                   affiliated with the Institute for Communications and Quantum
@@ -433,88 +430,188 @@
                   Communications and Networking.
                 </p>
               </div>
+            </div>
+          </section>
 
-              <h3 class="section-title">Research Interests</h3>
-              <div class="research-interests-grid">
-                <div class="research-card">
-                  <div class="research-icon">
-                    <i class="fas fa-bullseye"></i>
-                  </div>
-                  <h4>Quantum Sensing &amp; Metrology</h4>
-                  <p>Precision sensing with entangled and correlated quantum probes</p>
+          <!--
+            Row 2: research interest keywords left, one 3D model per keyword
+            right. The models are drawn by assets/js/interests3d.js, which also
+            fills the caption; without JavaScript the keywords run full width.
+          -->
+          <section class="interests" aria-labelledby="interests-title">
+            <div class="interests-head">
+              <h2 class="section-title" id="interests-title">Research Interests</h2>
+              <p class="interests-hint">
+                Select a topic to see its model. Drag the model to rotate it.
+              </p>
+            </div>
+
+            <div class="interests-body" id="interests-body">
+              <div
+                class="interest-list"
+                role="tablist"
+                aria-labelledby="interests-title"
+                aria-orientation="vertical"
+              >
+                <button
+                  type="button"
+                  class="interest-item"
+                  role="tab"
+                  id="interest-tab-sensing"
+                  data-interest="sensing"
+                  aria-controls="interest-stage"
+                  aria-selected="true"
+                  tabindex="0"
+                >
+                  <span class="interest-index" aria-hidden="true">01</span>
+                  <span class="interest-name">Quantum Sensing &amp; Metrology</span>
+                  <span class="interest-desc">Precision sensing with entangled and correlated quantum probes</span>
+                </button>
+                <button
+                  type="button"
+                  class="interest-item"
+                  role="tab"
+                  id="interest-tab-network"
+                  data-interest="network"
+                  aria-controls="interest-stage"
+                  aria-selected="false"
+                  tabindex="-1"
+                >
+                  <span class="interest-index" aria-hidden="true">02</span>
+                  <span class="interest-name">Quantum Communication &amp; Networking</span>
+                  <span class="interest-desc">Anonymous, counterfactual, and full-duplex protocols for the quantum Internet</span>
+                </button>
+                <button
+                  type="button"
+                  class="interest-item"
+                  role="tab"
+                  id="interest-tab-resource"
+                  data-interest="resource"
+                  aria-controls="interest-stage"
+                  aria-selected="false"
+                  tabindex="-1"
+                >
+                  <span class="interest-index" aria-hidden="true">03</span>
+                  <span class="interest-name">Quantum Resource Characterization</span>
+                  <span class="interest-desc">Certifying and quantifying coherence, discord, and entanglement</span>
+                </button>
+                <button
+                  type="button"
+                  class="interest-item"
+                  role="tab"
+                  id="interest-tab-semantic"
+                  data-interest="semantic"
+                  aria-controls="interest-stage"
+                  aria-selected="false"
+                  tabindex="-1"
+                >
+                  <span class="interest-index" aria-hidden="true">04</span>
+                  <span class="interest-name">Quantum Semantic Communication</span>
+                  <span class="interest-desc">Task-oriented, privacy-preserving communication with quantum resources</span>
+                </button>
+                <button
+                  type="button"
+                  class="interest-item"
+                  role="tab"
+                  id="interest-tab-learning"
+                  data-interest="learning"
+                  aria-controls="interest-stage"
+                  aria-selected="false"
+                  tabindex="-1"
+                >
+                  <span class="interest-index" aria-hidden="true">05</span>
+                  <span class="interest-name">Quantum Machine Learning</span>
+                  <span class="interest-desc">Hybrid quantum-classical models for vision, ISAC, and remote sensing</span>
+                </button>
+                <button
+                  type="button"
+                  class="interest-item"
+                  role="tab"
+                  id="interest-tab-optimization"
+                  data-interest="optimization"
+                  aria-controls="interest-stage"
+                  aria-selected="false"
+                  tabindex="-1"
+                >
+                  <span class="interest-index" aria-hidden="true">06</span>
+                  <span class="interest-name">Quantum Optimization</span>
+                  <span class="interest-desc">Variational algorithms for routing, scheduling, and network design</span>
+                </button>
+                <button
+                  type="button"
+                  class="interest-item"
+                  role="tab"
+                  id="interest-tab-satellite"
+                  data-interest="satellite"
+                  aria-controls="interest-stage"
+                  aria-selected="false"
+                  tabindex="-1"
+                >
+                  <span class="interest-index" aria-hidden="true">07</span>
+                  <span class="interest-name">Satellite-Ground Quantum Networks</span>
+                  <span class="interest-desc">Integrated terrestrial and non-terrestrial quantum sensing for 6G</span>
+                </button>
+                <button
+                  type="button"
+                  class="interest-item"
+                  role="tab"
+                  id="interest-tab-clock"
+                  data-interest="clock"
+                  aria-controls="interest-stage"
+                  aria-selected="false"
+                  tabindex="-1"
+                >
+                  <span class="interest-index" aria-hidden="true">08</span>
+                  <span class="interest-name">Quantum Clock Synchronization</span>
+                  <span class="interest-desc">Distributing time across networks with quantum resources</span>
+                </button>
+                <button
+                  type="button"
+                  class="interest-item"
+                  role="tab"
+                  id="interest-tab-rydberg"
+                  data-interest="rydberg"
+                  aria-controls="interest-stage"
+                  aria-selected="false"
+                  tabindex="-1"
+                >
+                  <span class="interest-index" aria-hidden="true">09</span>
+                  <span class="interest-name">Neutral-Atom &amp; Rydberg Platforms</span>
+                  <span class="interest-desc">Rydberg-reservoir quantum computing and Rydberg atomic receivers</span>
+                </button>
+              </div>
+
+              <div
+                class="interest-stage"
+                id="interest-stage"
+                role="tabpanel"
+                aria-labelledby="interest-tab-sensing"
+              >
+                <div class="interest-canvas-wrap">
+                  <canvas
+                    class="interest-canvas"
+                    id="interest-canvas"
+                    role="img"
+                    aria-describedby="interest-caption-note"
+                  ></canvas>
                 </div>
-
-                <div class="research-card">
-                  <div class="research-icon">
-                    <i class="fas fa-network-wired"></i>
-                  </div>
-                  <h4>Quantum Communication &amp; Networking</h4>
-                  <p>Anonymous, counterfactual, and full-duplex protocols for the quantum Internet</p>
-                </div>
-
-                <div class="research-card">
-                  <div class="research-icon">
-                    <i class="fas fa-atom"></i>
-                  </div>
-                  <h4>Quantum Resource Characterization</h4>
-                  <p>Certifying and quantifying coherence, discord, and entanglement</p>
-                </div>
-
-                <div class="research-card">
-                  <div class="research-icon">
-                    <i class="fas fa-comments"></i>
-                  </div>
-                  <h4>Quantum Semantic Communication</h4>
-                  <p>Task-oriented, privacy-preserving communication with quantum resources</p>
-                </div>
-
-                <div class="research-card">
-                  <div class="research-icon">
-                    <i class="fas fa-brain"></i>
-                  </div>
-                  <h4>Quantum Machine Learning</h4>
-                  <p>Hybrid quantum-classical models for vision, ISAC, and remote sensing</p>
-                </div>
-
-                <div class="research-card">
-                  <div class="research-icon">
-                    <i class="fas fa-route"></i>
-                  </div>
-                  <h4>Quantum Optimization</h4>
-                  <p>Variational algorithms for routing, scheduling, and network design</p>
-                </div>
-
-                <div class="research-card">
-                  <div class="research-icon">
-                    <i class="fas fa-satellite"></i>
-                  </div>
-                  <h4>Satellite-Ground Quantum Networks</h4>
-                  <p>Integrated terrestrial and non-terrestrial quantum sensing for 6G</p>
-                </div>
-
-                <div class="research-card">
-                  <div class="research-icon">
-                    <i class="fas fa-clock"></i>
-                  </div>
-                  <h4>Quantum Clock Synchronization</h4>
-                  <p>Distributing time across networks with quantum resources</p>
-                </div>
-
-                <div class="research-card">
-                  <div class="research-icon">
-                    <i class="fas fa-braille"></i>
-                  </div>
-                  <h4>Neutral-Atom &amp; Rydberg Platforms</h4>
-                  <p>Rydberg-reservoir quantum computing and Rydberg atomic receivers</p>
+                <div class="interest-caption" id="interest-caption" aria-live="polite">
+                  <p class="interest-caption-kicker">
+                    <span id="interest-caption-title"></span>
+                    <span id="interest-caption-count"></span>
+                  </p>
+                  <p class="interest-caption-desc" id="interest-caption-desc"></p>
+                  <p class="interest-caption-note" id="interest-caption-note"></p>
+                  <p class="interest-caption-source" id="interest-caption-source"></p>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
 
           <!-- Highlights: the four latest entries of data/news.json -->
           <div class="news-section">
             <div class="news-section-header">
-              <h3 class="section-title news-title">Highlights</h3>
+              <h2 class="section-title news-title">Highlights</h2>
             </div>
             <div
               class="highlights-grid"
@@ -529,7 +626,7 @@
           <!-- News: every entry of data/news.json after the four highlights -->
           <div class="news-section" id="home-news">
             <div class="news-section-header">
-              <h3 class="section-title news-title">News</h3>
+              <h2 class="section-title news-title">News</h2>
               <button
                 type="button"
                 class="news-toggle-all"
@@ -1311,6 +1408,7 @@
 
     <!-- Custom JavaScript -->
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/interests3d.js" defer></script>
 
   </body>
 </html>

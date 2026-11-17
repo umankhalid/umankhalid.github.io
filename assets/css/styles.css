@@ -10,36 +10,38 @@
 
 :root {
   /* Colour palette - light mode.
-     One blue carries links and active controls; deep ink carries headings.
-     Purple and cyan accents were removed so nothing competes with the blue.
-     Status and institutional colours (success, brand marks) stay as they are,
-     because there the colour is the information. */
-  --primary-color: #183247; /* Deep navy - solid fills and UI accents */
-  --primary-color-rgb: 24, 50, 71;
-  --secondary-color: #245f87; /* The one blue: links and active controls */
-  --secondary-color-rgb: 36, 95, 135;
-  --accent-color: #245f87; /* Same blue - kept as a token for existing rules */
-  --accent-color-rgb: 36, 95, 135;
-  --secondary-hover: #17415e; /* Darker blue for hover and pressed states */
+     Warm paper ground, midnight ink, and one indigo for links and active
+     controls. Gold and teal are reserved for the research visualisations and
+     the few places where a second voice carries meaning. */
+  --primary-color: #14213d; /* Midnight - solid fills and UI accents */
+  --primary-color-rgb: 20, 33, 61;
+  --secondary-color: #2c4fa8; /* The one indigo: links and active controls */
+  --secondary-color-rgb: 44, 79, 168;
+  --accent-color: #2c4fa8; /* Same indigo - kept as a token for existing rules */
+  --accent-color-rgb: 44, 79, 168;
+  --secondary-hover: #1d3780; /* Darker indigo for hover and pressed states */
   --success-color: #0d7a6f; /* Meaningful status colour, retained */
-  --bg-primary: #f5f7f8; /* Pale grey page */
+  --gold-color: #a8741a; /* Second voice: photons, highlights */
+  --gold-color-rgb: 168, 116, 26;
+  --teal-color: #0f7b78; /* Third voice: classical signals */
+  --teal-color-rgb: 15, 123, 120;
+  --bg-primary: #f6f5f1; /* Warm paper page */
   --bg-secondary: #ffffff; /* Card surface */
-  --bg-tertiary: #edf1f4; /* Inset wells, icon tiles, table stripes */
-  --text-primary: #15222d; /* Deep ink - headings and emphasis. Near-black
-                               with a navy cast so it sits with the palette
-                               instead of punching holes in it. */
-  --text-secondary: #465563; /* Slate body copy */
-  --text-muted: #6b7a88; /* Labels and captions */
-  --border-color: #dce3e8; /* Light grey */
-  /* Hover borders are a plain tint now, not a glow */
-  --border-glow: rgba(36, 95, 135, 0.38);
-  --shadow-color: rgba(24, 50, 71, 0.06);
-  --shadow-lg: rgba(24, 50, 71, 0.1);
-  --glass-bg: rgba(255, 255, 255, 0.88);
+  --bg-tertiary: #efede7; /* Inset wells, icon tiles, table stripes */
+  --text-primary: #121a2b; /* Midnight ink - headings and emphasis */
+  --text-secondary: #434c5e; /* Slate body copy */
+  --text-muted: #687083; /* Labels and captions */
+  --border-color: #e1ded5; /* Warm hairline */
+  /* Hover borders are a plain tint, not a glow */
+  --border-glow: rgba(44, 79, 168, 0.4);
+  --shadow-color: rgba(18, 26, 43, 0.06);
+  --shadow-lg: rgba(18, 26, 43, 0.1);
+  --glass-bg: rgba(246, 245, 241, 0.84);
   --glass-border: rgba(255, 255, 255, 0.95);
-  /* Navy wash over every cover image, so white titles stay legible */
-  --cover-overlay-top: rgba(24, 50, 71, 0.5);
-  --cover-overlay-bottom: rgba(24, 50, 71, 0.74);
+  /* Midnight wash over every cover image, so white titles stay legible.
+     It runs left to right: deepest behind the title, lighter over the photo. */
+  --cover-overlay-top: rgba(13, 20, 40, 0.86);
+  --cover-overlay-bottom: rgba(13, 20, 40, 0.38);
 
   /* Categorical palette for the collaboration network: one muted hue per
      organisation or country, in print-like tones rather than neon. */
@@ -54,9 +56,9 @@
 
   /* Elevation - cards rest almost flat; only overlays cast a real shadow.
      1 = resting card, 2 = raised/active, 3 = overlay (modals, popovers). */
-  --elev-1: 0 1px 2px rgba(24, 50, 71, 0.05);
-  --elev-2: 0 1px 2px rgba(24, 50, 71, 0.06), 0 4px 10px var(--shadow-color);
-  --elev-3: 0 8px 20px rgba(24, 50, 71, 0.12), 0 24px 56px var(--shadow-lg);
+  --elev-1: 0 1px 2px rgba(18, 26, 43, 0.04);
+  --elev-2: 0 1px 2px rgba(18, 26, 43, 0.05), 0 8px 24px var(--shadow-color);
+  --elev-3: 0 8px 20px rgba(18, 26, 43, 0.12), 0 24px 56px var(--shadow-lg);
 
   /* Spacing scale - 4px base. Use these instead of literal pixel values. */
   --space-1: 4px;
@@ -73,7 +75,7 @@
   /* Typefaces. A text serif for display headings and titles gives the page
      an academic voice; Inter carries body copy, card headings and UI; the
      mono face is kept for dates, codes and metadata. */
-  --font-serif: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
+  --font-serif: "Newsreader", "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
 
@@ -110,35 +112,39 @@
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
 }
 
 [data-theme="dark"] {
-  /* Colour palette - dark mode. Slate rather than black, with one muted
-     light blue standing in for the light theme's single blue. */
-  --primary-color: #8dbcdc; /* Muted light blue */
-  --primary-color-rgb: 141, 188, 220;
-  --secondary-color: #8dbcdc; /* Links and active controls */
-  --secondary-color-rgb: 141, 188, 220;
-  --accent-color: #8dbcdc; /* Same blue - no purple in dark mode either */
-  --accent-color-rgb: 141, 188, 220;
-  --secondary-hover: #b4d5ec; /* Lighter blue for hover and pressed states */
+  /* Colour palette - dark mode. Deep midnight rather than black, with one
+     soft periwinkle standing in for the light theme's indigo. */
+  --primary-color: #9db4ff; /* Periwinkle */
+  --primary-color-rgb: 157, 180, 255;
+  --secondary-color: #9db4ff; /* Links and active controls */
+  --secondary-color-rgb: 157, 180, 255;
+  --accent-color: #9db4ff;
+  --accent-color-rgb: 157, 180, 255;
+  --secondary-hover: #c3d1ff; /* Lighter for hover and pressed states */
   --success-color: #3fb8a5; /* Meaningful status colour, retained */
-  --bg-primary: #14212b; /* Slate page */
-  --bg-secondary: #1c2d39; /* Card surface */
-  --bg-tertiary: #24394a; /* Inset wells and icon tiles */
-  --text-primary: #f1f5f7; /* Off-white */
-  --text-secondary: #c3cfd8; /* Body copy */
-  --text-muted: #93a3af; /* Labels and captions */
-  --border-color: #2c3e4c; /* Dark border */
-  --border-glow: rgba(141, 188, 220, 0.42);
+  --gold-color: #e3b866;
+  --gold-color-rgb: 227, 184, 102;
+  --teal-color: #5fd0c5;
+  --teal-color-rgb: 95, 208, 197;
+  --bg-primary: #0b101c; /* Midnight page */
+  --bg-secondary: #121a2a; /* Card surface */
+  --bg-tertiary: #1a2438; /* Inset wells and icon tiles */
+  --text-primary: #eef1f8; /* Off-white */
+  --text-secondary: #c0c8d8; /* Body copy */
+  --text-muted: #8e98ad; /* Labels and captions */
+  --border-color: #232e45; /* Dark hairline */
+  --border-glow: rgba(157, 180, 255, 0.42);
   --shadow-color: rgba(0, 0, 0, 0.35);
   --shadow-lg: rgba(0, 0, 0, 0.5);
-  --glass-bg: rgba(28, 45, 57, 0.82);
+  --glass-bg: rgba(11, 16, 28, 0.8);
   --glass-border: rgba(255, 255, 255, 0.06);
-  --cover-overlay-top: rgba(11, 21, 29, 0.52);
-  --cover-overlay-bottom: rgba(11, 21, 29, 0.78);
+  --cover-overlay-top: rgba(6, 10, 20, 0.88);
+  --cover-overlay-bottom: rgba(6, 10, 20, 0.45);
 
   /* Lighter tints of the same network hues for the dark surface */
   --collab-c0: #6fa8d6;
@@ -354,7 +360,7 @@ button:focus-visible,
 }
 
 .header {
-  max-width: 1600px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 12px 24px;
   display: flex;
@@ -373,9 +379,9 @@ button:focus-visible,
 }
 
 .logo-name {
-  font-size: 1.3rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
   white-space: nowrap;
   color: var(--text-primary);
   transition: color var(--transition-fast);
@@ -412,15 +418,16 @@ button:focus-visible,
 }
 
 .nav-btn:hover {
-  background: var(--bg-tertiary);
-  color: var(--secondary-color);
+  color: var(--text-primary);
+  background: rgba(var(--secondary-color-rgb), 0.07);
 }
 
+/* The active tab is marked by ink and a short rule, not a filled chip. */
 .nav-btn.active {
-  background: var(--bg-tertiary);
-  color: var(--secondary-color);
-  border-color: var(--border-glow);
+  color: var(--text-primary);
   font-weight: 600;
+  border-radius: 0;
+  box-shadow: inset 0 -2px 0 var(--secondary-color);
 }
 
 /* Mobile Menu Toggle */
@@ -521,11 +528,11 @@ button:focus-visible,
   Home gets the taller of the two because it is the landing view.
 */
 .tab-cover {
-  height: 160px;
+  height: 168px;
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-start;
   border-radius: var(--radius-lg);
   overflow: hidden;
   margin-bottom: var(--space-6);
@@ -533,8 +540,9 @@ button:focus-visible,
   border: 1px solid var(--border-color);
 }
 
+/* The landing view opens on the profile itself, so Home carries no banner. */
 .tab-cover.home-cover {
-  height: 220px;
+  display: none;
 }
 
 /*
@@ -542,7 +550,7 @@ button:focus-visible,
   assets/images/covers/). The navy colour shows while an image loads.
 */
 .tab-cover {
-  background-color: #10283d;
+  background-color: #0d1428;
   background-size: cover;
   background-position: center;
 }
@@ -600,7 +608,7 @@ button:focus-visible,
   width: 100%;
   height: 100%;
   background-image: linear-gradient(
-    180deg,
+    90deg,
     var(--cover-overlay-top) 0%,
     var(--cover-overlay-bottom) 100%
   );
@@ -610,17 +618,17 @@ button:focus-visible,
 .cover-overlay {
   position: relative;
   z-index: 2;
-  text-align: center;
+  text-align: left;
   color: #ffffff;
-  padding: 0 20px;
+  padding: var(--space-6) var(--space-8);
 }
 
 /* The cover carries a single heading, so it needs no bottom spacing. */
 .cover-title {
   font-family: var(--font-serif);
   font-size: var(--text-3xl);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   color: #ffffff;
   margin-bottom: 0;
 }
@@ -629,49 +637,35 @@ button:focus-visible,
    Home Page Layout & Bio
    ========================================================================== */
 
-/* Sidebar is wide enough to hold the site owner's name on one line. */
-.home-content {
+/* Row 1: portrait and Scholar card on the left, name and About Me on the right. */
+.hero {
   display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 40px;
+  grid-template-columns: minmax(240px, 340px) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 76px);
   align-items: start;
-  margin-top: 20px;
+  padding-top: clamp(28px, 4vw, 60px);
 }
 
-/* Profile ID Badge Card */
-.profile-section {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  text-align: center;
-  box-shadow: var(--elev-1);
+.hero-aside {
   position: sticky;
-  top: 90px;
-  transition: border-color var(--transition-normal);
+  top: calc(var(--header-height) + var(--space-6));
+  display: grid;
+  gap: var(--space-5);
 }
 
-.profile-section:hover {
-  border-color: var(--border-glow);
-}
-
-/* Fluid rather than fixed, so the portrait fills the card at every width
-   without overflowing narrow phones. */
 .profile-image-container {
   position: relative;
   width: 100%;
-  max-width: 292px; /* fills the card between its 24px paddings */
-  aspect-ratio: 292 / 307;
-  margin: 0 auto 20px;
-  border-radius: var(--radius-lg);
+  aspect-ratio: 6 / 7;
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--elev-1);
+  background: var(--bg-tertiary);
+  box-shadow: var(--elev-2);
 }
 
 .profile-image {
-  /* Both portraits are stacked absolutely so each one always fills the frame
-     edge to edge. In normal flow the main image left a sliver at the top that
-     let the hover portrait show through. */
+  /* The portraits are stacked absolutely so each one always fills the frame
+     edge to edge. */
   position: absolute;
   top: 0;
   left: 0;
@@ -706,27 +700,6 @@ button:focus-visible,
   opacity: 1;
 }
 
-.contact-info {
-  margin-top: 20px;
-  text-align: left;
-  font-size: 0.88rem;
-  border-top: 1px solid var(--border-color);
-  padding-top: 16px;
-}
-
-.contact-info p {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-  color: var(--text-secondary);
-}
-
-.contact-info p i {
-  color: var(--secondary-color);
-  width: 16px;
-}
-
 /* Google Scholar metrics card */
 .scholar-metrics[hidden] {
   display: none;
@@ -734,14 +707,14 @@ button:focus-visible,
 
 .scholar-metrics {
   display: block;
-  margin-top: 16px;
-  padding: 14px 16px;
+  padding: 18px 20px 20px;
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  box-shadow: var(--elev-1);
   text-decoration: none;
   transition: border-color var(--transition-normal),
-    box-shadow var(--transition-normal), transform var(--transition-normal);
+    box-shadow var(--transition-normal);
 }
 
 .scholar-metrics:hover {
@@ -752,85 +725,426 @@ button:focus-visible,
 .scholar-metrics-header {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 8px;
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--text-secondary);
-  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.scholar-metrics-header i {
-  color: #4285f4;
+.scholar-metrics-header i:first-child {
+  color: var(--secondary-color);
+  font-size: 0.85rem;
+}
+
+.scholar-metrics-arrow {
+  margin-left: auto;
+  font-size: 0.7rem;
+  transition: transform var(--transition-normal), color var(--transition-normal);
+}
+
+.scholar-metrics:hover .scholar-metrics-arrow {
+  color: var(--secondary-color);
+  transform: translate(2px, -2px);
 }
 
 .scholar-metrics-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
 }
 
 .scholar-stat {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2px;
+  gap: 6px;
+  padding-left: 14px;
+  border-left: 1px solid var(--border-color);
+}
+
+.scholar-stat:first-child {
+  padding-left: 0;
+  border-left: none;
 }
 
 .scholar-stat-value {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 500;
   font-variant-numeric: lining-nums tabular-nums;
-  line-height: 1.1;
+  letter-spacing: -0.02em;
+  line-height: 1;
   color: var(--text-primary);
 }
 
 .scholar-stat-label {
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   color: var(--text-muted);
-  text-align: center;
 }
 
 .scholar-metrics.is-loading .scholar-stat-value {
   opacity: 0.5;
 }
 
-/* Name and role, sitting directly beneath the portrait in the profile card.
-   Sized for the 232px card interior rather than the old full-width column. */
-.profile-identity {
-  padding-bottom: 16px;
+/* The name is the page's one display line and is held on a single line at
+   every width; the clamp keeps it inside the narrowest phone. */
+.hero-name {
+  font-size: clamp(2.7rem, 7vw, 5.6rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  white-space: nowrap;
+  margin: -0.08em 0 var(--space-4);
+}
+
+.hero-role {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+  margin-bottom: 0;
+}
+
+.about-intro {
+  margin-top: clamp(28px, 3.5vw, 44px);
+  padding-top: clamp(24px, 3vw, 36px);
+  border-top: 1px solid var(--border-color);
+}
+
+.about-intro .section-title {
+  margin-bottom: var(--space-8);
+}
+
+/* About Me is set ragged-right on a reading measure; the opening paragraph
+   is the lead and steps up a size. */
+.about-intro .bio-text {
+  max-width: 70ch;
+  text-align: left;
+  hyphens: manual;
+  -webkit-hyphens: manual;
+}
+
+.about-intro .bio-text:first-of-type {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 0.6vw + 1.05rem, 1.42rem);
+  line-height: 1.55;
+  color: var(--text-primary);
+  margin-bottom: var(--space-6);
+}
+
+.about-intro .bio-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Row 2: research interest keywords on the left, their 3D model on the right. */
+.interests {
+  margin-top: clamp(64px, 8vw, 120px);
+}
+
+.interests-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-8);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+
+.interests-head .section-title {
+  margin-bottom: var(--space-3);
+}
+
+.interests-hint {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+.interests-body {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(24px, 4vw, 72px);
+  align-items: start;
+}
+
+.interest-list {
+  display: flex;
+  flex-direction: column;
   border-bottom: 1px solid var(--border-color);
 }
 
-/* The rule separates the name from the Scholar card; drop it while the card is hidden. */
-.profile-identity:has(+ .scholar-metrics[hidden]) {
-  padding-bottom: 0;
-  border-bottom: none;
+.interest-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr);
+  column-gap: var(--space-2);
+  row-gap: 2px;
+  padding: 15px var(--space-4) 15px var(--space-4);
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--transition-normal);
 }
 
-/* The name is allowed to wrap rather than being held on one line by nowrap,
-   which previously capped the size at ~2.2rem to avoid overflow. Balanced
-   wrapping keeps the two lines close in length where the browser supports it. */
-.profile-identity h1 {
-  font-size: 2rem;
-  line-height: 1.25;
-  margin-bottom: 8px;
-  text-wrap: balance;
-  overflow-wrap: break-word;
+/* Rule on the leading edge that draws in for the selected keyword. */
+.interest-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  bottom: -1px;
+  width: 2px;
+  background: var(--secondary-color);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--transition-slow);
 }
 
-.profile-identity .title {
-  font-size: 0.95rem;
-  line-height: 1.55;
-  text-align: center;
+.interest-item[aria-selected="true"] {
+  background: rgba(var(--secondary-color-rgb), 0.06);
+}
+
+.interest-item[aria-selected="true"]::before {
+  transform: scaleY(1);
+}
+
+.interest-index {
+  grid-row: 1 / span 2;
+  padding-top: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  transition: color var(--transition-normal);
+}
+
+.interest-name {
+  font-size: 1.04rem;
+  font-weight: 600;
+  letter-spacing: -0.011em;
+  line-height: 1.35;
+  color: var(--text-primary);
+  transition: color var(--transition-normal);
+}
+
+.interest-desc {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.interest-item[aria-selected="true"] .interest-index,
+.interest-item[aria-selected="true"] .interest-name {
   color: var(--secondary-color);
-  font-weight: 500;
+}
+
+/* The model sits straight on the page ground, with no frame of its own, and
+   stays in view while the keyword list scrolls beside it. */
+.interest-stage {
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-4));
+}
+
+.interest-canvas-wrap {
+  position: relative;
+  aspect-ratio: 1 / 0.78;
+  max-height: calc(100vh - var(--header-height) - 220px);
+  min-height: 300px;
+  width: 100%;
+}
+
+.interest-canvas-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 4% 8%;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgba(var(--secondary-color-rgb), 0.1),
+    rgba(var(--secondary-color-rgb), 0)
+  );
+  pointer-events: none;
+}
+
+.interest-canvas {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.interest-canvas.is-dragging {
+  cursor: grabbing;
+}
+
+.interest-caption {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-color);
+  transition: opacity var(--transition-normal);
+}
+
+.interest-caption.is-changing {
+  opacity: 0;
+}
+
+.interest-caption-kicker {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+  margin-bottom: var(--space-2);
+}
+
+.interest-caption-kicker span:last-child {
+  color: var(--text-muted);
+}
+
+/* The keyword's one-line summary lives in the list on wide screens and moves
+   into the caption when the list collapses to a strip. */
+.interest-caption-desc {
+  display: none;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.interest-caption-note {
+  max-width: 62ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: var(--space-2);
+}
+
+.interest-caption-source {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+.interest-caption-source a {
+  font-style: italic;
+}
+
+/* Without JavaScript there is no model to show: the keywords run full width. */
+.interests-body:not(.is-ready) {
+  grid-template-columns: 1fr;
+}
+
+.interests-body:not(.is-ready) .interest-stage {
+  display: none;
+}
+
+.interests-body:not(.is-ready) .interest-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  /* Portrait and Scholar card share a row above the name while there is
+     room for both, then stack on phones. */
+  .hero-aside {
+    position: static;
+    grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+    align-items: end;
+  }
+
+  .interests-body.is-ready {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  /* The keyword list becomes a strip that scrolls sideways above the model. */
+  .interests-body.is-ready .interest-list {
+    flex-direction: row;
+    gap: var(--space-2);
+    margin: 0 -16px;
+    padding: 2px 16px var(--space-2);
+    border-bottom: 0;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .interests-body.is-ready .interest-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .interests-body.is-ready .interest-item {
+    display: block;
+    flex: 0 0 auto;
+    padding: 9px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: var(--bg-secondary);
+    scroll-snap-align: start;
+  }
+
+  .interests-body.is-ready .interest-item::before,
+  .interests-body.is-ready .interest-index,
+  .interests-body.is-ready .interest-desc {
+    display: none;
+  }
+
+  .interests-body.is-ready .interest-name {
+    font-size: 0.88rem;
+    white-space: nowrap;
+  }
+
+  .interests-body.is-ready .interest-item[aria-selected="true"] {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+  }
+
+  .interests-body.is-ready .interest-item[aria-selected="true"] .interest-name {
+    color: var(--bg-secondary);
+  }
+
+  .interest-stage {
+    position: static;
+  }
+
+  .interest-canvas-wrap {
+    aspect-ratio: 1 / 0.86;
+    max-height: none;
+    min-height: 0;
+  }
+
+  .interest-caption-desc {
+    display: block;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-aside {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-image-container {
+    max-width: 300px;
+  }
 }
 
 /* Shared prose treatment: About Me, the Contact lead, and the Software tab's
@@ -860,82 +1174,6 @@ button:focus-visible,
   text-align: left;
 }
 
-/* About Me reads as a card on the page grid, so the ruling behind the page
-   never runs under the prose. */
-.about-intro {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 30px;
-  box-shadow: var(--elev-1);
-  margin-bottom: 50px;
-}
-
-.about-intro h3 {
-  margin-bottom: var(--space-4);
-}
-
-.about-intro .bio-text:last-child {
-  margin-bottom: 0;
-}
-
-/* Research Interests Blueprint Cards */
-.research-interests-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--space-5);
-  margin-top: var(--space-6);
-}
-
-.research-card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 24px;
-  transition: var(--transition-interactive);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  box-shadow: var(--elev-1);
-}
-
-.research-card:hover {
-  border-color: var(--border-glow);
-  box-shadow: var(--elev-2);
-}
-
-.research-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--bg-tertiary);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--secondary-color);
-  font-size: 1.35rem;
-  transition: var(--transition-interactive);
-}
-
-.research-card:hover .research-icon {
-  background: var(--primary-color);
-  color: var(--bg-secondary);
-}
-
-.research-card h4 {
-  font-size: 1.1rem;
-  color: var(--text-primary);
-}
-
-/* One short line under the keyword - the cards are narrow, so the measure is
-   set by the grid track rather than needing a cap of its own. */
-.research-card p {
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: var(--text-muted);
-  margin-bottom: 0;
-}
-
 /* Recent News Log Feed */
 .news-section {
   margin-top: 50px;
@@ -948,11 +1186,10 @@ button:focus-visible,
 
 /* Section titles are marked up as h3 but read as page-level headings, so they
    take the display serif like h1/h2. */
-.section-title,
-.about-intro h3 {
+.section-title {
   font-family: var(--font-serif);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-weight: 500;
+  letter-spacing: -0.015em;
 }
 
 .section-title {
@@ -4596,22 +4833,22 @@ a.contact-value:hover {
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   z-index: 900;
 }
 
 /*
-  Each service wears its own colour at rest, held in a per-icon custom property
-  so one rule can apply it. Hover and keyboard focus deepen the icon rather
-  than introducing the colour, since the colour is already there.
+  The icons rest as quiet neutral chips so the bar does not compete with the
+  page. Each service's own colour is held in a per-icon custom property and
+  arrives on hover and keyboard focus.
 */
 .social-icon {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 1px solid var(--brand-color, var(--border-color));
-  background: var(--brand-color, var(--bg-secondary));
-  color: #ffffff;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
   box-shadow: var(--elev-1);
   display: flex;
   align-items: center;
@@ -4648,15 +4885,18 @@ a.contact-value:hover {
   --brand-color: #2f855a;
 }
 
-/* ORCID's green is light enough that white on it would not carry */
-.social-icon.orcid {
-  color: #1f2d16;
-}
-
 .social-icon:hover,
 .social-icon:focus-visible {
-  filter: brightness(0.88);
+  border-color: var(--brand-color, var(--secondary-color));
+  background: var(--brand-color, var(--secondary-color));
+  color: #ffffff;
   box-shadow: var(--elev-2);
+}
+
+/* ORCID's green is light enough that white on it would not carry */
+.social-icon.orcid:hover,
+.social-icon.orcid:focus-visible {
+  color: #1f2d16;
 }
 
 /* Visitor flag counter popover - opens beside its icon without covering the page */
@@ -4926,14 +5166,16 @@ a.contact-value:hover {
 /* Between the icon-only nav (<=1024px) and a wide desktop, eleven labelled
    buttons plus icons overrun the header. Drop the icons and tighten padding
    so the labels, logo and theme toggle all fit on one row. */
+@media (min-width: 1025px) {
+  .nav-btn i {
+    display: none;
+  }
+}
+
 @media (min-width: 1025px) and (max-width: 1500px) {
   .nav-btn {
     padding: 7px 9px;
     font-size: 0.85rem;
-  }
-
-  .nav-btn i {
-    display: none;
   }
 
   .nav-menu {
@@ -4952,25 +5194,17 @@ a.contact-value:hover {
   }
 }
 
-@media (max-width: 1200px) {
-  .home-content {
-    grid-template-columns: 300px 1fr;
-    gap: 30px;
-  }
-
-  .profile-image-container {
-    max-width: 252px;
-  }
-
-  /* 252px interior here, so ~230px at 1.75rem. */
-  .profile-identity h1 {
-    font-size: 1.75rem;
+/* The fixed link bar hangs on the right edge. Until the viewport is wide
+   enough for it to clear the 1400px column, the column gives it a gutter. */
+@media (min-width: 769px) and (max-width: 1580px) {
+  .container {
+    padding-right: 88px;
   }
 }
 
 @media (max-width: 1024px) {
   .container {
-    padding: var(--header-height) 20px 40px;
+    padding: var(--header-height) 84px 40px 20px;
   }
 
   .software-container {
@@ -5033,10 +5267,6 @@ a.contact-value:hover {
     margin-bottom: var(--space-6);
   }
 
-  .tab-cover.home-cover {
-    height: 160px;
-  }
-
   .header {
     padding: 12px 16px;
     gap: 12px;
@@ -5091,28 +5321,12 @@ a.contact-value:hover {
     padding: 12px 16px;
   }
 
+  .nav-btn.active {
+    box-shadow: inset 2px 0 0 var(--secondary-color);
+  }
+
   .nav-btn span {
     display: inline;
-  }
-
-  .home-content {
-    grid-template-columns: 1fr;
-  }
-
-  .profile-section {
-    position: relative;
-    top: 0;
-  }
-
-  /* The card goes full width here, so the identity can scale back up. */
-  /* The card goes full width here, so the name can scale back up; it wraps
-     rather than overflowing if it still runs out of room. */
-  .profile-identity h1 {
-    font-size: clamp(1.5rem, 6vw, 2rem);
-  }
-
-  .profile-identity .title {
-    font-size: 0.95rem;
   }
 
   /* Software tab: stack sidebar nav above content */

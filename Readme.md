@@ -43,6 +43,7 @@ almost all content is read from JSON files under `data/`.
 `-- assets/
     |-- css/styles.css
     |-- js/script.js
+    |-- js/interests3d.js   # 3D models for the home-page research interests
     |-- images/profile/     # Portrait
     |-- images/meta/        # Favicon
     `-- logos/organizations/
@@ -66,6 +67,15 @@ almost all content is read from JSON files under `data/`.
   CV states them; add `university` and `country` to other co-authors to enrich
   the Organizations and Countries views.
 
+### Research interest models
+
+Each research interest on the home page has its own 3D model, drawn by
+`assets/js/interests3d.js` on one 2D canvas (no WebGL, no library). The
+keywords are the `.interest-item` buttons in `index.html`; a button's
+`data-interest` names its entry in `SCENES` in that script, which holds the
+drawing code, the caption (`note`), and the paper it is drawn from (`source`).
+To add an interest, add a button and a matching `SCENES` entry.
+
 ### Profile photo
 
 The portrait is `assets/images/profile/umankhalid_profile.jpg`. To change it,
@@ -81,7 +91,7 @@ the already-styled `social-icon github` / `social-icon scopus` classes.
 
 ### Google Scholar metrics
 
-The citation card under the name on the home page reads `data/scholar.json`.
+The citation card under the portrait on the home page reads `data/scholar.json`.
 The `Update Google Scholar metrics` workflow refreshes it from profile
 `CyVQHYEAAAAJ` every five hours and commits only when a number changes.
 Besides the profile totals, the file lists every paper on the profile with its

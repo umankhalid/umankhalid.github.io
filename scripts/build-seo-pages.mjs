@@ -267,7 +267,7 @@ ${section.items.map((pub) => renderItem(pub, scholar)).join('\n')}
   <meta name="description" content="${escapeHtml(description)}" />
   <meta name="author" content="Uman Khalid" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-  <meta name="theme-color" content="#245f87" />
+  <meta name="theme-color" content="#2c4fa8" />
   <link rel="canonical" href="${PUBLICATIONS_URL}" />
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/meta/favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/meta/apple-touch-icon.png" />
@@ -289,7 +289,7 @@ ${JSON.stringify(jsonLd, null, 2).replace(/<\//g, '<\\/')}
   </script>
   <style>
     :root {
-      --ink: #15222d; --body: #465563; --muted: #6b7a88; --link: #245f87;
+      --ink: #15222d; --body: #465563; --muted: #6b7a88; --link: #2c4fa8;
       --bg: #f5f7f8; --card: #ffffff; --line: #dce3e8; --chip: #edf1f4;
     }
     @media (prefers-color-scheme: dark) {
