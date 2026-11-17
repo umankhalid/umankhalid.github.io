@@ -25,18 +25,19 @@
   --gold-color-rgb: 168, 116, 26;
   --teal-color: #0f7b78; /* Third voice: classical signals */
   --teal-color-rgb: 15, 123, 120;
-  --bg-primary: #f6f5f1; /* Warm paper page */
+  --bg-primary: #edf0f9; /* Cool mist page, under the quantum field */
   --bg-secondary: #ffffff; /* Card surface */
-  --bg-tertiary: #efede7; /* Inset wells, icon tiles, table stripes */
+  --bg-tertiary: #e6eaf5; /* Inset wells, icon tiles, table stripes */
   --text-primary: #121a2b; /* Midnight ink - headings and emphasis */
   --text-secondary: #434c5e; /* Slate body copy */
   --text-muted: #687083; /* Labels and captions */
-  --border-color: #e1ded5; /* Warm hairline */
+  --border-color: #d7dcec; /* Cool hairline */
+  --violet-color-rgb: 112, 86, 204; /* Background wash only */
   /* Hover borders are a plain tint, not a glow */
   --border-glow: rgba(44, 79, 168, 0.4);
   --shadow-color: rgba(18, 26, 43, 0.06);
   --shadow-lg: rgba(18, 26, 43, 0.1);
-  --glass-bg: rgba(246, 245, 241, 0.84);
+  --glass-bg: rgba(240, 243, 251, 0.8);
   --glass-border: rgba(255, 255, 255, 0.95);
   /* Midnight wash over every cover image, so white titles stay legible.
      It runs left to right: deepest behind the title, lighter over the photo. */
@@ -131,17 +132,18 @@
   --gold-color-rgb: 227, 184, 102;
   --teal-color: #5fd0c5;
   --teal-color-rgb: 95, 208, 197;
-  --bg-primary: #0b101c; /* Midnight page */
-  --bg-secondary: #121a2a; /* Card surface */
-  --bg-tertiary: #1a2438; /* Inset wells and icon tiles */
+  --bg-primary: #070b17; /* Deep-space page, under the quantum field */
+  --bg-secondary: #0f1629; /* Card surface */
+  --bg-tertiary: #182038; /* Inset wells and icon tiles */
   --text-primary: #eef1f8; /* Off-white */
   --text-secondary: #c0c8d8; /* Body copy */
   --text-muted: #8e98ad; /* Labels and captions */
-  --border-color: #232e45; /* Dark hairline */
+  --border-color: #232d49; /* Dark hairline */
+  --violet-color-rgb: 138, 110, 255;
   --border-glow: rgba(157, 180, 255, 0.42);
   --shadow-color: rgba(0, 0, 0, 0.35);
   --shadow-lg: rgba(0, 0, 0, 0.5);
-  --glass-bg: rgba(11, 16, 28, 0.8);
+  --glass-bg: rgba(8, 12, 24, 0.78);
   --glass-border: rgba(255, 255, 255, 0.06);
   --cover-overlay-top: rgba(6, 10, 20, 0.88);
   --cover-overlay-bottom: rgba(6, 10, 20, 0.45);
@@ -198,7 +200,12 @@ body.loaded {
   opacity: 1;
 }
 
-/* Static architectural grid, kept behind all page content. */
+/*
+  Quantum field, kept behind all page content. The colour washes are plain CSS
+  gradients; script.js draws the pattern over them on two canvases: a still one
+  (interference fringes and a lattice of linked nodes) and a small live one
+  (photons travelling the links).
+*/
 body {
   isolation: isolate;
 }
@@ -209,10 +216,26 @@ body {
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  background: var(--bg-primary);
+  background:
+    radial-gradient(62% 52% at 6% -4%, rgba(var(--secondary-color-rgb), 0.24), transparent 70%),
+    radial-gradient(46% 46% at 102% 16%, rgba(var(--teal-color-rgb), 0.17), transparent 70%),
+    radial-gradient(56% 52% at 64% 104%, rgba(var(--violet-color-rgb), 0.2), transparent 70%),
+    radial-gradient(34% 36% at 16% 78%, rgba(var(--gold-color-rgb), 0.12), transparent 70%),
+    linear-gradient(165deg, #e9edf9 0%, #eef1f8 48%, #f1eef4 100%);
+}
+
+[data-theme="dark"] .grid-background {
+  background:
+    radial-gradient(62% 52% at 6% -4%, rgba(var(--secondary-color-rgb), 0.2), transparent 70%),
+    radial-gradient(46% 46% at 102% 16%, rgba(var(--teal-color-rgb), 0.1), transparent 70%),
+    radial-gradient(56% 52% at 64% 104%, rgba(var(--violet-color-rgb), 0.2), transparent 70%),
+    radial-gradient(34% 36% at 16% 78%, rgba(var(--gold-color-rgb), 0.06), transparent 70%),
+    linear-gradient(165deg, #060a16 0%, #080d1c 50%, #0b0c1f 100%);
 }
 
 .grid-background canvas {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
@@ -287,22 +310,26 @@ h4 {
   font-size: var(--text-lg);
 }
 
+/* Body text is justified so paragraphs square up with the blocks around
+   them; hyphenation keeps the word spacing even at narrow measures. */
 p {
   color: var(--text-secondary);
   margin-bottom: 1rem;
-  text-align: left;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
-/*
-  Running prose is capped at roughly 72 characters. Applied to the paragraph
-  classes rather than to every <p>, so table cells, captions and chips that
-  happen to use <p> keep the width of their container. .bio-text is deliberately
-  left out - see below.
-*/
-.tool-description,
+/* Prose that is not marked up as <p> takes the same justified setting. */
+.activity-content,
+.activity-sublist li,
 .news-summary,
 .activity-description {
-  max-width: 72ch;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 a {
@@ -809,6 +836,7 @@ button:focus-visible,
   font-weight: 500;
   letter-spacing: 0.1em;
   line-height: 1.6;
+  text-align: left;
   text-transform: uppercase;
   color: var(--secondary-color);
   margin-bottom: 0;
@@ -824,14 +852,7 @@ button:focus-visible,
   margin-bottom: var(--space-8);
 }
 
-/* About Me is set ragged-right on a reading measure; the opening paragraph
-   is the lead and steps up a size. */
-.about-intro .bio-text {
-  max-width: 70ch;
-  text-align: left;
-  hyphens: manual;
-  -webkit-hyphens: manual;
-}
+/* The opening paragraph of About Me is the lead and steps up a size. */
 
 .about-intro .bio-text:first-of-type {
   font-family: var(--font-serif);
@@ -961,19 +982,20 @@ button:focus-visible,
 .interest-canvas-wrap {
   position: relative;
   aspect-ratio: 1 / 0.78;
-  max-height: calc(100vh - var(--header-height) - 220px);
+  max-height: calc(100vh - var(--header-height) - 330px);
   min-height: 300px;
   width: 100%;
+  transition: opacity 0.19s ease;
 }
 
 .interest-canvas-wrap::before {
   content: "";
   position: absolute;
-  inset: 4% 8%;
+  inset: 2% 6%;
   border-radius: 50%;
   background: radial-gradient(
     closest-side,
-    rgba(var(--secondary-color-rgb), 0.1),
+    rgba(var(--secondary-color-rgb), 0.13),
     rgba(var(--secondary-color-rgb), 0)
   );
   pointer-events: none;
@@ -986,20 +1008,244 @@ button:focus-visible,
   height: 100%;
   cursor: grab;
   touch-action: pan-y;
+  border-radius: var(--radius-md);
 }
 
 .interest-canvas.is-dragging {
   cursor: grabbing;
 }
 
+/* The scene changes behind a short fade */
+.interest-stage.is-switching .interest-canvas-wrap,
+.interest-stage.is-switching .interest-step-text,
+.interest-stage.is-switching .interest-caption {
+  opacity: 0;
+}
+
+/* Labels pinned to points of the model; placed every frame by the script */
+.interest-labels {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.interest-label-set[hidden] {
+  display: none;
+}
+
+.interest-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: var(--text-muted);
+  text-shadow:
+    0 0 3px var(--bg-primary),
+    0 0 8px var(--bg-primary);
+  transition: opacity 0.25s ease;
+  will-change: transform;
+}
+
+.interest-label.is-gold {
+  color: var(--gold-color);
+}
+
+.interest-label.is-teal {
+  color: var(--teal-color);
+}
+
+/* Live quantities of the model, top-left of the stage */
+.interest-readout {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.interest-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 4px 11px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.interest-chip i {
+  font-style: normal;
+  color: var(--text-muted);
+}
+
+.interest-chip b {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+.interest-chip[data-tone="gold"] b {
+  color: var(--gold-color);
+}
+
+.interest-chip[data-tone="teal"] b {
+  color: var(--teal-color);
+}
+
+.interest-status {
+  position: absolute;
+  inset: 0;
+  display: none;
+  place-items: center;
+  padding: 0 12%;
+  margin: 0;
+  font-size: var(--text-sm);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.interest-stage.is-loading .interest-status--loading,
+.interest-stage.is-unavailable .interest-status--unavailable {
+  display: grid;
+}
+
+/* Play control, the steps of the model, and its parameter */
+.interest-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.interest-play {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: var(--transition-interactive);
+}
+
+.interest-play:hover {
+  border-color: var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+.interest-steps {
+  display: flex;
+  flex: 1 1 0;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+}
+
+.interest-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 5px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: var(--transition-interactive);
+}
+
+.interest-step span {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  transition: var(--transition-interactive);
+}
+
+.interest-step:hover {
+  border-color: var(--border-glow);
+  color: var(--text-primary);
+}
+
+.interest-step.is-active {
+  border-color: var(--secondary-color);
+  background: rgba(var(--secondary-color-rgb), 0.09);
+  color: var(--text-primary);
+}
+
+.interest-step.is-active span {
+  background: var(--secondary-color);
+  color: var(--bg-secondary);
+}
+
+.interest-param[hidden] {
+  display: none;
+}
+
+.interest-param {
+  display: flex;
+  align-items: center;
+  flex: 1 1 100%;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.interest-param input {
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.interest-param output {
+  min-width: 4.5em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+/* What the current step shows. Height is held for three lines so the caption
+   below does not jump as the steps change. */
+.interest-step-text {
+  min-height: 4.9em;
+  margin-bottom: var(--space-3);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  transition: opacity 0.19s ease;
+}
+
 .interest-caption {
   padding-top: var(--space-4);
   border-top: 1px solid var(--border-color);
-  transition: opacity var(--transition-normal);
-}
-
-.interest-caption.is-changing {
-  opacity: 0;
+  transition: opacity 0.19s ease;
 }
 
 .interest-caption-kicker {
@@ -1028,8 +1274,7 @@ button:focus-visible,
 }
 
 .interest-caption-note {
-  max-width: 62ch;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   margin-bottom: var(--space-2);
 }
@@ -1037,11 +1282,42 @@ button:focus-visible,
 .interest-caption-source {
   font-size: var(--text-sm);
   color: var(--text-muted);
-  margin-bottom: 0;
+  margin-bottom: var(--space-3);
 }
 
 .interest-caption-source a {
   font-style: italic;
+}
+
+.interest-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  list-style: none;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.interest-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.interest-legend li::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--secondary-color);
+}
+
+.interest-legend .is-gold::before {
+  background: var(--gold-color);
+}
+
+.interest-legend .is-teal::before {
+  background: var(--teal-color);
 }
 
 /* Without JavaScript there is no model to show: the keywords run full width. */
@@ -1127,8 +1403,12 @@ button:focus-visible,
   }
 
   .interest-canvas-wrap {
-    aspect-ratio: 1 / 0.86;
+    aspect-ratio: 1 / 0.9;
     max-height: none;
+    min-height: 0;
+  }
+
+  .interest-step-text {
     min-height: 0;
   }
 
@@ -1171,7 +1451,6 @@ button:focus-visible,
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: var(--space-5);
-  text-align: left;
 }
 
 /* Recent News Log Feed */

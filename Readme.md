@@ -44,6 +44,7 @@ almost all content is read from JSON files under `data/`.
     |-- css/styles.css
     |-- js/script.js
     |-- js/interests3d.js   # 3D models for the home-page research interests
+    |-- vendor/             # three.js (MIT), used by interests3d.js
     |-- images/profile/     # Portrait
     |-- images/meta/        # Favicon
     `-- logos/organizations/
@@ -69,12 +70,23 @@ almost all content is read from JSON files under `data/`.
 
 ### Research interest models
 
-Each research interest on the home page has its own 3D model, drawn by
-`assets/js/interests3d.js` on one 2D canvas (no WebGL, no library). The
-keywords are the `.interest-item` buttons in `index.html`; a button's
-`data-interest` names its entry in `SCENES` in that script, which holds the
-drawing code, the caption (`note`), and the paper it is drawn from (`source`).
-To add an interest, add a button and a matching `SCENES` entry.
+Each research interest on the home page has its own WebGL model, rendered by
+`assets/js/interests3d.js` with three.js (`assets/vendor/three.module.min.js`,
+fetched only when the models are about to scroll into view). The keywords are
+the `.interest-item` buttons in `index.html`; a button's `data-interest` names
+its entry in `SCENES` in that script. A `SCENES` entry holds the summary
+(`note`), the paper it is drawn from (`source`), the narrated `steps`, an
+optional `param` slider, and `build()`, which creates the model and returns its
+per-frame `update()` and live `readout()`. To add an interest, add a button
+and a matching `SCENES` entry.
+
+### Page background
+
+The background is drawn by `initializeGridBackground()` in `script.js` over the
+colour washes of `.grid-background` in `styles.css`: interference fringes, a
+lattice of linked nodes, and a few photons travelling the links. `CELL` and
+`FRINGE` at the top of that function set the lattice pitch and ring spacing;
+the alpha values in `paintStill()` set how present the pattern is.
 
 ### Profile photo
 

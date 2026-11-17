@@ -21,7 +21,7 @@
       name="application-name"
       content="Uman Khalid Academic Website"
     />
-    <meta name="theme-color" content="#14213d" />
+    <meta name="theme-color" content="#101a3a" />
     <meta name="format-detection" content="telephone=no" />
 
     <!-- Favicons / bookmark icons -->
@@ -435,14 +435,15 @@
 
           <!--
             Row 2: research interest keywords left, one 3D model per keyword
-            right. The models are drawn by assets/js/interests3d.js, which also
-            fills the caption; without JavaScript the keywords run full width.
+            right. The models are rendered by assets/js/interests3d.js (three.js,
+            loaded on demand), which also fills the steps, readout and caption;
+            without JavaScript the keywords run full width.
           -->
           <section class="interests" aria-labelledby="interests-title">
             <div class="interests-head">
               <h2 class="section-title" id="interests-title">Research Interests</h2>
               <p class="interests-hint">
-                Select a topic to see its model. Drag the model to rotate it.
+                Select a topic to play its model. Drag to rotate; use the steps to move through it.
               </p>
             </div>
 
@@ -592,10 +593,44 @@
                     class="interest-canvas"
                     id="interest-canvas"
                     role="img"
+                    tabindex="0"
                     aria-describedby="interest-caption-note"
                   ></canvas>
+                  <div class="interest-labels" id="interest-labels" aria-hidden="true"></div>
+                  <div class="interest-readout" id="interest-readout" aria-hidden="true"></div>
+                  <p class="interest-status interest-status--loading">Loading model&hellip;</p>
+                  <p class="interest-status interest-status--unavailable">
+                    The 3D models need WebGL, which is not available in this
+                    browser. The steps below still describe each one.
+                  </p>
                 </div>
-                <div class="interest-caption" id="interest-caption" aria-live="polite">
+
+                <div class="interest-controls">
+                  <button
+                    type="button"
+                    class="interest-play"
+                    id="interest-play"
+                    aria-pressed="false"
+                    aria-label="Pause the animation"
+                    title="Pause"
+                  >
+                    <i class="fas fa-pause" aria-hidden="true"></i>
+                  </button>
+                  <div
+                    class="interest-steps"
+                    id="interest-steps"
+                    role="group"
+                    aria-label="Steps of this model"
+                  ></div>
+                  <label class="interest-param" id="interest-param" hidden>
+                    <span id="interest-param-label"></span>
+                    <input type="range" id="interest-param-input" />
+                    <output id="interest-param-value" for="interest-param-input"></output>
+                  </label>
+                </div>
+                <p class="interest-step-text" id="interest-step-text"></p>
+
+                <div class="interest-caption" id="interest-caption">
                   <p class="interest-caption-kicker">
                     <span id="interest-caption-title"></span>
                     <span id="interest-caption-count"></span>
@@ -603,6 +638,11 @@
                   <p class="interest-caption-desc" id="interest-caption-desc"></p>
                   <p class="interest-caption-note" id="interest-caption-note"></p>
                   <p class="interest-caption-source" id="interest-caption-source"></p>
+                  <ul class="interest-legend" aria-label="Colour key">
+                    <li class="is-gold">Quantum states and photons</li>
+                    <li class="is-teal">Classical signals and results</li>
+                    <li class="is-indigo">Apparatus</li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -1408,7 +1448,7 @@
 
     <!-- Custom JavaScript -->
     <script src="assets/js/script.js"></script>
-    <script src="assets/js/interests3d.js" defer></script>
+    <script type="module" src="assets/js/interests3d.js"></script>
 
   </body>
 </html>

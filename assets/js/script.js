@@ -2948,75 +2948,212 @@ function initializeHeaderEffects() {
 // Event Listeners and Initialization
 // ==========================================================================
 
-/** Static architectural grid drawn once behind all page content. */
+/**
+ * Quantum field behind all page content.
+ *
+ * Two canvases over the CSS colour washes of .grid-background:
+ *   - a still one, redrawn only on resize or theme change: interference
+ *     fringes from two sources (the moire where the ring sets cross is the
+ *     interference pattern) and a lattice of linked nodes;
+ *   - a live one: a few photons travelling the lattice links. It runs at
+ *     about 30 frames a second, stops while the tab is hidden, and is not
+ *     started at all when the visitor prefers reduced motion.
+ */
 function initializeGridBackground() {
     const background = document.querySelector('.grid-background');
     if (!background || background.querySelector('canvas')) return;
 
     background.setAttribute('aria-hidden', 'true');
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    if (!context) return;
-    background.appendChild(canvas);
+    const still = document.createElement('canvas');
+    const live = document.createElement('canvas');
+    const pen = still.getContext('2d');
+    const glow = live.getContext('2d');
+    if (!pen || !glow) return;
+    background.append(still, live);
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const CELL = 168;           // lattice pitch, px
+    const FRINGE = 38;          // spacing of the interference rings, px
     let width = 0;
     let height = 0;
+    let ratio = 1;
     let ink = '';
-    let inkScale = 1;
-    const spacing = 48;
+    let strength = 1;
+    let warm = '';
+    let cool = '';
+    let nodes = [];
+    let links = [];
+    let photons = [];
+    let frame = 0;
+    let lastPaint = 0;
 
-    /* Visibility of the ruling, and the only knobs worth touching: raise them
-       for a more present grid, lower them to push it back toward bare texture.
-       Every fourth line is a major one, at twice the weight of the rest. */
-    const MAJOR_ALPHA = 0.12;
-    const MINOR_ALPHA = 0.055;
-
-    function updateInk() {
-        const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-        ink = dark ? '157, 180, 255' : '44, 79, 168';
-        // Light ink on a dark ground reads stronger at equal alpha; ease off.
-        inkScale = dark ? 0.72 : 1;
+    /* Seeded, so the lattice is the same on every visit and every resize. */
+    function seeded(seed) {
+        let a = seed >>> 0;
+        return function () {
+            a = (a + 0x6d2b79f5) >>> 0;
+            let t = a;
+            t = Math.imul(t ^ (t >>> 15), t | 1);
+            t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
     }
 
-    function draw() {
-        context.clearRect(0, 0, width, height);
-        context.lineWidth = 0.8;
+    function readTheme() {
+        const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const styles = getComputedStyle(document.documentElement);
+        const read = (name, fallback) => (styles.getPropertyValue(name) || '').trim() || fallback;
+        ink = read('--secondary-color-rgb', '44, 79, 168');
+        warm = read('--gold-color-rgb', '168, 116, 26');
+        cool = read('--teal-color-rgb', '15, 123, 120');
+        // Light ink on a dark ground reads stronger at equal alpha; ease off.
+        strength = dark ? 0.8 : 1;
+    }
 
-        function gridLine(position, vertical, major) {
-            const alpha = (major ? MAJOR_ALPHA : MINOR_ALPHA) * inkScale;
-            context.strokeStyle = `rgba(${ink}, ${alpha.toFixed(4)})`;
-            context.beginPath();
-            context.moveTo(vertical ? position : 0, vertical ? 0 : position);
-            context.lineTo(vertical ? position : width, vertical ? height : position);
-            context.stroke();
+    function layout() {
+        const random = seeded(97);
+        const cols = Math.ceil(width / CELL) + 1;
+        const rows = Math.ceil(height / CELL) + 1;
+        const at = [];
+        nodes = [];
+        links = [];
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                const keep = random() > 0.22;
+                const node = keep ? {
+                    x: (c + 0.5 + (random() - 0.5) * 0.62) * CELL - CELL / 2,
+                    y: (r + 0.5 + (random() - 0.5) * 0.62) * CELL - CELL / 2,
+                    qubit: random() > 0.7
+                } : null;
+                random();
+                at.push(node);
+                if (!node) continue;
+                nodes.push(node);
+                const left = c > 0 ? at[r * cols + c - 1] : null;
+                const up = r > 0 ? at[(r - 1) * cols + c] : null;
+                const diagonal = r > 0 && c > 0 ? at[(r - 1) * cols + c - 1] : null;
+                if (left && random() > 0.2) links.push([left, node]);
+                if (up && random() > 0.2) links.push([up, node]);
+                if (diagonal && random() > 0.78) links.push([diagonal, node]);
+            }
         }
+        const count = links.length ? Math.min(9, Math.max(4, Math.round(width / 220))) : 0;
+        photons = [];
+        for (let i = 0; i < count; i++) {
+            photons.push({ link: Math.floor(random() * links.length), at: random(), speed: 0.1 + random() * 0.1, warm: i % 3 !== 0 });
+        }
+    }
 
-        for (let x = 0, column = 0; x <= width; x += spacing, column++) {
-            gridLine(x, true, column % 4 === 0);
+    function paintStill() {
+        pen.setTransform(ratio, 0, 0, ratio, 0, 0);
+        pen.clearRect(0, 0, width, height);
+
+        // Interference fringes from two sources
+        const reach = Math.hypot(width, height);
+        pen.lineWidth = 1;
+        pen.strokeStyle = `rgba(${ink}, ${(0.05 * strength).toFixed(4)})`;
+        [[width * 0.14, height * 0.08], [width * 0.86, height * 0.34]].forEach(([cx, cy]) => {
+            for (let radius = FRINGE; radius < reach; radius += FRINGE) {
+                pen.beginPath();
+                pen.arc(cx, cy, radius, 0, Math.PI * 2);
+                pen.stroke();
+            }
+        });
+
+        // Lattice: links, then nodes; some nodes carry a qubit ring
+        pen.strokeStyle = `rgba(${ink}, ${(0.12 * strength).toFixed(4)})`;
+        pen.beginPath();
+        links.forEach(([a, b]) => {
+            pen.moveTo(a.x, a.y);
+            pen.lineTo(b.x, b.y);
+        });
+        pen.stroke();
+        nodes.forEach((node) => {
+            pen.fillStyle = `rgba(${ink}, ${(0.34 * strength).toFixed(4)})`;
+            pen.beginPath();
+            pen.arc(node.x, node.y, 1.7, 0, Math.PI * 2);
+            pen.fill();
+            if (!node.qubit) return;
+            pen.strokeStyle = `rgba(${ink}, ${(0.2 * strength).toFixed(4)})`;
+            pen.beginPath();
+            pen.arc(node.x, node.y, 6, 0, Math.PI * 2);
+            pen.stroke();
+            pen.strokeStyle = `rgba(${ink}, ${(0.12 * strength).toFixed(4)})`;
+        });
+    }
+
+    function paintLive(seconds) {
+        glow.setTransform(ratio, 0, 0, ratio, 0, 0);
+        glow.clearRect(0, 0, width, height);
+        photons.forEach((photon) => {
+            photon.at += photon.speed * seconds;
+            if (photon.at >= 1) {
+                // Carry on along a link that leaves the node just reached
+                const here = links[photon.link][1];
+                const onward = [];
+                links.forEach((link, index) => { if (link[0] === here) onward.push(index); });
+                photon.link = onward.length ? onward[Math.floor(Math.random() * onward.length)] : Math.floor(Math.random() * links.length);
+                photon.at = 0;
+            }
+            const [a, b] = links[photon.link];
+            const x = a.x + (b.x - a.x) * photon.at;
+            const y = a.y + (b.y - a.y) * photon.at;
+            const colour = photon.warm ? warm : cool;
+            const halo = glow.createRadialGradient(x, y, 0, x, y, 14);
+            halo.addColorStop(0, `rgba(${colour}, ${(0.55 * strength).toFixed(3)})`);
+            halo.addColorStop(1, `rgba(${colour}, 0)`);
+            glow.fillStyle = halo;
+            glow.beginPath();
+            glow.arc(x, y, 14, 0, Math.PI * 2);
+            glow.fill();
+            glow.fillStyle = `rgba(${colour}, ${(0.9 * strength).toFixed(3)})`;
+            glow.beginPath();
+            glow.arc(x, y, 1.8, 0, Math.PI * 2);
+            glow.fill();
+        });
+    }
+
+    function tick(now) {
+        frame = 0;
+        if (now - lastPaint >= 32) {
+            paintLive(Math.min((now - lastPaint) / 1000, 0.1));
+            lastPaint = now;
         }
-        for (let y = 0, row = 0; y <= height; y += spacing, row++) {
-            gridLine(y, false, row % 4 === 0);
-        }
+        run();
+    }
+
+    function run() {
+        if (frame || document.hidden || reduceMotion.matches || !photons.length) return;
+        frame = requestAnimationFrame(tick);
     }
 
     function resize() {
         width = background.clientWidth;
         height = background.clientHeight;
-        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
-        canvas.width = Math.round(width * ratio);
-        canvas.height = Math.round(height * ratio);
-        context.setTransform(ratio, 0, 0, ratio, 0, 0);
-        draw();
+        ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        [still, live].forEach((canvas) => {
+            canvas.width = Math.round(width * ratio);
+            canvas.height = Math.round(height * ratio);
+        });
+        layout();
+        paintStill();
+        paintLive(0);
+        run();
     }
 
     window.addEventListener('resize', throttle(resize, 150), { passive: true });
+    document.addEventListener('visibilitychange', () => {
+        lastPaint = performance.now();
+        run();
+    });
 
     new MutationObserver(() => {
-        updateInk();
-        draw();
+        readTheme();
+        paintStill();
+        paintLive(0);
     }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-    updateInk();
+    readTheme();
     resize();
 }
 
