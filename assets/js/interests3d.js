@@ -3,14 +3,13 @@
  *
  * One WebGL model per research interest, rendered with three.js: physically
  * based materials, an environment map for reflections, and a shadowed ground.
- * Each model plays a short, staged explanation of its topic. The steps, the
- * live readout, the play/pause control and (where it teaches something) one
- * parameter slider are driven from the SCENES table below.
+ * Each model plays a short, looping explanation of its topic with a live
+ * readout of its key quantities, driven from the SCENES table below.
  *
  * The keyword list and captions work straight away; three.js itself (the one
  * large file) is fetched only when the model is about to scroll into view.
  * Drawing stops while the model is off screen or the tab is hidden. With
- * "reduce motion" set, each model opens paused on a representative frame.
+ * "reduce motion" set, each model is shown as a still, representative frame.
  *
  * Quantities shown in the readouts are computed, not scripted:
  *   sensing       phase uncertainty of a squeezed spin state, xi / sqrt(N)
@@ -206,10 +205,9 @@ function makeKit() {
 //   note      one-paragraph summary under the model
 //   source    the paper the model is drawn from
 //   duration  seconds per cycle          view   resting camera
-//   steps     [{ at, title, text }]      at = fraction of the cycle
-//   param     optional slider; `auto(u)` sweeps it until the visitor takes hold
+//   param     optional model parameter; `auto(u)` sweeps it over the cycle
 //   still     cycle fraction shown when motion is reduced
-//   build(ctx) -> { update(u, t, n, value, camera), readout(), stepAt?(u, value) }
+//   build(ctx) -> { update(u, t, n, value, camera), readout() }
 //             u = cycle fraction, t = running seconds, n = cycle count
 // --------------------------------------------------------------------------
 
@@ -221,13 +219,7 @@ SCENES.sensing = {
     source: { title: 'Metrologically resourceful multipartite entanglement under quantum many-body effects', venue: 'Quantum Science and Technology, 2021', href: 'https://doi.org/10.1088/2058-9565/abd893' },
     duration: 15, still: 0.88,
     view: { yaw: 0.55, pitch: 0.34, dist: 7.4, target: [0, -0.1, 0], sway: 0.22 },
-    param: { label: 'Squeezing', min: 0, max: 8, step: 0.5, value: 6, format: (v) => `${v.toFixed(1)} dB` },
-    steps: [
-        { at: 0, title: 'Prepare', text: 'All spins point the same way: a coherent state, with equal uncertainty in every direction (the round patch).' },
-        { at: 0.18, title: 'Squeeze', text: 'Entangling the spins squeezes the patch: narrower along the equator, wider along the meridian. Its area is conserved.' },
-        { at: 0.42, title: 'Sense', text: 'The signal rotates the spin about the vertical axis, writing the unknown phase φ into its direction.' },
-        { at: 0.82, title: 'Read out', text: 'The narrow axis sets the error. Δφ = ξ/√N beats the standard quantum limit by the squeezing factor ξ.' }
-    ],
+    param: { value: 6 },                 // squeezing, dB
     build(ctx) {
         const root = ctx.root, R = 1.1, N = 20, s0 = 1 / Math.sqrt(N), phiEnd = 2.25;
         ctx.ground(-1.42);
@@ -348,12 +340,6 @@ SCENES.network = {
     source: { title: 'Quantum network engineering in the NISQ age: Principles, missions, and challenges', venue: 'IEEE Network, 2024', href: 'https://doi.org/10.1109/mnet.2023.3328892' },
     duration: 13, still: 0.86,
     view: { yaw: 0.12, pitch: 0.3, dist: 7.6, target: [0, 0, 0], sway: 0.3 },
-    steps: [
-        { at: 0, title: 'Distribute', text: 'A source in the middle of each fibre emits an entangled photon pair, one photon toward each end.' },
-        { at: 0.3, title: 'Store', text: 'Quantum memories catch the photons. Alice–Repeater and Repeater–Bob now each share an entangled pair.' },
-        { at: 0.5, title: 'Swap', text: 'The repeater performs a Bell-state measurement on its two memories and sends the two-bit result to Alice and Bob.' },
-        { at: 0.7, title: 'End-to-end link', text: 'Alice and Bob are entangled although their qubits never met. Swapping costs fidelity: F′ = F² + (1 − F)²/3.' }
-    ],
     build(ctx) {
         const root = ctx.root, F = 0.95, Fswap = F * F + ((1 - F) * (1 - F)) / 3;
         ctx.ground(-1.15);
@@ -457,12 +443,7 @@ SCENES.resource = {
     source: { title: 'Entanglement detection with artificial neural networks', venue: 'Scientific Reports, 2023', href: 'https://doi.org/10.1038/s41598-023-28745-3' },
     duration: 18, still: 0.27,
     view: { yaw: 0.62, pitch: 0.5, dist: 7.6, target: [0, -0.1, 0], sway: 0.25 },
-    param: { label: 'Mixing p', min: 0, max: 1, step: 0.01, value: 0.5, format: (v) => v.toFixed(2), auto: (u) => 0.5 - 0.5 * Math.cos(TAU * u) },
-    steps: [
-        { at: 0.03, title: 'Separable', text: 'Mostly noise. The coherences (corner columns) sit below the threshold ring: no entanglement, though quantum discord is already present for any p > 0.' },
-        { at: 0.2, title: 'Entangled', text: 'Past p = 1/3 the coherences clear the threshold and turn gold: concurrence C > 0. The CHSH value is still below 2.' },
-        { at: 0.33, title: 'Bell-nonlocal', text: 'Past p = 1/√2 the state violates the CHSH inequality (S > 2): no local hidden-variable model can reproduce it.' }
-    ],
+    param: { value: 0.5, auto: (u) => 0.5 - 0.5 * Math.cos(TAU * u) },     // mixing p, swept over the cycle
     build(ctx) {
         const root = ctx.root, cell = 0.52, tall = 2.2, y0 = -0.72, half = cell * 2;
         ctx.ground(y0 - 0.075);
@@ -498,7 +479,6 @@ SCENES.resource = {
         const state = { p: 0 };
 
         return {
-            stepAt: (u, p) => (p < 1 / 3 ? 0 : p < Math.SQRT1_2 ? 1 : 2),
             update(u, t, cycle, p) {
                 state.p = p;
                 const entangled = p > 1 / 3, nonlocal = p > Math.SQRT1_2;
@@ -532,12 +512,6 @@ SCENES.semantic = {
     source: { title: 'Quantum semantic communications for Metaverse: Principles and challenges', venue: 'IEEE Wireless Communications, 2023', href: 'https://doi.org/10.1109/mwc.002.2200613' },
     duration: 15, still: 0.93,
     view: { yaw: 0, pitch: 0.2, dist: 7.3, target: [0, 0.05, 0], sway: 0.24 },
-    steps: [
-        { at: 0, title: 'Source', text: 'The sender holds a detailed source: 144 values, most of them background that the task does not need.' },
-        { at: 0.24, title: 'Semantic encoding', text: 'The encoder keeps only the task-relevant structure and writes it into the states of three qubits.' },
-        { at: 0.5, title: 'Quantum transmission', text: 'The qubits cross the channel, assisted by entanglement shared in advance between the two ends.' },
-        { at: 0.74, title: 'Reconstruction', text: 'The decoder rebuilds the meaning: a coarser picture, with the shape that mattered intact.' }
-    ],
     build(ctx) {
         const root = ctx.root, random = rng(5);
         ctx.ground(-0.95);
@@ -674,12 +648,6 @@ SCENES.learning = {
     source: { title: 'Quantum Machine Learning: Towards Hybrid Quantum-Classical Vision Models', venue: 'Mathematics, 2025', href: 'https://doi.org/10.3390/math13162645' },
     duration: 12, still: 0.45,
     view: { yaw: -0.22, pitch: 0.2, dist: 7.8, target: [0, -0.22, 0], sway: 0.22 },
-    steps: [
-        { at: 0, title: 'Encode', text: 'A data sample is loaded onto four qubits and enters the first layer of rotation gates.' },
-        { at: 0.25, title: 'Variational circuit', text: 'Entangling gates and trainable rotations U(θ) process the state. Each dial is one trainable angle.' },
-        { at: 0.5, title: 'Measure', text: 'The qubits are measured and the outcomes pass through a classical network to the prediction.' },
-        { at: 0.7, title: 'Update', text: 'The loss gradient returns along the lower path and nudges every angle: θ ← θ − η∇L.' }
-    ],
     build(ctx) {
         const root = ctx.root, random = rng(31);
         ctx.ground(-1.5);
@@ -800,12 +768,6 @@ SCENES.optimization = {
     source: { title: 'Quantum Computing for Intelligent Transportation Systems: VQE-Based Traffic Routing and EV Charging Scheduling', venue: 'Mathematics, 2025', href: 'https://doi.org/10.3390/math13172761' },
     duration: 16, still: 0.86,
     view: { yaw: 0.65, pitch: 0.62, dist: 8, target: [0, -0.35, 0], sway: 0.3 },
-    steps: [
-        { at: 0, title: 'Initialise', text: 'The circuit parameters θ start at a random point of the energy landscape.' },
-        { at: 0.07, title: 'Descend', text: 'Each iteration measures ⟨H⟩ on the quantum processor; a classical optimiser steps θ downhill.' },
-        { at: 0.4, title: 'Trapped', text: 'The run settles in a local minimum: the gradient vanishes, but the energy is not the lowest available.' },
-        { at: 0.52, title: 'Restart', text: 'A new initial point leads to the global minimum: the ground-state energy E₀, and the solution it encodes.' }
-    ],
     build(ctx) {
         const root = ctx.root, D = 1.45;
         const E = (x, z) => 0.3 * Math.sin(1.9 * x + 0.4) * Math.cos(1.6 * z - 0.3) + 0.2 * Math.sin(2.7 * z + 1.1) * Math.cos(1.1 * x) + 0.09 * (x * x + z * z) - 0.3;
@@ -923,12 +885,6 @@ SCENES.satellite = {
     source: { title: 'Integrated satellite-ground variational quantum sensing networks', venue: 'IEEE Communications Magazine, 2024', href: 'https://doi.org/10.1109/mcom.005.2300844' },
     duration: 16, still: 0.55,
     view: { yaw: 0, pitch: 0.42, dist: 8.6, target: [0, 0.05, 0], sway: 0.2 },
-    steps: [
-        { at: 0, title: 'Approach', text: 'The satellite is still below the horizon of the two ground stations: no optical link is possible yet.' },
-        { at: 0.4, title: 'Dual downlink', text: 'Both stations now see the satellite. It beams one photon of each entangled pair down to each of them.' },
-        { at: 0.5, title: 'Stations entangled', text: 'The stations share entanglement across the ground: a quantum link for joint sensing over a long baseline.' },
-        { at: 0.6, title: 'Pass ends', text: 'The satellite sets. The stored entanglement fades unless it is used or refreshed by the next pass.' }
-    ],
     build(ctx) {
         const root = ctx.root, R = 1, alt = 1.42, minEl = 10;
         ctx.ground(-1.45);
@@ -1014,11 +970,6 @@ SCENES.satellite = {
         const state = { el: [0, 0], linked: false, stored: 0 };
 
         return {
-            stepAt(u) {
-                const up = elevation(u, G[0]) > minEl && elevation(u, G[1]) > minEl;
-                if (u < 0.5) return up ? 1 : 0;
-                return up && u < 0.56 ? 2 : (state.stored > 0.02 && up ? 2 : 3);
-            },
             update(u, t) {
                 orbitAt(u, p);
                 sat.position.copy(p);
@@ -1064,12 +1015,6 @@ SCENES.clock = {
     source: { title: 'Quantum Clock Synchronization Networks: A Survey', venue: 'IEEE Communications Surveys & Tutorials, 2026', href: 'https://doi.org/10.1109/comst.2026.3694353' },
     duration: 15, still: 0.5,
     view: { yaw: 0, pitch: 0.2, dist: 8.2, target: [0, -0.15, 0], sway: 0.28 },
-    steps: [
-        { at: 0, title: 'Drift', text: 'Each clock runs slightly fast or slow. The gold wedge is its offset Δt from true time.' },
-        { at: 0.28, title: 'Share photons', text: 'The source emits entangled photons that leave at the same instant and travel to every node.' },
-        { at: 0.56, title: 'Correlate', text: 'Each node timestamps its arrivals. Cross-correlating the records exposes the offsets between the clocks.' },
-        { at: 0.76, title: 'Correct', text: 'Every node subtracts its measured offset. The clocks now agree: Δt → 0.' }
-    ],
     build(ctx) {
         const root = ctx.root, floor = -1.25;
         ctx.ground(floor);
@@ -1170,12 +1115,6 @@ SCENES.rydberg = {
     source: { title: 'Quantum Reservoir Learning with Rydberg Lattice', venue: 'KICS Summer Conference, 2025', href: '#publications' },
     duration: 16, still: 0.92,
     view: { yaw: 0.5, pitch: 0.55, dist: 6.7, target: [0, -0.1, 0], sway: 0.3 },
-    steps: [
-        { at: 0, title: 'Trap', text: 'Each atom sits at the focus of an optical tweezer, in its ground state |g⟩.' },
-        { at: 0.12, title: 'Drive', text: 'A laser of Rabi frequency Ω couples |g⟩ to the Rydberg state |r⟩. With Δ < 0 the atoms are barely excited.' },
-        { at: 0.535, title: 'Sweep', text: 'As Δ crosses resonance, excitations grow, but an excited atom shifts its neighbours out of resonance: the blockade.' },
-        { at: 0.86, title: 'Ordered phase', text: 'Excitations settle on alternating sites, and the atoms between them are held dark by the blockade: a crystal of Rydberg excitations.' }
-    ],
     build(ctx) {
         const root = ctx.root, gap = 0.62, n = 9, dim = 1 << n;
         const V1 = 6, total = 16, dt = 0.02;
@@ -1318,7 +1257,7 @@ SCENES.rydberg = {
 };
 
 // --------------------------------------------------------------------------
-// Player: keyword list, caption, steps, controls. Works before three.js loads.
+// Player: keyword list and caption. Works before three.js loads.
 // --------------------------------------------------------------------------
 
 function main() {
@@ -1327,17 +1266,15 @@ function main() {
     const ui = {
         caption: el('interest-caption'), title: el('interest-caption-title'), count: el('interest-caption-count'),
         desc: el('interest-caption-desc'), note: el('interest-caption-note'), source: el('interest-caption-source'),
-        steps: el('interest-steps'), stepText: el('interest-step-text'), play: el('interest-play'),
-        readout: el('interest-readout'), param: el('interest-param'), paramLabel: el('interest-param-label'),
-        paramInput: el('interest-param-input'), paramValue: el('interest-param-value')
+        readout: el('interest-readout')
     };
 
-    const player = { key: null, def: null, time: 0, clock: 0, paused: false, step: -1, value: 0, held: false };
+    const player = { key: null, def: null, time: 0, clock: 0, paused: false, value: 0 };
     const engine = { ready: false, failed: false, loading: false, renderer: null, camera: null, env: null, built: new Map(), inst: null };
     const orbit = { yaw: 0, pitch: 0 };
     let frame = 0, last = 0, onScreen = false, ticks = 0;
 
-    // ---- Caption and controls -------------------------------------------
+    // ---- Caption ---------------------------------------------------------
 
     function fillCaption(tab, def) {
         const text = (selector) => tab.querySelector(selector).textContent.trim();
@@ -1353,57 +1290,7 @@ function main() {
             link.rel = 'noopener';
         }
         ui.source.replaceChildren('Drawn from ', link, `, ${def.source.venue}.`);
-
-        ui.steps.replaceChildren(...def.steps.map((s, i) => {
-            const b = document.createElement('button');
-            b.type = 'button';
-            b.className = 'interest-step';
-            b.innerHTML = `<span>${i + 1}</span>`;
-            b.append(s.title);
-            b.addEventListener('click', () => jumpTo(i));
-            return b;
-        }));
-
-        const p = def.param;
-        ui.param.hidden = !p;
-        if (p) {
-            ui.paramLabel.textContent = p.label;
-            ui.paramInput.min = p.min;
-            ui.paramInput.max = p.max;
-            ui.paramInput.step = p.step;
-            ui.paramInput.value = p.value;
-            ui.paramValue.textContent = p.format(p.value);
-        }
         ui.readout.replaceChildren();
-    }
-
-    function setStep(index) {
-        if (index === player.step) return;
-        player.step = index;
-        const s = player.def.steps[index];
-        Array.from(ui.steps.children).forEach((b, i) => {
-            b.classList.toggle('is-active', i === index);
-            b.setAttribute('aria-current', i === index ? 'step' : 'false');
-        });
-        const strong = document.createElement('strong');
-        strong.textContent = `${s.title}. `;
-        ui.stepText.replaceChildren(strong, s.text);
-    }
-
-    function setPaused(paused) {
-        player.paused = paused;
-        ui.play.setAttribute('aria-pressed', paused ? 'true' : 'false');
-        ui.play.setAttribute('aria-label', paused ? 'Play the animation' : 'Pause the animation');
-        ui.play.title = paused ? 'Play' : 'Pause';
-        ui.play.firstElementChild.className = paused ? 'fas fa-play' : 'fas fa-pause';
-        wake();
-    }
-
-    function jumpTo(index) {
-        const d = player.def.duration;
-        player.time = Math.floor(player.time / d) * d + player.def.steps[index].at * d + 0.02;
-        player.held = false;
-        wake();
     }
 
     function select(tab, instant) {
@@ -1421,13 +1308,10 @@ function main() {
             player.key = key;
             player.def = def;
             player.time = reduceMotion.matches ? def.still * def.duration : 0;
-            player.step = -1;
-            player.held = false;
+            player.paused = reduceMotion.matches;
             player.value = def.param ? def.param.value : 0;
             orbit.yaw = orbit.pitch = 0;
             fillCaption(tab, def);
-            setStep(0);
-            setPaused(reduceMotion.matches);
             if (engine.ready) activate();
             stage.classList.remove('is-switching');
             wake();
@@ -1467,17 +1351,6 @@ function main() {
             next.focus();
         });
     });
-    ui.play.addEventListener('click', () => {
-        if (player.paused) player.held = false;
-        setPaused(!player.paused);
-    });
-    ui.paramInput.addEventListener('input', () => {
-        player.value = Number(ui.paramInput.value);
-        player.held = true;
-        ui.paramValue.textContent = player.def.param.format(player.value);
-        wake();
-    });
-
     // ---- Engine ---------------------------------------------------------
 
     function makeEnvironment() {
@@ -1595,11 +1468,7 @@ function main() {
             player.clock += dt;
         }
         const u = (player.time % def.duration) / def.duration;
-        if (def.param && def.param.auto && !player.held) {
-            player.value = def.param.auto(u);
-            ui.paramInput.value = player.value;
-            ui.paramValue.textContent = def.param.format(player.value);
-        }
+        if (def.param && def.param.auto) player.value = def.param.auto(u);
 
         // Camera: resting view, a slow sway, and whatever the visitor dragged
         const view = def.view, cam = engine.camera;
@@ -1611,10 +1480,6 @@ function main() {
         cam.updateMatrixWorld();
 
         inst.update(u, player.clock, Math.floor(player.time / def.duration), player.value, cam);
-        let step = 0;
-        if (inst.stepAt) step = inst.stepAt(u, player.value);
-        else def.steps.forEach((s, i) => { if (u >= s.at) step = i; });
-        setStep(step);
         engine.renderer.render(inst.root, cam);
 
         const w = engine.size.width, h = engine.size.height;

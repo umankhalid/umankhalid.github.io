@@ -2949,43 +2949,30 @@ function initializeHeaderEffects() {
 // ==========================================================================
 
 /**
- * Quantum field behind all page content.
- *
- * Two canvases over the CSS colour washes of .grid-background:
- *   - a still one, redrawn only on resize or theme change: interference
- *     fringes from two sources (the moire where the ring sets cross is the
- *     interference pattern) and a lattice of linked nodes;
- *   - a live one: a few photons travelling the lattice links. It runs at
- *     about 30 frames a second, stops while the tab is hidden, and is not
- *     started at all when the visitor prefers reduced motion.
+ * Quantum field behind all page content: a single still canvas over the CSS
+ * colour washes of .grid-background. It carries interference fringes from two
+ * sources (the moire where the ring sets cross is the interference pattern)
+ * and a lattice of linked qubits. Nothing moves; it is redrawn only when the
+ * window is resized or the theme changes.
  */
 function initializeGridBackground() {
     const background = document.querySelector('.grid-background');
     if (!background || background.querySelector('canvas')) return;
 
     background.setAttribute('aria-hidden', 'true');
-    const still = document.createElement('canvas');
-    const live = document.createElement('canvas');
-    const pen = still.getContext('2d');
-    const glow = live.getContext('2d');
-    if (!pen || !glow) return;
-    background.append(still, live);
+    const canvas = document.createElement('canvas');
+    const pen = canvas.getContext('2d');
+    if (!pen) return;
+    background.appendChild(canvas);
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const CELL = 168;           // lattice pitch, px
     const FRINGE = 38;          // spacing of the interference rings, px
     let width = 0;
     let height = 0;
-    let ratio = 1;
     let ink = '';
     let strength = 1;
-    let warm = '';
-    let cool = '';
     let nodes = [];
     let links = [];
-    let photons = [];
-    let frame = 0;
-    let lastPaint = 0;
 
     /* Seeded, so the lattice is the same on every visit and every resize. */
     function seeded(seed) {
@@ -3002,10 +2989,7 @@ function initializeGridBackground() {
     function readTheme() {
         const dark = document.documentElement.getAttribute('data-theme') === 'dark';
         const styles = getComputedStyle(document.documentElement);
-        const read = (name, fallback) => (styles.getPropertyValue(name) || '').trim() || fallback;
-        ink = read('--secondary-color-rgb', '44, 79, 168');
-        warm = read('--gold-color-rgb', '168, 116, 26');
-        cool = read('--teal-color-rgb', '15, 123, 120');
+        ink = (styles.getPropertyValue('--secondary-color-rgb') || '').trim() || '44, 79, 168';
         // Light ink on a dark ground reads stronger at equal alpha; ease off.
         strength = dark ? 0.8 : 1;
     }
@@ -3025,7 +3009,6 @@ function initializeGridBackground() {
                     y: (r + 0.5 + (random() - 0.5) * 0.62) * CELL - CELL / 2,
                     qubit: random() > 0.7
                 } : null;
-                random();
                 at.push(node);
                 if (!node) continue;
                 nodes.push(node);
@@ -3037,15 +3020,9 @@ function initializeGridBackground() {
                 if (diagonal && random() > 0.78) links.push([diagonal, node]);
             }
         }
-        const count = links.length ? Math.min(9, Math.max(4, Math.round(width / 220))) : 0;
-        photons = [];
-        for (let i = 0; i < count; i++) {
-            photons.push({ link: Math.floor(random() * links.length), at: random(), speed: 0.1 + random() * 0.1, warm: i % 3 !== 0 });
-        }
     }
 
-    function paintStill() {
-        pen.setTransform(ratio, 0, 0, ratio, 0, 0);
+    function draw() {
         pen.clearRect(0, 0, width, height);
 
         // Interference fringes from two sources
@@ -3078,79 +3055,25 @@ function initializeGridBackground() {
             pen.beginPath();
             pen.arc(node.x, node.y, 6, 0, Math.PI * 2);
             pen.stroke();
-            pen.strokeStyle = `rgba(${ink}, ${(0.12 * strength).toFixed(4)})`;
         });
-    }
-
-    function paintLive(seconds) {
-        glow.setTransform(ratio, 0, 0, ratio, 0, 0);
-        glow.clearRect(0, 0, width, height);
-        photons.forEach((photon) => {
-            photon.at += photon.speed * seconds;
-            if (photon.at >= 1) {
-                // Carry on along a link that leaves the node just reached
-                const here = links[photon.link][1];
-                const onward = [];
-                links.forEach((link, index) => { if (link[0] === here) onward.push(index); });
-                photon.link = onward.length ? onward[Math.floor(Math.random() * onward.length)] : Math.floor(Math.random() * links.length);
-                photon.at = 0;
-            }
-            const [a, b] = links[photon.link];
-            const x = a.x + (b.x - a.x) * photon.at;
-            const y = a.y + (b.y - a.y) * photon.at;
-            const colour = photon.warm ? warm : cool;
-            const halo = glow.createRadialGradient(x, y, 0, x, y, 14);
-            halo.addColorStop(0, `rgba(${colour}, ${(0.55 * strength).toFixed(3)})`);
-            halo.addColorStop(1, `rgba(${colour}, 0)`);
-            glow.fillStyle = halo;
-            glow.beginPath();
-            glow.arc(x, y, 14, 0, Math.PI * 2);
-            glow.fill();
-            glow.fillStyle = `rgba(${colour}, ${(0.9 * strength).toFixed(3)})`;
-            glow.beginPath();
-            glow.arc(x, y, 1.8, 0, Math.PI * 2);
-            glow.fill();
-        });
-    }
-
-    function tick(now) {
-        frame = 0;
-        if (now - lastPaint >= 32) {
-            paintLive(Math.min((now - lastPaint) / 1000, 0.1));
-            lastPaint = now;
-        }
-        run();
-    }
-
-    function run() {
-        if (frame || document.hidden || reduceMotion.matches || !photons.length) return;
-        frame = requestAnimationFrame(tick);
     }
 
     function resize() {
         width = background.clientWidth;
         height = background.clientHeight;
-        ratio = Math.min(window.devicePixelRatio || 1, 1.5);
-        [still, live].forEach((canvas) => {
-            canvas.width = Math.round(width * ratio);
-            canvas.height = Math.round(height * ratio);
-        });
+        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        canvas.width = Math.round(width * ratio);
+        canvas.height = Math.round(height * ratio);
+        pen.setTransform(ratio, 0, 0, ratio, 0, 0);
         layout();
-        paintStill();
-        paintLive(0);
-        run();
+        draw();
     }
 
     window.addEventListener('resize', throttle(resize, 150), { passive: true });
-    document.addEventListener('visibilitychange', () => {
-        lastPaint = performance.now();
-        run();
-    });
 
     new MutationObserver(() => {
         readTheme();
-        paintStill();
-        paintLive(0);
+        draw();
     }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     readTheme();

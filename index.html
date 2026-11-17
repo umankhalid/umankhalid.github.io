@@ -62,7 +62,7 @@
     <!-- Preload critical fonts -->
     <link
       rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap"
       as="style"
     />
 
@@ -75,7 +75,7 @@
       referrerpolicy="no-referrer"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap"
       rel="stylesheet"
     />
     <link
@@ -176,7 +176,7 @@
         >
           <i class="fas fa-bars"></i>
         </button>
-        <nav class="nav-menu">
+        <nav class="nav-menu" aria-label="Sections">
           <button
             type="button"
             class="nav-btn active"
@@ -188,96 +188,105 @@
             <i class="fas fa-home"></i>
             <span>Home</span>
           </button>
-          <button
-            type="button"
-            class="nav-btn"
-            data-tab="education"
-            aria-label="Navigate to Education"
-            data-nav-label="Education"
-          >
-            <i class="fas fa-graduation-cap"></i>
-            <span>Education</span>
-          </button>
-          <button
-            type="button"
-            class="nav-btn"
-            data-tab="experience"
-            aria-label="Navigate to Experience"
-            data-nav-label="Experience"
-          >
-            <i class="fas fa-briefcase"></i>
-            <span>Experience</span>
-          </button>
-          <button
-            type="button"
-            class="nav-btn"
-            data-tab="publications"
-            aria-label="Navigate to Publications"
-            data-nav-label="Publications"
-          >
-            <i class="fas fa-book"></i>
-            <span>Publications</span>
-          </button>
-          <button
-            type="button"
-            class="nav-btn"
-            data-tab="projects"
-            aria-label="Navigate to Projects"
-            data-nav-label="Projects"
-          >
-            <i class="fas fa-project-diagram"></i>
-            <span>Projects</span>
-          </button>
-          <button
-            type="button"
-            class="nav-btn"
-            data-tab="skills"
-            aria-label="Navigate to Skills"
-            data-nav-label="Skills"
-          >
-            <i class="fas fa-cogs"></i>
-            <span>Skills</span>
-          </button>
-          <button
-            type="button"
-            class="nav-btn"
-            data-tab="research"
-            aria-label="Navigate to Research"
-            data-nav-label="Research"
-          >
-            <i class="fas fa-atom"></i>
-            <span>Research</span>
-          </button>
-          <button
-            type="button"
-            class="nav-btn"
-            data-tab="certifications"
-            aria-label="Navigate to Certifications"
-            data-nav-label="Awards"
-          >
-            <i class="fas fa-award"></i>
-            <span>Awards</span>
-          </button>
-          <button
-            type="button"
-            class="nav-btn"
-            data-tab="activities"
-            aria-label="Navigate to Activities"
-            data-nav-label="Activities"
-          >
-            <i class="fas fa-users"></i>
-            <span>Activities</span>
-          </button>
-          <button
-            type="button"
-            class="nav-btn"
-            data-tab="contact"
-            aria-label="Navigate to Contact"
-            data-nav-label="Contact"
-          >
-            <i class="fas fa-envelope"></i>
-            <span>Contact</span>
-          </button>
+          <div class="nav-group" role="group" aria-labelledby="nav-group-research">
+            <span class="nav-group-label" id="nav-group-research">Research</span>
+            <button
+              type="button"
+              class="nav-btn"
+              data-tab="publications"
+              aria-label="Navigate to Publications"
+              data-nav-label="Publications"
+            >
+              <i class="fas fa-book"></i>
+              <span>Publications</span>
+            </button>
+            <button
+              type="button"
+              class="nav-btn"
+              data-tab="projects"
+              aria-label="Navigate to Projects"
+              data-nav-label="Projects"
+            >
+              <i class="fas fa-project-diagram"></i>
+              <span>Projects</span>
+            </button>
+            <button
+              type="button"
+              class="nav-btn"
+              data-tab="research"
+              aria-label="Navigate to Research"
+              data-nav-label="Research"
+            >
+              <i class="fas fa-atom"></i>
+              <span>Research</span>
+            </button>
+          </div>
+          <div class="nav-group" role="group" aria-labelledby="nav-group-background">
+            <span class="nav-group-label" id="nav-group-background">Background</span>
+            <button
+              type="button"
+              class="nav-btn"
+              data-tab="education"
+              aria-label="Navigate to Education"
+              data-nav-label="Education"
+            >
+              <i class="fas fa-graduation-cap"></i>
+              <span>Education</span>
+            </button>
+            <button
+              type="button"
+              class="nav-btn"
+              data-tab="experience"
+              aria-label="Navigate to Experience"
+              data-nav-label="Experience"
+            >
+              <i class="fas fa-briefcase"></i>
+              <span>Experience</span>
+            </button>
+            <button
+              type="button"
+              class="nav-btn"
+              data-tab="skills"
+              aria-label="Navigate to Skills"
+              data-nav-label="Skills"
+            >
+              <i class="fas fa-cogs"></i>
+              <span>Skills</span>
+            </button>
+            <button
+              type="button"
+              class="nav-btn"
+              data-tab="certifications"
+              aria-label="Navigate to Certifications"
+              data-nav-label="Awards"
+            >
+              <i class="fas fa-award"></i>
+              <span>Awards</span>
+            </button>
+          </div>
+          <div class="nav-group" role="group" aria-labelledby="nav-group-community">
+            <span class="nav-group-label" id="nav-group-community">Community</span>
+            <button
+              type="button"
+              class="nav-btn"
+              data-tab="activities"
+              aria-label="Navigate to Activities"
+              data-nav-label="Activities"
+            >
+              <i class="fas fa-users"></i>
+              <span>Activities</span>
+            </button>
+            <button
+              type="button"
+              class="nav-btn"
+              data-tab="contact"
+              aria-label="Navigate to Contact"
+              data-nav-label="Contact"
+            >
+              <i class="fas fa-envelope"></i>
+              <span>Contact</span>
+            </button>
+          </div>
         </nav>
         <div class="theme-toggle">
           <button
@@ -353,14 +362,6 @@
                 aria-label="Google Scholar citation metrics, opens profile in a new tab"
                 hidden
               >
-                <div class="scholar-metrics-header">
-                  <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-                  <span>Google Scholar</span>
-                  <i
-                    class="fas fa-arrow-up-right-from-square scholar-metrics-arrow"
-                    aria-hidden="true"
-                  ></i>
-                </div>
                 <div class="scholar-metrics-grid">
                   <div class="scholar-stat">
                     <span class="scholar-stat-value" data-scholar="citations"
@@ -380,6 +381,14 @@
                     >
                     <span class="scholar-stat-label">i10-index</span>
                   </div>
+                </div>
+                <div class="scholar-metrics-header">
+                  <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                  <span>Google Scholar</span>
+                  <i
+                    class="fas fa-arrow-up-right-from-square scholar-metrics-arrow"
+                    aria-hidden="true"
+                  ></i>
                 </div>
               </a>
             </div>
@@ -436,14 +445,14 @@
           <!--
             Row 2: research interest keywords left, one 3D model per keyword
             right. The models are rendered by assets/js/interests3d.js (three.js,
-            loaded on demand), which also fills the steps, readout and caption;
+            loaded on demand), which also fills the readout and caption;
             without JavaScript the keywords run full width.
           -->
           <section class="interests" aria-labelledby="interests-title">
             <div class="interests-head">
               <h2 class="section-title" id="interests-title">Research Interests</h2>
               <p class="interests-hint">
-                Select a topic to play its model. Drag to rotate; use the steps to move through it.
+                Select a topic to play its model. Drag the model to rotate it.
               </p>
             </div>
 
@@ -605,31 +614,6 @@
                   </p>
                 </div>
 
-                <div class="interest-controls">
-                  <button
-                    type="button"
-                    class="interest-play"
-                    id="interest-play"
-                    aria-pressed="false"
-                    aria-label="Pause the animation"
-                    title="Pause"
-                  >
-                    <i class="fas fa-pause" aria-hidden="true"></i>
-                  </button>
-                  <div
-                    class="interest-steps"
-                    id="interest-steps"
-                    role="group"
-                    aria-label="Steps of this model"
-                  ></div>
-                  <label class="interest-param" id="interest-param" hidden>
-                    <span id="interest-param-label"></span>
-                    <input type="range" id="interest-param-input" />
-                    <output id="interest-param-value" for="interest-param-input"></output>
-                  </label>
-                </div>
-                <p class="interest-step-text" id="interest-step-text"></p>
-
                 <div class="interest-caption" id="interest-caption">
                   <p class="interest-caption-kicker">
                     <span id="interest-caption-title"></span>
@@ -680,109 +664,6 @@
               <!-- News items will be dynamically loaded here -->
               <div class="news-loading">Loading news...</div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Education Tab -->
-      <div id="education" class="tab-content">
-        <div class="tab-cover education-cover">
-          <div class="cover-overlay">
-            <h2 class="cover-title">Education</h2>
-          </div>
-        </div>
-
-        <div class="education-container">
-          <div class="experience-item">
-            <div class="exp-header">
-              <div class="company-logo">
-                <img
-                  src="assets/logos/organizations/kyung-hee-university-logo.png"
-                  alt="Kyung Hee University Logo"
-                />
-              </div>
-              <div class="exp-details">
-                <h3>Ph.D. in Electronics and Information Convergence Engineering</h3>
-                <a
-                  href="https://www.khu.ac.kr"
-                  class="company-name"
-                  target="_blank"
-                  rel="noopener"
-                  >Kyung Hee University, Yongin-si, Korea</a
-                >
-                <p class="exp-duration">September 2016 - February 2023</p>
-                <p><strong>Advisor: </strong>Professor Hyundong Shin</p>
-                <p>
-                  <strong>Dissertation: </strong>Quantum Property Learning for
-                  Quantum Sensing Networks
-                </p>
-                <p>
-                  <strong>Scholarships: </strong>BrainKorea21 Plus Doctoral
-                  Research Scholarship and Kyung Hee University Graduate Student
-                  Scholarship (2016–2022)
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="experience-item">
-            <div class="exp-header">
-              <div class="company-logo">
-                <img
-                  src="assets/logos/organizations/giki-logo.png"
-                  alt="Ghulam Ishaq Khan Institute of Engineering Sciences and Technology Logo"
-                />
-              </div>
-              <div class="exp-details">
-                <h3>Bachelor of Electronics Engineering</h3>
-                <a
-                  href="https://giki.edu.pk"
-                  class="company-name"
-                  target="_blank"
-                  rel="noopener"
-                  >Ghulam Ishaq Khan Institute of Engineering and Technology,
-                  Pakistan</a
-                >
-                <p class="exp-duration">September 2011 - August 2015</p>
-                <p><strong>Advisor: </strong>Professor Faisal Khan</p>
-                <p>
-                  <strong>Thesis: </strong>Cleaning Entresol Autonomous Robot
-                  (CLEAR)
-                </p>
-                <p>
-                  <strong>Award: </strong>Gold Medal in Final Year Project,
-                  Spring 2015
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Experience Tab -->
-      <div id="experience" class="tab-content">
-        <div class="tab-cover experience-cover">
-          <div class="cover-overlay">
-            <h2 class="cover-title">Experience</h2>
-          </div>
-        </div>
-
-        <div id="experience-container">
-          <!-- Experience items will be dynamically loaded here -->
-        </div>
-      </div>
-
-      <!-- Skills Tab -->
-      <div id="skills" class="tab-content">
-        <div class="tab-cover skills-cover">
-          <div class="cover-overlay">
-            <h2 class="cover-title">Skills</h2>
-          </div>
-        </div>
-
-        <div class="skills-container">
-          <div id="skills-content">
-            <!-- Skills will be dynamically loaded here -->
           </div>
         </div>
       </div>
@@ -895,6 +776,132 @@
 
         <div class="project-timeline" id="projects-container">
           <!-- Projects will be dynamically loaded here -->
+        </div>
+      </div>
+
+      <!-- Research Tab (research themes, laid out with the tools-nav components) -->
+      <div id="research" class="tab-content">
+        <div class="tab-cover research-cover">
+          <div class="cover-overlay">
+            <h2 class="cover-title">Research</h2>
+          </div>
+        </div>
+
+        <div class="software-container">
+          <!-- Theme Navigation -->
+          <div class="tools-nav-container">
+            <div class="tools-nav">
+              <!-- Theme nav buttons generated dynamically from data/research.json -->
+            </div>
+          </div>
+
+          <!-- Theme Content -->
+          <div class="tools-content-container">
+            <!-- Theme sections generated dynamically from data/research.json -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Education Tab -->
+      <div id="education" class="tab-content">
+        <div class="tab-cover education-cover">
+          <div class="cover-overlay">
+            <h2 class="cover-title">Education</h2>
+          </div>
+        </div>
+
+        <div class="education-container">
+          <div class="experience-item">
+            <div class="exp-header">
+              <div class="company-logo">
+                <img
+                  src="assets/logos/organizations/kyung-hee-university-logo.png"
+                  alt="Kyung Hee University Logo"
+                />
+              </div>
+              <div class="exp-details">
+                <h3>Ph.D. in Electronics and Information Convergence Engineering</h3>
+                <a
+                  href="https://www.khu.ac.kr"
+                  class="company-name"
+                  target="_blank"
+                  rel="noopener"
+                  >Kyung Hee University, Yongin-si, Korea</a
+                >
+                <p class="exp-duration">September 2016 - February 2023</p>
+                <p><strong>Advisor: </strong>Professor Hyundong Shin</p>
+                <p>
+                  <strong>Dissertation: </strong>Quantum Property Learning for
+                  Quantum Sensing Networks
+                </p>
+                <p>
+                  <strong>Scholarships: </strong>BrainKorea21 Plus Doctoral
+                  Research Scholarship and Kyung Hee University Graduate Student
+                  Scholarship (2016–2022)
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="experience-item">
+            <div class="exp-header">
+              <div class="company-logo">
+                <img
+                  src="assets/logos/organizations/giki-logo.png"
+                  alt="Ghulam Ishaq Khan Institute of Engineering Sciences and Technology Logo"
+                />
+              </div>
+              <div class="exp-details">
+                <h3>Bachelor of Electronics Engineering</h3>
+                <a
+                  href="https://giki.edu.pk"
+                  class="company-name"
+                  target="_blank"
+                  rel="noopener"
+                  >Ghulam Ishaq Khan Institute of Engineering and Technology,
+                  Pakistan</a
+                >
+                <p class="exp-duration">September 2011 - August 2015</p>
+                <p><strong>Advisor: </strong>Professor Faisal Khan</p>
+                <p>
+                  <strong>Thesis: </strong>Cleaning Entresol Autonomous Robot
+                  (CLEAR)
+                </p>
+                <p>
+                  <strong>Award: </strong>Gold Medal in Final Year Project,
+                  Spring 2015
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience Tab -->
+      <div id="experience" class="tab-content">
+        <div class="tab-cover experience-cover">
+          <div class="cover-overlay">
+            <h2 class="cover-title">Experience</h2>
+          </div>
+        </div>
+
+        <div id="experience-container">
+          <!-- Experience items will be dynamically loaded here -->
+        </div>
+      </div>
+
+      <!-- Skills Tab -->
+      <div id="skills" class="tab-content">
+        <div class="tab-cover skills-cover">
+          <div class="cover-overlay">
+            <h2 class="cover-title">Skills</h2>
+          </div>
+        </div>
+
+        <div class="skills-container">
+          <div id="skills-content">
+            <!-- Skills will be dynamically loaded here -->
+          </div>
         </div>
       </div>
 
@@ -1114,29 +1121,6 @@
                 with each other.
               </p>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Research Tab (research themes, laid out with the tools-nav components) -->
-      <div id="research" class="tab-content">
-        <div class="tab-cover research-cover">
-          <div class="cover-overlay">
-            <h2 class="cover-title">Research</h2>
-          </div>
-        </div>
-
-        <div class="software-container">
-          <!-- Theme Navigation -->
-          <div class="tools-nav-container">
-            <div class="tools-nav">
-              <!-- Theme nav buttons generated dynamically from data/research.json -->
-            </div>
-          </div>
-
-          <!-- Theme Content -->
-          <div class="tools-content-container">
-            <!-- Theme sections generated dynamically from data/research.json -->
           </div>
         </div>
       </div>

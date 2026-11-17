@@ -33,6 +33,11 @@
   --text-muted: #687083; /* Labels and captions */
   --border-color: #d7dcec; /* Cool hairline */
   --violet-color-rgb: 112, 86, 204; /* Background wash only */
+  /* Greys of the side link bar */
+  --panel-bg: #f4f5f7;
+  --panel-border: #cdd1d8;
+  --panel-ink: #4a505a;
+  --panel-ink-strong: #23272e;
   /* Hover borders are a plain tint, not a glow */
   --border-glow: rgba(44, 79, 168, 0.4);
   --shadow-color: rgba(18, 26, 43, 0.06);
@@ -73,12 +78,12 @@
   --space-12: 48px;
   --space-16: 64px;
 
-  /* Typefaces. A text serif for display headings and titles gives the page
-     an academic voice; Inter carries body copy, card headings and UI; the
-     mono face is kept for dates, codes and metadata. */
-  --font-serif: "Newsreader", "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  /* Typeface. Archivo carries everything: headings, body copy, UI and the
+     small labels. The three tokens are kept because rules throughout the
+     sheet refer to them; they all resolve to the same family. */
+  --font-sans: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-sans);
+  --font-mono: var(--font-sans);
 
   /* Type scale. Headings use clamp() so they scale with the viewport
      instead of stepping only at breakpoints. */
@@ -140,6 +145,10 @@
   --text-muted: #8e98ad; /* Labels and captions */
   --border-color: #232d49; /* Dark hairline */
   --violet-color-rgb: 138, 110, 255;
+  --panel-bg: #1d2026;
+  --panel-border: #3a3f48;
+  --panel-ink: #b4b9c2;
+  --panel-ink-strong: #eceef1;
   --border-glow: rgba(157, 180, 255, 0.42);
   --shadow-color: rgba(0, 0, 0, 0.35);
   --shadow-lg: rgba(0, 0, 0, 0.5);
@@ -181,7 +190,6 @@ html {
 
 body {
   font-family: var(--font-sans);
-  font-feature-settings: "cv11", "ss01";
   line-height: 1.7;
   color: var(--text-secondary);
   background-color: var(--bg-primary);
@@ -201,10 +209,9 @@ body.loaded {
 }
 
 /*
-  Quantum field, kept behind all page content. The colour washes are plain CSS
-  gradients; script.js draws the pattern over them on two canvases: a still one
-  (interference fringes and a lattice of linked nodes) and a small live one
-  (photons travelling the links).
+  Quantum field, kept behind all page content, and completely still. The
+  colour washes are plain CSS gradients; script.js draws the pattern over them
+  once: interference fringes and a lattice of linked qubits.
 */
 body {
   isolation: isolate;
@@ -272,22 +279,22 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-optical-sizing: auto;
-  letter-spacing: -0.01em;
+  font-family: var(--font-sans);
+  font-weight: 650;
+  font-stretch: 108%;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
-/* Sub-headings mostly title cards and list items, where the serif gets
-   fussy at small sizes; they switch to the UI face. */
+/* Sub-headings mostly title cards and list items: normal width, a step
+   lighter than the display headings. */
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-sans);
   font-weight: 600;
+  font-stretch: 100%;
   letter-spacing: -0.011em;
   line-height: 1.35;
 }
@@ -387,7 +394,7 @@ button:focus-visible,
 }
 
 .header {
-  max-width: 1400px;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 12px 24px;
   display: flex;
@@ -406,8 +413,9 @@ button:focus-visible,
 }
 
 .logo-name {
-  font-size: 1.35rem;
-  font-weight: 500;
+  font-size: 1.12rem;
+  font-weight: 750;
+  font-stretch: 112%;
   letter-spacing: -0.015em;
   white-space: nowrap;
   color: var(--text-primary);
@@ -455,6 +463,37 @@ button:focus-visible,
   font-weight: 600;
   border-radius: 0;
   box-shadow: inset 0 -2px 0 var(--secondary-color);
+}
+
+/* Tabs are grouped (research, background, community). A hairline separates
+   the groups in the bar; the group names are read out but only shown in the
+   mobile drawer. */
+.nav-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: inherit;
+  margin-left: 8px;
+  padding-left: 9px;
+}
+
+.nav-group::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 22%;
+  bottom: 22%;
+  width: 1px;
+  background: var(--border-color);
+}
+
+.nav-group-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
 }
 
 /* Mobile Menu Toggle */
@@ -654,8 +693,9 @@ button:focus-visible,
 .cover-title {
   font-family: var(--font-serif);
   font-size: var(--text-3xl);
-  font-weight: 500;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  font-stretch: 112%;
+  letter-spacing: -0.025em;
   color: #ffffff;
   margin-bottom: 0;
 }
@@ -759,9 +799,9 @@ button:focus-visible,
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
-  padding-bottom: 14px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid var(--border-color);
+  padding-top: 14px;
+  margin-top: 16px;
+  border-top: 1px solid var(--border-color);
 }
 
 .scholar-metrics-header i:first-child {
@@ -799,9 +839,9 @@ button:focus-visible,
 }
 
 .scholar-stat-value {
-  font-family: var(--font-serif);
-  font-size: 2rem;
-  font-weight: 500;
+  font-size: 1.9rem;
+  font-weight: 700;
+  font-stretch: 108%;
   font-variant-numeric: lining-nums tabular-nums;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -822,8 +862,9 @@ button:focus-visible,
 /* The name is the page's one display line and is held on a single line at
    every width; the clamp keeps it inside the narrowest phone. */
 .hero-name {
-  font-size: clamp(2.7rem, 7vw, 5.6rem);
-  font-weight: 400;
+  font-size: clamp(2.3rem, 6.2vw, 4.6rem);
+  font-weight: 800;
+  font-stretch: 118%;
   letter-spacing: -0.035em;
   line-height: 1;
   white-space: nowrap;
@@ -855,9 +896,8 @@ button:focus-visible,
 /* The opening paragraph of About Me is the lead and steps up a size. */
 
 .about-intro .bio-text:first-of-type {
-  font-family: var(--font-serif);
-  font-size: clamp(1.2rem, 0.6vw + 1.05rem, 1.42rem);
-  line-height: 1.55;
+  font-size: clamp(1.1rem, 0.4vw + 1rem, 1.24rem);
+  line-height: 1.6;
   color: var(--text-primary);
   margin-bottom: var(--space-6);
 }
@@ -982,7 +1022,7 @@ button:focus-visible,
 .interest-canvas-wrap {
   position: relative;
   aspect-ratio: 1 / 0.78;
-  max-height: calc(100vh - var(--header-height) - 330px);
+  max-height: calc(100vh - var(--header-height) - 250px);
   min-height: 300px;
   width: 100%;
   transition: opacity 0.19s ease;
@@ -1017,7 +1057,6 @@ button:focus-visible,
 
 /* The scene changes behind a short fade */
 .interest-stage.is-switching .interest-canvas-wrap,
-.interest-stage.is-switching .interest-step-text,
 .interest-stage.is-switching .interest-caption {
   opacity: 0;
 }
@@ -1121,125 +1160,6 @@ button:focus-visible,
 .interest-stage.is-loading .interest-status--loading,
 .interest-stage.is-unavailable .interest-status--unavailable {
   display: grid;
-}
-
-/* Play control, the steps of the model, and its parameter */
-.interest-controls {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px 12px;
-  padding: var(--space-3) 0;
-  border-top: 1px solid var(--border-color);
-}
-
-.interest-play {
-  flex: 0 0 auto;
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--border-color);
-  border-radius: 50%;
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: var(--transition-interactive);
-}
-
-.interest-play:hover {
-  border-color: var(--secondary-color);
-  color: var(--secondary-color);
-}
-
-.interest-steps {
-  display: flex;
-  flex: 1 1 0;
-  flex-wrap: wrap;
-  gap: 6px;
-  min-width: 0;
-}
-
-.interest-step {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 12px 5px 5px;
-  border: 1px solid var(--border-color);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--text-secondary);
-  font: inherit;
-  font-size: 0.8rem;
-  font-weight: 500;
-  line-height: 1.3;
-  cursor: pointer;
-  transition: var(--transition-interactive);
-}
-
-.interest-step span {
-  display: grid;
-  place-items: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--bg-tertiary);
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  transition: var(--transition-interactive);
-}
-
-.interest-step:hover {
-  border-color: var(--border-glow);
-  color: var(--text-primary);
-}
-
-.interest-step.is-active {
-  border-color: var(--secondary-color);
-  background: rgba(var(--secondary-color-rgb), 0.09);
-  color: var(--text-primary);
-}
-
-.interest-step.is-active span {
-  background: var(--secondary-color);
-  color: var(--bg-secondary);
-}
-
-.interest-param[hidden] {
-  display: none;
-}
-
-.interest-param {
-  display: flex;
-  align-items: center;
-  flex: 1 1 100%;
-  gap: 12px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
-}
-
-.interest-param input {
-  flex: 1;
-  min-width: 0;
-  accent-color: var(--secondary-color);
-  cursor: pointer;
-}
-
-.interest-param output {
-  min-width: 4.5em;
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-  color: var(--text-primary);
-}
-
-/* What the current step shows. Height is held for three lines so the caption
-   below does not jump as the steps change. */
-.interest-step-text {
-  min-height: 4.9em;
-  margin-bottom: var(--space-3);
-  font-size: 0.98rem;
-  line-height: 1.6;
-  transition: opacity 0.19s ease;
 }
 
 .interest-caption {
@@ -1408,9 +1328,6 @@ button:focus-visible,
     min-height: 0;
   }
 
-  .interest-step-text {
-    min-height: 0;
-  }
 
   .interest-caption-desc {
     display: block;
@@ -1466,9 +1383,9 @@ button:focus-visible,
 /* Section titles are marked up as h3 but read as page-level headings, so they
    take the display serif like h1/h2. */
 .section-title {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  letter-spacing: -0.015em;
+  font-weight: 700;
+  font-stretch: 108%;
+  letter-spacing: -0.02em;
 }
 
 .section-title {
@@ -5117,17 +5034,16 @@ a.contact-value:hover {
 }
 
 /*
-  The icons rest as quiet neutral chips so the bar does not compete with the
-  page. Each service's own colour is held in a per-icon custom property and
-  arrives on hover and keyboard focus.
+  The link bar is set in greys only, at rest and on hover, so it never
+  competes with the page. The icon itself names the service.
 */
 .social-icon {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid var(--border-color);
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
+  border: 1px solid var(--panel-border);
+  background: var(--panel-bg);
+  color: var(--panel-ink);
   box-shadow: var(--elev-1);
   display: flex;
   align-items: center;
@@ -5136,46 +5052,12 @@ a.contact-value:hover {
   transition: var(--transition-interactive);
 }
 
-.social-icon.linkedin {
-  --brand-color: #0077b5;
-}
-.social-icon.github {
-  --brand-color: #24292e;
-}
-.social-icon.scholar {
-  --brand-color: #4285f4;
-}
-.social-icon.orcid {
-  --brand-color: #a6ce39;
-}
-.social-icon.researchgate {
-  --brand-color: #00ccb1;
-}
-.social-icon.scopus {
-  --brand-color: #ff6600;
-}
-.social-icon.lab {
-  --brand-color: #9e1b32;
-}
-.social-icon.email {
-  --brand-color: #2563eb;
-}
-.social-icon.flagcounter {
-  --brand-color: #2f855a;
-}
-
 .social-icon:hover,
 .social-icon:focus-visible {
-  border-color: var(--brand-color, var(--secondary-color));
-  background: var(--brand-color, var(--secondary-color));
-  color: #ffffff;
+  border-color: var(--panel-ink-strong);
+  background: var(--panel-ink-strong);
+  color: var(--panel-bg);
   box-shadow: var(--elev-2);
-}
-
-/* ORCID's green is light enough that white on it would not carry */
-.social-icon.orcid:hover,
-.social-icon.orcid:focus-visible {
-  color: #1f2d16;
 }
 
 /* Visitor flag counter popover - opens beside its icon without covering the page */
@@ -5387,7 +5269,7 @@ a.contact-value:hover {
    ========================================================================== */
 
 .container {
-  max-width: 1400px;
+  max-width: 1240px;
   margin: 0 auto;
   /* Sits flush under the fixed header - no gap above the tab covers */
   padding: var(--header-height) 24px 40px;
@@ -5474,8 +5356,8 @@ a.contact-value:hover {
 }
 
 /* The fixed link bar hangs on the right edge. Until the viewport is wide
-   enough for it to clear the 1400px column, the column gives it a gutter. */
-@media (min-width: 769px) and (max-width: 1580px) {
+   enough for it to clear the 1240px column, the column gives it a gutter. */
+@media (min-width: 769px) and (max-width: 1420px) {
   .container {
     padding-right: 88px;
   }
@@ -5602,6 +5484,35 @@ a.contact-value:hover {
 
   .nav-btn.active {
     box-shadow: inset 2px 0 0 var(--secondary-color);
+  }
+
+  .nav-menu {
+    overflow-y: auto;
+  }
+
+  .nav-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    margin: 10px 0 0;
+    padding: 0;
+  }
+
+  .nav-group::before {
+    display: none;
+  }
+
+  .nav-group-label {
+    position: static;
+    width: auto;
+    height: auto;
+    clip: auto;
+    padding: 0 16px 2px;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
   }
 
   .nav-btn span {

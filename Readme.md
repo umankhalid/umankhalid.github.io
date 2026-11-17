@@ -75,18 +75,17 @@ Each research interest on the home page has its own WebGL model, rendered by
 fetched only when the models are about to scroll into view). The keywords are
 the `.interest-item` buttons in `index.html`; a button's `data-interest` names
 its entry in `SCENES` in that script. A `SCENES` entry holds the summary
-(`note`), the paper it is drawn from (`source`), the narrated `steps`, an
-optional `param` slider, and `build()`, which creates the model and returns its
-per-frame `update()` and live `readout()`. To add an interest, add a button
+(`note`), the paper it is drawn from (`source`), and `build()`, which creates
+the model and returns its per-frame `update()` and live `readout()`. To add an interest, add a button
 and a matching `SCENES` entry.
 
 ### Page background
 
 The background is drawn by `initializeGridBackground()` in `script.js` over the
-colour washes of `.grid-background` in `styles.css`: interference fringes, a
-lattice of linked nodes, and a few photons travelling the links. `CELL` and
-`FRINGE` at the top of that function set the lattice pitch and ring spacing;
-the alpha values in `paintStill()` set how present the pattern is.
+colour washes of `.grid-background` in `styles.css`: interference fringes and a
+lattice of linked qubits. It is completely still. `CELL` and `FRINGE` at the
+top of that function set the lattice pitch and ring spacing; the alpha values
+in `draw()` set how present the pattern is.
 
 ### Profile photo
 
