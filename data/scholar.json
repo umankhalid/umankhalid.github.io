@@ -1,16 +1,28 @@
 {
-  "citations": 713,
+  "citations": 729,
   "hIndex": 17,
   "i10Index": 20,
   "scholarId": "CyVQHYEAAAAJ",
   "profileUrl": "https://scholar.google.com/citations?user=CyVQHYEAAAAJ&hl=en",
-  "updated": "2026-11-01",
+  "updated": "2026-11-16",
   "papers": [
     {
-      "title": "Approximation Algorithms for Vehicle Routing Problems: A Survey",
+      "title": "Approximation algorithms for vehicle routing problems: A survey",
+      "citations": 3,
+      "year": 2026,
+      "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=6719628023694411252"
+    },
+    {
+      "title": "Constant-Factor Approximation Algorithms for Weighted Budgeted Multisensor Sweep Coverage",
       "citations": 0,
       "year": 2026,
-      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:ns9cj8rnVeAC"
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:NaGl4SEjCO4C"
+    },
+    {
+      "title": "Constant-Factor Approximations for the Biased Traveling Salesman Problem and Its Path Variant",
+      "citations": 0,
+      "year": 2026,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:RGFaLdJalmkC"
     },
     {
       "title": "Quantum Clock Synchronization Networks: A Survey",
@@ -23,6 +35,12 @@
       "citations": 0,
       "year": 2026,
       "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:O3NaXMp0MMsC"
+    },
+    {
+      "title": "Quantum-Accelerated Electric Vehicle Charging Scheduling with Graph Coloring",
+      "citations": 0,
+      "year": 2026,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=CyVQHYEAAAAJ&citation_for_view=CyVQHYEAAAAJ:J_g5lzvAfSwC"
     },
     {
       "title": "Quantum-Classical Dual LSTM Optimization for Internet of Intelligent Vehicles",
@@ -56,7 +74,7 @@
     },
     {
       "title": "Controlled quantum semantic communication for industrial CPS networks",
-      "citations": 19,
+      "citations": 20,
       "year": 2025,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=17304432721047223311"
     },
@@ -68,7 +86,7 @@
     },
     {
       "title": "GenSC-6G: a prototype testbed for integrated generative AI, quantum, and semantic communication",
-      "citations": 12,
+      "citations": 13,
       "year": 2025,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=17954166618698853175"
     },
@@ -92,13 +110,13 @@
     },
     {
       "title": "Quantum computing for intelligent transportation systems: VQE-based traffic routing and EV charging scheduling",
-      "citations": 5,
+      "citations": 6,
       "year": 2025,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=6624657522613986046"
     },
     {
       "title": "Quantum fusion intelligence for integrated satellite-ground remote sensing",
-      "citations": 11,
+      "citations": 12,
       "year": 2025,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2819258606403007717"
     },
@@ -146,19 +164,19 @@
     },
     {
       "title": "Deep quantum-transformer networks for multimodal beam prediction in ISAC systems",
-      "citations": 67,
+      "citations": 69,
       "year": 2024,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=382919852487303932"
     },
     {
       "title": "Integrated satellite-ground variational quantum sensing networks",
-      "citations": 17,
+      "citations": 18,
       "year": 2024,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=320613285369309683"
     },
     {
       "title": "Integrating sustainable big AI: Quantum anonymous semantic broadcast",
-      "citations": 35,
+      "citations": 36,
       "year": 2024,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16137405951841495887"
     },
@@ -176,13 +194,13 @@
     },
     {
       "title": "Variational anonymous quantum sensing",
-      "citations": 17,
+      "citations": 19,
       "year": 2024,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=7638402869441597943"
     },
     {
       "title": "Entanglement detection with artificial neural networks",
-      "citations": 61,
+      "citations": 62,
       "year": 2023,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=3326951486057277945"
     },
@@ -194,7 +212,7 @@
     },
     {
       "title": "Quantum network engineering in the NISQ age: Principles, missions, and challenges",
-      "citations": 45,
+      "citations": 46,
       "year": 2023,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=14094563009143954507"
     },
@@ -206,7 +224,7 @@
     },
     {
       "title": "Quantum semantic communications for metaverse: Principles and challenges",
-      "citations": 87,
+      "citations": 88,
       "year": 2023,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=3045837014817825038"
     },
