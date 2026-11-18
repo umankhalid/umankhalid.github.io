@@ -1,10 +1,10 @@
 {
-  "citations": 729,
+  "citations": 733,
   "hIndex": 17,
   "i10Index": 20,
   "scholarId": "CyVQHYEAAAAJ",
   "profileUrl": "https://scholar.google.com/citations?user=CyVQHYEAAAAJ&hl=en",
-  "updated": "2026-11-16",
+  "updated": "2026-11-18",
   "papers": [
     {
       "title": "Approximation algorithms for vehicle routing problems: A survey",
@@ -74,7 +74,7 @@
     },
     {
       "title": "Controlled quantum semantic communication for industrial CPS networks",
-      "citations": 20,
+      "citations": 21,
       "year": 2025,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=17304432721047223311"
     },
@@ -86,7 +86,7 @@
     },
     {
       "title": "GenSC-6G: a prototype testbed for integrated generative AI, quantum, and semantic communication",
-      "citations": 13,
+      "citations": 14,
       "year": 2025,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=17954166618698853175"
     },
@@ -176,7 +176,7 @@
     },
     {
       "title": "Integrating sustainable big AI: Quantum anonymous semantic broadcast",
-      "citations": 36,
+      "citations": 37,
       "year": 2024,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=16137405951841495887"
     },
@@ -194,7 +194,7 @@
     },
     {
       "title": "Variational anonymous quantum sensing",
-      "citations": 19,
+      "citations": 20,
       "year": 2024,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=7638402869441597943"
     },
