@@ -1,10 +1,10 @@
 {
-  "citations": 733,
+  "citations": 735,
   "hIndex": 17,
   "i10Index": 20,
   "scholarId": "CyVQHYEAAAAJ",
   "profileUrl": "https://scholar.google.com/citations?user=CyVQHYEAAAAJ&hl=en",
-  "updated": "2026-11-18",
+  "updated": "2026-11-20",
   "papers": [
     {
       "title": "Approximation algorithms for vehicle routing problems: A survey",
@@ -164,13 +164,13 @@
     },
     {
       "title": "Deep quantum-transformer networks for multimodal beam prediction in ISAC systems",
-      "citations": 69,
+      "citations": 70,
       "year": 2024,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=382919852487303932"
     },
     {
       "title": "Integrated satellite-ground variational quantum sensing networks",
-      "citations": 18,
+      "citations": 19,
       "year": 2024,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=320613285369309683"
     },
