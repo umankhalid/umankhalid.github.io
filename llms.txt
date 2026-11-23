@@ -4,7 +4,7 @@
 
 Ph.D., Electronics and Information Convergence Engineering, Kyung Hee University (2023), advised by Prof. Hyundong Shin. B.E., Electronics Engineering, Ghulam Ishaq Khan Institute of Engineering and Technology, Pakistan (2015).
 
-Google Scholar (2026-11-22): 737 citations, h-index 17, i10-index 20.
+Google Scholar (2026-11-23): 739 citations, h-index 17, i10-index 20.
 
 ## Pages
 
@@ -35,7 +35,7 @@ Google Scholar (2026-11-22): 737 citations, h-index 17, i10-index 20.
 - [Quantum fusion intelligence for integrated satellite-ground remote sensing](https://doi.org/10.1109/mwc.001.2400425): U. Khalid, U. I. Paracha, Z. Naveed, T. Q. Duong, M. Z. Win, H. Shin. IEEE Wireless Communications, vol. 32, no. 3, pp. 46–55, 2025, cited by 12.
 - [Quantum property learning for NISQ networks: Universal quantum witness machines](https://doi.org/10.1109/tcomm.2024.3469555): U. Khalid, J. ur Rehman, H. Jung, T. Q. Duong, O. A. Dobre, H. Shin. IEEE Transactions on Communications, vol. 73, no. 4, pp. 2207–2221, 2025, cited by 9.
 - [Integrated satellite-ground variational quantum sensing networks](https://doi.org/10.1109/mcom.005.2300844): U. Khalid, M. S. Ulum, M. Z. Win, H. Shin. IEEE Communications Magazine, vol. 62, no. 10, pp. 20–27, 2024, cited by 20.
-- [Deep quantum-transformer networks for multimodal beam prediction in ISAC systems](https://doi.org/10.1109/jiot.2024.3420455): S. Tariq, B. E. Arfeto, U. Khalid, S. Kim, T. Q. Duong, H. Shin. IEEE Internet of Things Journal, vol. 11, no. 18, pp. 29387–29401, 2024, cited by 71.
+- [Deep quantum-transformer networks for multimodal beam prediction in ISAC systems](https://doi.org/10.1109/jiot.2024.3420455): S. Tariq, B. E. Arfeto, U. Khalid, S. Kim, T. Q. Duong, H. Shin. IEEE Internet of Things Journal, vol. 11, no. 18, pp. 29387–29401, 2024, cited by 72.
 - [Variational anonymous quantum sensing](https://doi.org/10.1109/jsac.2024.3414932): M. S. Ulum, U. Khalid, J. W. Setiawan, T. Q. Duong, M. Z. Win, H. Shin. IEEE Journal on Selected Areas in Communications, vol. 42, no. 9, pp. 2275–2291, 2024, cited by 20.
 - [Integrating sustainable big AI: Quantum anonymous semantic broadcast](https://doi.org/10.1109/mwc.007.2300503): S. Tariq, U. Khalid, B. E. Arfeto, T. Q. Duong, H. Shin. IEEE Wireless Communications, vol. 31, no. 3, pp. 86–99, 2024, cited by 37.
 - [Quantum network engineering in the NISQ age: Principles, missions, and challenges](https://doi.org/10.1109/mnet.2023.3328892): U. Khalid, J. ur Rehman, S. N. Paing, H. Jung, T. Q. Duong, H. Shin. IEEE Network, vol. 38, no. 1, pp. 112–123, 2024, cited by 46.
@@ -43,7 +43,7 @@ Google Scholar (2026-11-22): 737 citations, h-index 17, i10-index 20.
 - [Quantum semantic communications for Metaverse: Principles and challenges](https://doi.org/10.1109/mwc.002.2200613): U. Khalid, M. S. Ulum, A. Farooq, T. Q. Duong, O. A. Dobre, H. Shin. IEEE Wireless Communications, vol. 30, no. 4, pp. 26–36, 2023, cited by 88.
 - [Quantum secure metrology for network sensing-based applications](https://doi.org/10.1038/s41598-023-38802-6): M. T. Rahim, A. Khan, U. Khalid, J. ur Rehman, H. Jung, H. Shin. Scientific Reports, vol. 13, no. 1, Art. no. 11630, 2023, cited by 16.
 - [Entanglement detection with artificial neural networks](https://doi.org/10.1038/s41598-023-28745-3): N. Asif, U. Khalid, A. Khan, T. Q. Duong, H. Shin. Scientific Reports, vol. 13, no. 1, Art. no. 1562, 2023, cited by 62.
-- [Quantum anonymous private information retrieval for distributed networks](https://doi.org/10.1109/tcomm.2022.3168079): A. Khan, U. Khalid, J. ur Rehman, H. Shin. IEEE Transactions on Communications, 2022, cited by 35.
+- [Quantum anonymous private information retrieval for distributed networks](https://doi.org/10.1109/tcomm.2022.3168079): A. Khan, U. Khalid, J. ur Rehman, H. Shin. IEEE Transactions on Communications, 2022, cited by 36.
 - [Robust quantum state tomography method for quantum sensing](https://doi.org/10.3390/s22072669): A. Farooq, U. Khalid, J. ur Rehman, H. Shin. Sensors, vol. 22, no. 7, Art. no. 2669, 2022, cited by 20.
 - [Quantum anonymous collision detection for quantum networks](https://doi.org/10.1140/epjqt/s40507-021-00116-9): A. Khan, U. Khalid, J. ur Rehman, K. Lee, H. Shin. EPJ Quantum Technology, vol. 8, no. 1, p. 27, 2021, cited by 26.
 - [Metrologically resourceful multipartite entanglement under quantum many-body effects](https://doi.org/10.1088/2058-9565/abd893): U. Khalid, J. ur Rehman, H. Shin. Quantum Science and Technology, vol. 6, no. 2, Art. no. 025007, 2021, cited by 33.
