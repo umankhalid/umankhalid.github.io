@@ -4,7 +4,7 @@
 
 Ph.D., Electronics and Information Convergence Engineering, Kyung Hee University (2023), advised by Prof. Hyundong Shin. B.E., Electronics Engineering, Ghulam Ishaq Khan Institute of Engineering and Technology, Pakistan (2015).
 
-Google Scholar (2026-11-25): 740 citations, h-index 17, i10-index 20.
+Google Scholar (2026-11-27): 741 citations, h-index 17, i10-index 20.
 
 ## Pages
 
@@ -29,7 +29,7 @@ Google Scholar (2026-11-25): 740 citations, h-index 17, i10-index 20.
 - [Quantum Clock Synchronization Networks: A Survey](https://doi.org/10.1109/comst.2026.3694353): U. Khalid, M. S. Ulum, Mujirin, G. T. F. d. Abreu, E. Björnson, H. Shin. IEEE Communications Surveys & Tutorials, vol. 28, pp. 6552–6591, 2026, cited by 4.
 - [Counterfactual Quantum Communication: Information Exchange in Quantum Shadows](https://doi.org/10.1109/comst.2025.3616390): S. N. Paing, F. Zaman, U. Khalid, T. Q. Duong, M. Z. Win, H. Shin. IEEE Communications Surveys & Tutorials, vol. 28, pp. 2846–2880, 2025, cited by 1.
 - [GenSC-6G: A Prototype Testbed for Integrated Generative AI, Quantum, and Semantic Communication](https://doi.org/10.1109/mcom.001.2400760): B. E. Arfeto, S. Tariq, U. Khalid, T. Q. Duong, H. Shin. IEEE Communications Magazine, vol. 63, no. 10, pp. 28–35, 2025, cited by 14.
-- [Quantum Computing for Intelligent Transportation Systems: VQE-Based Traffic Routing and EV Charging Scheduling](https://doi.org/10.3390/math13172761): U. Khalid, U. I. Paracha, S. M. A. Rizvi, H. Shin. Mathematics, vol. 13, no. 17, p. 2761, 2025, cited by 6.
+- [Quantum Computing for Intelligent Transportation Systems: VQE-Based Traffic Routing and EV Charging Scheduling](https://doi.org/10.3390/math13172761): U. Khalid, U. I. Paracha, S. M. A. Rizvi, H. Shin. Mathematics, vol. 13, no. 17, p. 2761, 2025, cited by 7.
 - [Quantum Machine Learning: Towards Hybrid Quantum-Classical Vision Models](https://doi.org/10.3390/math13162645): S. M. A. Rizvi, U. I. Paracha, U. Khalid, K. Lee, H. Shin. Mathematics, vol. 13, no. 16, p. 2645, 2025, cited by 29.
 - [Controlled Quantum Semantic Communication for Industrial CPS Networks](https://doi.org/10.1109/tnse.2025.3589296): S. M. A. Rizvi, U. Khalid, S. Chatzinotas, T. Q. Duong, H. Shin. IEEE Transactions on Network Science and Engineering, vol. 13, pp. 996–1009, 2025, cited by 21.
 - [Quantum fusion intelligence for integrated satellite-ground remote sensing](https://doi.org/10.1109/mwc.001.2400425): U. Khalid, U. I. Paracha, Z. Naveed, T. Q. Duong, M. Z. Win, H. Shin. IEEE Wireless Communications, vol. 32, no. 3, pp. 46–55, 2025, cited by 12.

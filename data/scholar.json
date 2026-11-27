@@ -1,10 +1,10 @@
 {
-  "citations": 740,
+  "citations": 741,
   "hIndex": 17,
   "i10Index": 20,
   "scholarId": "CyVQHYEAAAAJ",
   "profileUrl": "https://scholar.google.com/citations?user=CyVQHYEAAAAJ&hl=en",
-  "updated": "2026-11-25",
+  "updated": "2026-11-27",
   "papers": [
     {
       "title": "Approximation algorithms for vehicle routing problems: A survey",
@@ -110,7 +110,7 @@
     },
     {
       "title": "Quantum computing for intelligent transportation systems: VQE-based traffic routing and EV charging scheduling",
-      "citations": 6,
+      "citations": 7,
       "year": 2025,
       "url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=6624657522613986046"
     },
